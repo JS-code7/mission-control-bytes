@@ -207,7 +207,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
 /* ---------------- Page hero (consistent header) ---------------- */
 export function PageHero({
   eyebrow, title, subtitle, code, children,
-}: { eyebrow: string; title: ReactNode; subtitle?: string; code?: string; children?: ReactNode }) {
+}: { eyebrow: ReactNode; title: ReactNode; subtitle?: string; code?: string; children?: ReactNode }) {
   return (
     <section className="relative pt-32 pb-12 overflow-hidden bg-noise">
       <div className="absolute inset-0 bg-grid opacity-60" />

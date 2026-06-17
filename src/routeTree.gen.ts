@@ -9,12 +9,54 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TransmitRouteImport } from './routes/transmit'
+import { Route as TimelineRouteImport } from './routes/timeline'
+import { Route as StoryRouteImport } from './routes/story'
+import { Route as ModulesRouteImport } from './routes/modules'
 import { Route as MissionRouteImport } from './routes/mission'
+import { Route as LabRouteImport } from './routes/lab'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BrainRouteImport } from './routes/brain'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TransmitRoute = TransmitRouteImport.update({
+  id: '/transmit',
+  path: '/transmit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TimelineRoute = TimelineRouteImport.update({
+  id: '/timeline',
+  path: '/timeline',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoryRoute = StoryRouteImport.update({
+  id: '/story',
+  path: '/story',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModulesRoute = ModulesRouteImport.update({
+  id: '/modules',
+  path: '/modules',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MissionRoute = MissionRouteImport.update({
   id: '/mission',
   path: '/mission',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LabRoute = LabRouteImport.update({
+  id: '/lab',
+  path: '/lab',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrainRoute = BrainRouteImport.update({
+  id: '/brain',
+  path: '/brain',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,37 +67,142 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/brain': typeof BrainRoute
+  '/contact': typeof ContactRoute
+  '/lab': typeof LabRoute
   '/mission': typeof MissionRoute
+  '/modules': typeof ModulesRoute
+  '/story': typeof StoryRoute
+  '/timeline': typeof TimelineRoute
+  '/transmit': typeof TransmitRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/brain': typeof BrainRoute
+  '/contact': typeof ContactRoute
+  '/lab': typeof LabRoute
   '/mission': typeof MissionRoute
+  '/modules': typeof ModulesRoute
+  '/story': typeof StoryRoute
+  '/timeline': typeof TimelineRoute
+  '/transmit': typeof TransmitRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/brain': typeof BrainRoute
+  '/contact': typeof ContactRoute
+  '/lab': typeof LabRoute
   '/mission': typeof MissionRoute
+  '/modules': typeof ModulesRoute
+  '/story': typeof StoryRoute
+  '/timeline': typeof TimelineRoute
+  '/transmit': typeof TransmitRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/mission'
+  fullPaths:
+    | '/'
+    | '/brain'
+    | '/contact'
+    | '/lab'
+    | '/mission'
+    | '/modules'
+    | '/story'
+    | '/timeline'
+    | '/transmit'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/mission'
-  id: '__root__' | '/' | '/mission'
+  to:
+    | '/'
+    | '/brain'
+    | '/contact'
+    | '/lab'
+    | '/mission'
+    | '/modules'
+    | '/story'
+    | '/timeline'
+    | '/transmit'
+  id:
+    | '__root__'
+    | '/'
+    | '/brain'
+    | '/contact'
+    | '/lab'
+    | '/mission'
+    | '/modules'
+    | '/story'
+    | '/timeline'
+    | '/transmit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BrainRoute: typeof BrainRoute
+  ContactRoute: typeof ContactRoute
+  LabRoute: typeof LabRoute
   MissionRoute: typeof MissionRoute
+  ModulesRoute: typeof ModulesRoute
+  StoryRoute: typeof StoryRoute
+  TimelineRoute: typeof TimelineRoute
+  TransmitRoute: typeof TransmitRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/transmit': {
+      id: '/transmit'
+      path: '/transmit'
+      fullPath: '/transmit'
+      preLoaderRoute: typeof TransmitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/timeline': {
+      id: '/timeline'
+      path: '/timeline'
+      fullPath: '/timeline'
+      preLoaderRoute: typeof TimelineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/story': {
+      id: '/story'
+      path: '/story'
+      fullPath: '/story'
+      preLoaderRoute: typeof StoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modules': {
+      id: '/modules'
+      path: '/modules'
+      fullPath: '/modules'
+      preLoaderRoute: typeof ModulesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mission': {
       id: '/mission'
       path: '/mission'
       fullPath: '/mission'
       preLoaderRoute: typeof MissionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lab': {
+      id: '/lab'
+      path: '/lab'
+      fullPath: '/lab'
+      preLoaderRoute: typeof LabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brain': {
+      id: '/brain'
+      path: '/brain'
+      fullPath: '/brain'
+      preLoaderRoute: typeof BrainRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,7 +217,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BrainRoute: BrainRoute,
+  ContactRoute: ContactRoute,
+  LabRoute: LabRoute,
   MissionRoute: MissionRoute,
+  ModulesRoute: ModulesRoute,
+  StoryRoute: StoryRoute,
+  TimelineRoute: TimelineRoute,
+  TransmitRoute: TransmitRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

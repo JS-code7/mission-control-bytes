@@ -1,4 +1,4 @@
-import { type CSSProperties } from "react";
+import { type CSSProperties, type ReactElement } from "react";
 
 /**
  * Organic vector background system.

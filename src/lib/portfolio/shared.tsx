@@ -35,11 +35,11 @@ export function useCursorLight() {
 
 /* ---------------- Preloader (premium JS) ---------------- */
 const BOOT_LINES = [
-  "INITIALIZING SYSTEM…",
-  "LOADING MISSION CONTROL…",
-  "AUTHENTICATING OPERATOR…",
-  "LOADING ACTIVE MODULES…",
-  "SYSTEM READY",
+  "Booting JS · OS",
+  "Linking mission modules",
+  "Authenticating operator",
+  "Calibrating signal mesh",
+  "Systems nominal",
 ];
 
 export function Preloader({ onDone }: { onDone: () => void }) {
@@ -47,19 +47,25 @@ export function Preloader({ onDone }: { onDone: () => void }) {
   const [pct, setPct] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => setStep((s) => Math.min(s + 1, BOOT_LINES.length)), 420);
-    const p = setInterval(() => setPct((v) => Math.min(100, v + 3)), 55);
-    const end = setTimeout(onDone, 2400);
+    const t = setInterval(() => setStep((s) => Math.min(s + 1, BOOT_LINES.length)), 460);
+    const p = setInterval(() => setPct((v) => Math.min(100, v + 2.4)), 50);
+    const end = setTimeout(onDone, 2600);
     return () => { clearInterval(t); clearInterval(p); clearTimeout(end); };
   }, [onDone]);
 
+  const R = 92;
+  const C = 2 * Math.PI * R;
+  const dash = (pct / 100) * C;
+
   return (
-    <div className="preloader fixed inset-0 z-[200] grid place-items-center bg-black overflow-hidden">
-      <div className="absolute inset-0 bg-grid opacity-50" />
+    <div className="preloader fixed inset-0 z-[200] grid place-items-center overflow-hidden"
+         style={{ background: "radial-gradient(ellipse at center, oklch(0.16 0.02 262), oklch(0.08 0.015 260) 70%)" }}>
+      <div className="absolute inset-0 bg-grid opacity-25" />
       <div className="absolute inset-0 radial-glow opacity-50" />
-      {/* particles */}
+
+      {/* drifting particles */}
       <div className="absolute inset-0 pointer-events-none">
-        {Array.from({ length: 36 }).map((_, i) => (
+        {Array.from({ length: 28 }).map((_, i) => (
           <span
             key={i}
             className="preloader-particle"
@@ -73,13 +79,30 @@ export function Preloader({ onDone }: { onDone: () => void }) {
         ))}
       </div>
 
-      <div className="relative flex flex-col items-center gap-8 px-6">
-        {/* JS logo */}
-        <div className="relative h-44 w-44 grid place-items-center">
-          <div className="absolute inset-0 rounded-full border border-[color:var(--cyan)]/30 animate-spin-slow" />
-          <div className="absolute inset-3 rounded-full border border-dashed border-[color:var(--purple-glow)]/40" style={{ animation: "spin-slow 14s linear infinite reverse" }} />
-          <div className="absolute inset-6 rounded-full border border-[color:var(--electric)]/40 animate-spin-slow" />
-          <div className="absolute inset-0 rounded-full radial-glow blur-2xl opacity-80" />
+      <div className="relative flex flex-col items-center gap-7 px-6">
+        {/* JS monogram inside progress ring */}
+        <div className="relative h-56 w-56 grid place-items-center">
+          <svg viewBox="0 0 220 220" className="absolute inset-0 -rotate-90">
+            <defs>
+              <linearGradient id="pl-grad" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stopColor="var(--cyan)" />
+                <stop offset="60%" stopColor="var(--electric)" />
+                <stop offset="100%" stopColor="var(--purple-glow)" />
+              </linearGradient>
+            </defs>
+            <circle cx="110" cy="110" r={R} stroke="color-mix(in oklab, white 10%, transparent)" strokeWidth="2" fill="none" />
+            <circle
+              cx="110" cy="110" r={R}
+              stroke="url(#pl-grad)" strokeWidth="2.5" fill="none"
+              strokeLinecap="round"
+              strokeDasharray={`${dash} ${C - dash}`}
+              style={{ filter: "drop-shadow(0 0 10px color-mix(in oklab, var(--cyan) 55%, transparent))", transition: "stroke-dasharray .15s linear" }}
+            />
+          </svg>
+          <div
+            className="absolute inset-6 rounded-full border border-dashed border-[color:var(--purple-glow)]/30"
+            style={{ animation: "spin-slow 18s linear infinite reverse" }}
+          />
           <svg viewBox="0 0 100 100" className="relative h-28 w-28 js-logo">
             <defs>
               <linearGradient id="jsGrad" x1="0" x2="1" y1="0" y2="1">
@@ -89,37 +112,37 @@ export function Preloader({ onDone }: { onDone: () => void }) {
               </linearGradient>
             </defs>
             <text
-              x="50" y="68" textAnchor="middle"
+              x="50" y="66" textAnchor="middle"
               fontFamily="'Space Grotesk', sans-serif"
-              fontWeight="700" fontSize="58"
+              fontWeight="700" fontSize="48"
+              letterSpacing="-2"
               fill="url(#jsGrad)"
-              stroke="url(#jsGrad)" strokeWidth="0.6"
-              style={{ filter: "drop-shadow(0 0 16px color-mix(in oklab, var(--cyan) 60%, transparent))" }}
             >JS</text>
           </svg>
+          <div className="absolute -bottom-1 mono text-[10px] tracking-[0.45em] text-[var(--cyan)]/80">{Math.round(pct)}%</div>
         </div>
 
-        <div className="mono text-[10.5px] tracking-[0.3em] text-[var(--cyan)]">JEET · SONI · OS</div>
+        <div className="text-center">
+          <div className="text-[15px] font-medium tracking-tight text-foreground/90">Jeet Soni · Operating System</div>
+          <div className="mono text-[10.5px] tracking-[0.35em] text-muted-foreground mt-1">MISSION CONTROL · v1</div>
+        </div>
 
         {/* boot log */}
-        <div className="w-[min(440px,90vw)] glass rounded-xl p-4 hud-corner scanline">
+        <div className="w-[min(440px,92vw)] glass rounded-xl px-4 py-3 hud-corner">
           <div className="flex items-center gap-2 mono text-[10.5px] text-[var(--cyan)]">
             <Terminal className="h-3 w-3" /> BOOT SEQUENCE
-            <span className="ml-auto opacity-70">{pct}%</span>
+            <span className="ml-auto opacity-70">{Math.min(step, BOOT_LINES.length)}/{BOOT_LINES.length}</span>
           </div>
           <div className="hairline my-2" />
-          <div className="mono text-[11.5px] leading-relaxed min-h-[110px]">
+          <div className="mono text-[11.5px] leading-relaxed min-h-[96px]">
             {BOOT_LINES.slice(0, step).map((l, i) => (
               <div key={i} className="text-foreground/85">
-                <span className="text-[var(--cyan)]">›</span> [ OK ] {l}
+                <span className="text-[var(--cyan)]">›</span> [ ok ] {l}
               </div>
             ))}
             {step < BOOT_LINES.length && (
-              <div className="text-[var(--cyan)] cursor-blink">running</div>
+              <div className="text-[var(--cyan)] cursor-blink">linking</div>
             )}
-          </div>
-          <div className="mt-3 h-1 rounded-full bg-white/5 overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-[var(--cyan)] via-[var(--electric)] to-[var(--purple-glow)] transition-all" style={{ width: pct + "%" }} />
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ function ModulesPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero variant="modules"
         eyebrow={<><Layers className="h-3 w-3" /> SYSTEM · 06 · MODULES</>}
         code={`${PROJECTS.length} MODULES · IN-FLIGHT`}
         title={<>Active <span className="text-gradient">Modules</span></>}

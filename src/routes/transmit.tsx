@@ -40,7 +40,7 @@ function TransmitPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero variant="transmit"
         eyebrow={<><Terminal className="h-3 w-3" /> SYSTEM · 07 · TRANSMIT</>}
         code="CHANNEL · OPEN"
         title={<>Transmission <span className="text-gradient">Console</span></>}

@@ -7,6 +7,7 @@ import {
 import { toast } from "sonner";
 import { PROFILE, NAV_ITEMS, PROJECTS, SKILLS } from "../lib/portfolio/data";
 import { useReveal } from "../lib/portfolio/shared";
+import { VectorBG } from "../lib/portfolio/VectorBG";
 
 export const Route = createFileRoute("/")({ component: Hub });
 

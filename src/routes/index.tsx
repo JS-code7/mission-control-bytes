@@ -18,21 +18,45 @@ const ICONS: Record<string, typeof Eye> = {
 
 function VectorOrb() {
   return (
-    <div className="relative w-[min(440px,80vw)] aspect-square">
-      <div className="absolute inset-0 rounded-full radial-glow blur-2xl opacity-80" />
-      <div className="absolute inset-8 rounded-full border border-[color:var(--cyan)]/30 animate-spin-slow" />
-      <div className="absolute inset-16 rounded-full border border-dashed border-[color:var(--purple-glow)]/40" style={{ animation: "spin-slow 30s linear infinite reverse" }} />
-      <div className="absolute inset-24 rounded-full border border-[color:var(--electric)]/40 animate-spin-slow" />
+    <div className="relative w-[min(460px,82vw)] aspect-square">
+      <div className="absolute inset-0 rounded-full radial-glow blur-3xl opacity-90" />
+      <svg viewBox="0 0 400 400" className="absolute inset-0 h-full w-full">
+        <defs>
+          <linearGradient id="orb-g" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stopColor="var(--cyan)" />
+            <stop offset="60%" stopColor="var(--electric)" />
+            <stop offset="100%" stopColor="var(--purple-glow)" />
+          </linearGradient>
+        </defs>
+        {/* organic morphing blob */}
+        <path fill="none" stroke="url(#orb-g)" strokeWidth="1.2" opacity="0.75">
+          <animate
+            attributeName="d"
+            dur="14s"
+            repeatCount="indefinite"
+            values="
+              M200,80 C280,80 330,140 330,210 C330,290 270,330 200,330 C130,330 70,290 70,210 C70,140 120,80 200,80 Z;
+              M200,70 C300,90 340,160 320,230 C300,310 250,330 190,325 C115,320 60,270 75,200 C90,120 130,55 200,70 Z;
+              M200,80 C280,80 330,140 330,210 C330,290 270,330 200,330 C130,330 70,290 70,210 C70,140 120,80 200,80 Z
+            "
+          />
+        </path>
+        {/* outer dotted ring */}
+        <circle cx="200" cy="200" r="180" fill="none" stroke="var(--cyan)" strokeOpacity="0.35" strokeDasharray="1.5 8" />
+        <circle cx="200" cy="200" r="150" fill="none" stroke="var(--purple-glow)" strokeOpacity="0.3" strokeDasharray="3 10" />
+      </svg>
+      <div className="absolute inset-0 rounded-full border border-[color:var(--cyan)]/15 animate-spin-slow" />
+      <div className="absolute inset-10 rounded-full border border-dashed border-[color:var(--purple-glow)]/25" style={{ animation: "spin-slow 28s linear infinite reverse" }} />
       <div className="absolute inset-0 grid place-items-center">
-        <div className="glass rounded-2xl px-5 py-4 hud-corner animate-float">
-          <div className="mono text-[10px] text-[var(--cyan)] tracking-widest">CORE</div>
-          <div className="text-2xl font-semibold text-gradient">JS — v1</div>
-          <div className="mono text-[10px] text-muted-foreground">STATUS · ONLINE</div>
+        <div className="glass rounded-2xl px-5 py-4 hud-corner animate-float text-center">
+          <div className="mono text-[10px] text-[var(--cyan)] tracking-widest">CORE · IDENTITY</div>
+          <div className="text-2xl font-semibold text-gradient mt-0.5">JS — v1</div>
+          <div className="mono text-[10px] text-muted-foreground mt-0.5">STATUS · ONLINE</div>
         </div>
       </div>
-      {[0, 60, 120, 180, 240, 300].map((a, i) => (
-        <div key={i} className="absolute left-1/2 top-1/2" style={{ transform: `rotate(${a}deg) translateX(170px)` }}>
-          <div className="h-2.5 w-2.5 rounded-full bg-[var(--cyan)] shadow-[0_0_18px_var(--cyan)]" />
+      {[0, 72, 144, 216, 288].map((a, i) => (
+        <div key={i} className="absolute left-1/2 top-1/2" style={{ transform: `rotate(${a}deg) translateX(180px)` }}>
+          <div className="h-2 w-2 rounded-full bg-[var(--cyan)] shadow-[0_0_14px_var(--cyan)]" />
         </div>
       ))}
     </div>
@@ -41,30 +65,41 @@ function VectorOrb() {
 
 function Hub() {
   useReveal();
+  const ROLES = ["Co-Founder", "Cybersecurity", "Robotics", "Web Dev", "Electronics", "AI Systems"];
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-16 overflow-hidden bg-noise">
-        <div className="absolute inset-0 bg-grid" />
-        <div className="absolute inset-0 radial-glow opacity-70" />
-        <div className="relative mx-auto max-w-7xl px-6 grid lg:grid-cols-[1.15fr_1fr] gap-12 items-center">
+      <section className="relative pt-32 pb-20 overflow-hidden bg-noise">
+        <VectorBG variant="home" />
+        <div className="relative mx-auto max-w-7xl px-6 grid lg:grid-cols-[1.2fr_1fr] gap-14 items-center">
           <div className="reveal">
             <span className="section-label"><Activity className="h-3 w-3" /> MISSION CONTROL · ONLINE</span>
-            <h1 className="mt-5 text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight">
-              Hi, I'm <span className="text-gradient">Jeet Soni</span>.
+            <div className="mt-6 mono text-[11px] tracking-[0.32em] text-muted-foreground">
+              OPERATOR · {PROFILE.name.toUpperCase()}
+            </div>
+            <h1 className="mt-3 text-[2.8rem] sm:text-6xl lg:text-[4.5rem] font-bold leading-[1.02] tracking-tight">
+              Building <span className="text-gradient">intelligent systems</span>
               <br />
-              <span className="text-foreground/90">I build intelligent systems</span>
-              <br />
-              <span className="text-foreground/60">that ship.</span>
+              <span className="text-foreground/90">where hardware meets software.</span>
             </h1>
             <p className="mt-6 max-w-xl text-muted-foreground text-[15.5px] leading-relaxed">
-              Co-Founder @ <span className="text-foreground">BinBuddy</span> — an incubated, funded startup. I work across
-              <span className="text-foreground"> cybersecurity, robotics, web, and electronics </span>
-              to turn ambitious ideas into hardware-meets-software products that survive the real world.
+              I'm Jeet — Co-Founder @ <span className="text-foreground">BinBuddy</span>, an incubated &amp; funded startup.
+              I work across <span className="text-foreground">cybersecurity, robotics, web, and electronics</span> to
+              turn ambitious ideas into AI-driven products that ship and survive the real world.
             </p>
+
+            <div className="mt-5 flex flex-wrap gap-1.5">
+              {ROLES.map((r) => (
+                <span key={r} className="mono text-[10.5px] tracking-widest text-foreground/80 border border-white/10 rounded-full px-2.5 py-1 bg-white/[0.03]">
+                  {r.toUpperCase()}
+                </span>
+              ))}
+            </div>
+
             <div className="mt-4 flex items-center gap-2 text-[12.5px] mono text-muted-foreground">
               <MapPin className="h-3.5 w-3.5 text-[var(--cyan)]" /> {PROFILE.location}
             </div>
+
             <div className="mt-7 flex flex-wrap gap-3">
               <Link to="/modules" className="btn-hero"><Rocket className="h-4 w-4" /> View Active Modules</Link>
               <Link to="/contact" className="btn-ghost"><Send className="h-4 w-4" /> Open Transmission</Link>

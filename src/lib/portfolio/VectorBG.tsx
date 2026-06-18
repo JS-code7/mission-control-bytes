@@ -283,7 +283,7 @@ function ContactArt() {
   );
 }
 
-const ART: Record<BGVariant, () => JSX.Element> = {
+const ART: Record<BGVariant, () => ReactElement> = {
   home: HomeArt,
   story: StoryArt,
   lab: LabArt,

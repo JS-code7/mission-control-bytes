@@ -207,18 +207,17 @@ export function PageTransition({ children }: { children: ReactNode }) {
 
 /* ---------------- Page hero (consistent header) ---------------- */
 export function PageHero({
-  eyebrow, title, subtitle, code, children,
-}: { eyebrow: ReactNode; title: ReactNode; subtitle?: string; code?: string; children?: ReactNode }) {
+  eyebrow, title, subtitle, code, variant = "home", children,
+}: { eyebrow: ReactNode; title: ReactNode; subtitle?: string; code?: string; variant?: BGVariant; children?: ReactNode }) {
   return (
-    <section className="relative pt-32 pb-12 overflow-hidden bg-noise">
-      <div className="absolute inset-0 bg-grid opacity-60" />
-      <div className="absolute inset-0 radial-glow opacity-60" />
+    <section className="relative pt-32 pb-14 overflow-hidden bg-noise">
+      <VectorBG variant={variant} />
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <span className="section-label">{eyebrow}</span>
           {code && <span className="mono text-[11px] tracking-widest text-muted-foreground">{code}</span>}
         </div>
-        <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight">
+        <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight">
           {title}
         </h1>
         {subtitle && <p className="mt-4 max-w-2xl text-muted-foreground text-[15.5px] leading-relaxed">{subtitle}</p>}

@@ -22,7 +22,7 @@ function TimelinePage() {
   useReveal();
   return (
     <>
-      <PageHero
+      <PageHero variant="timeline"
         eyebrow={<><Star className="h-3 w-3" /> SYSTEM · 05 · TIMELINE</>}
         code={`${TIMELINE.length} CHECKPOINTS · ACTIVE`}
         title={<>Evolution <span className="text-gradient">Timeline</span></>}

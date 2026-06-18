@@ -15,7 +15,7 @@ function MissionPage() {
   useReveal();
   return (
     <>
-      <PageHero
+      <PageHero variant="home"
         eyebrow={<><Eye className="h-3 w-3" /> SYSTEM · 01 · MISSION</>}
         code="UPLINK · STABLE · 99.9%"
         title={<>Operator <span className="text-gradient">Profile</span></>}

@@ -29,7 +29,7 @@ function StoryPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero variant="story"
         eyebrow={<><Sparkles className="h-3 w-3" /> SYSTEM · 02 · STORY</>}
         code={`CHAPTER PROGRESS · ${Math.round(progress)}%`}
         title={<>Story <span className="text-gradient">Mode</span></>}

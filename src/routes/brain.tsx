@@ -25,7 +25,7 @@ function BrainPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero variant="brain"
         eyebrow={<><BrainIcon className="h-3 w-3" /> SYSTEM · 04 · BRAIN</>}
         code={`${BRAIN_NODES.length} NODES · LINKED`}
         title={<>Brain <span className="text-gradient">Map</span></>}

@@ -128,7 +128,7 @@ function LabPage() {
   useReveal();
   return (
     <>
-      <PageHero
+      <PageHero variant="lab"
         eyebrow={<><FlaskConical className="h-3 w-3" /> SYSTEM · 03 · LAB</>}
         code="LAB · LIVE"
         title={<>Interactive <span className="text-gradient">Lab</span></>}

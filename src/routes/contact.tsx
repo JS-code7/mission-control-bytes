@@ -31,7 +31,7 @@ function ContactPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero variant="contact"
         eyebrow={<><Wifi className="h-3 w-3" /> SYSTEM · 08 · CONTACT</>}
         code="CHANNEL · OPEN"
         title={<>Open a <span className="text-gradient">channel</span></>}

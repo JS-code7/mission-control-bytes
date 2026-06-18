@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Github, Linkedin, Mail, Send, Terminal, Menu, X } from "lucide-react";
 import { NAV_ITEMS, PROFILE } from "./data";
+import { VectorBG, type BGVariant } from "./VectorBG";
 
 /* ---------------- hooks ---------------- */
 export function useReveal() {

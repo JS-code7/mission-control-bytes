@@ -132,18 +132,22 @@ function Hub() {
               <span className="hidden sm:inline mono text-[10px] text-[color:var(--cyan)]/60 tracking-widest">OPERATOR · {PROFILE.name.toUpperCase()}</span>
             </span>
 
-            <h1 className="mt-6 text-[2.8rem] sm:text-6xl lg:text-[4.6rem] font-bold leading-[0.98] tracking-tight">
-              Building <span className="text-gradient text-glow">intelligent systems</span>
-              <span className="block text-foreground/90">where hardware meets software.</span>
+            <div className="mt-6 mono text-[11px] tracking-[0.32em] text-[color:var(--cyan)]/80">CO-FOUNDER @ BINBUDDY</div>
+            <h1 className="mt-3 text-[3rem] sm:text-6xl lg:text-[5rem] font-bold leading-[0.95] tracking-tight">
+              <span className="block">JEET <span className="text-gradient text-glow">SONI</span></span>
+              <span className="mt-3 block text-[1.4rem] sm:text-2xl lg:text-3xl font-medium text-foreground/80 tracking-tight leading-tight">
+                Building intelligent systems that bridge software, hardware, and the real world.
+              </span>
             </h1>
 
             <p className="mt-6 max-w-xl text-muted-foreground text-[15.5px] leading-relaxed">
-              I'm Jeet — Co-Founder @ <span className="text-[color:var(--cyan)]">BinBuddy</span>. I work across{" "}
-              <span className="text-foreground font-medium">cybersecurity</span>,{" "}
+              I co-build <span className="text-[color:var(--cyan)]">BinBuddy</span> — an incubated, funded startup —
+              and engineer products across <span className="text-foreground font-medium">cybersecurity</span>,{" "}
               <span className="text-foreground font-medium">robotics</span>,{" "}
-              <span className="text-foreground font-medium">web</span>, and{" "}
-              <span className="text-foreground font-medium">electronics</span> to turn ambitious ideas into AI-driven products.
+              <span className="text-foreground font-medium">AI systems</span>, and{" "}
+              <span className="text-foreground font-medium">web engineering</span>.
             </p>
+
 
             <div className="mt-5 flex flex-wrap gap-1.5">
               {ROLES.map((r) => (

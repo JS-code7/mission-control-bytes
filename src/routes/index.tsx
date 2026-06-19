@@ -16,49 +16,80 @@ const ICONS: Record<string, typeof Eye> = {
   Timeline: Star, Modules: Layers, Transmit: Terminal, Contact: Wifi,
 };
 
-function VectorOrb() {
+function HudConsole() {
+  const bars = [40, 70, 100, 60, 30, 85, 50];
   return (
-    <div className="relative w-[min(460px,82vw)] aspect-square">
-      <div className="absolute inset-0 rounded-full radial-glow blur-3xl opacity-90" />
-      <svg viewBox="0 0 400 400" className="absolute inset-0 h-full w-full">
-        <defs>
-          <linearGradient id="orb-g" x1="0" x2="1" y1="0" y2="1">
-            <stop offset="0%" stopColor="var(--cyan)" />
-            <stop offset="60%" stopColor="var(--electric)" />
-            <stop offset="100%" stopColor="var(--purple-glow)" />
-          </linearGradient>
-        </defs>
-        {/* organic morphing blob */}
-        <path fill="none" stroke="url(#orb-g)" strokeWidth="1.2" opacity="0.75">
-          <animate
-            attributeName="d"
-            dur="14s"
-            repeatCount="indefinite"
-            values="
-              M200,80 C280,80 330,140 330,210 C330,290 270,330 200,330 C130,330 70,290 70,210 C70,140 120,80 200,80 Z;
-              M200,70 C300,90 340,160 320,230 C300,310 250,330 190,325 C115,320 60,270 75,200 C90,120 130,55 200,70 Z;
-              M200,80 C280,80 330,140 330,210 C330,290 270,330 200,330 C130,330 70,290 70,210 C70,140 120,80 200,80 Z
-            "
-          />
-        </path>
-        {/* outer dotted ring */}
-        <circle cx="200" cy="200" r="180" fill="none" stroke="var(--cyan)" strokeOpacity="0.35" strokeDasharray="1.5 8" />
-        <circle cx="200" cy="200" r="150" fill="none" stroke="var(--purple-glow)" strokeOpacity="0.3" strokeDasharray="3 10" />
-      </svg>
-      <div className="absolute inset-0 rounded-full border border-[color:var(--cyan)]/15 animate-spin-slow" />
-      <div className="absolute inset-10 rounded-full border border-dashed border-[color:var(--purple-glow)]/25" style={{ animation: "spin-slow 28s linear infinite reverse" }} />
-      <div className="absolute inset-0 grid place-items-center">
-        <div className="glass rounded-2xl px-5 py-4 hud-corner animate-float text-center">
-          <div className="mono text-[10px] text-[var(--cyan)] tracking-widest">CORE · IDENTITY</div>
-          <div className="text-2xl font-semibold text-gradient mt-0.5">JS — v1</div>
-          <div className="mono text-[10px] text-muted-foreground mt-0.5">STATUS · ONLINE</div>
+    <div className="relative w-full max-w-md aspect-square mx-auto">
+      {/* Outer rotating ring */}
+      <div className="absolute inset-0 rounded-full border border-[color:var(--cyan)]/10 animate-spin-slow" />
+      <div className="absolute inset-4 rounded-full border border-dashed border-[color:var(--cyan)]/20" style={{ animation: "spin-slow 32s linear infinite reverse" }} />
+
+      {/* Top telemetry ticker */}
+      <div className="absolute top-0 left-0 right-0 h-6 overflow-hidden bg-[color:var(--cyan)]/5 border-y border-[color:var(--cyan)]/15 z-20 flex items-center">
+        <div className="flex whitespace-nowrap mono text-[9px] tracking-widest text-[color:var(--cyan)]/70 animate-marquee">
+          <span className="px-6">SYSTEM_STATUS: NOMINAL // CORE_TEMP: 32C // MEMORY_LOAD: 42% // NETWORK_UPTIME: 99.99% // PACKET_LOSS: 0% //&nbsp;</span>
+          <span className="px-6">SYSTEM_STATUS: NOMINAL // CORE_TEMP: 32C // MEMORY_LOAD: 42% // NETWORK_UPTIME: 99.99% // PACKET_LOSS: 0% //&nbsp;</span>
         </div>
       </div>
-      {[0, 72, 144, 216, 288].map((a, i) => (
-        <div key={i} className="absolute left-1/2 top-1/2" style={{ transform: `rotate(${a}deg) translateX(180px)` }}>
-          <div className="h-2 w-2 rounded-full bg-[var(--cyan)] shadow-[0_0_14px_var(--cyan)]" />
+
+      {/* HUD core panel */}
+      <div className="absolute inset-10 sm:inset-12 hud-frame rounded-xl p-5 sm:p-6 flex flex-col justify-between overflow-hidden">
+        <span className="hud-corner-tl" />
+        <span className="hud-corner-tr" />
+        <span className="hud-corner-bl" />
+        <span className="hud-corner-br" />
+
+        {/* Header */}
+        <div className="flex justify-between items-start">
+          <div className="space-y-1">
+            <div className="mono text-[9px] text-[color:var(--cyan)]/70 tracking-widest uppercase">Core Identity</div>
+            <div className="mono text-lg sm:text-xl font-bold text-foreground tracking-tight">JS // v1.0.4</div>
+          </div>
+          <div className="flex items-center gap-1">
+            <div className="w-1.5 h-1.5 rounded-full bg-[var(--cyan)] animate-pulse shadow-[0_0_8px_var(--cyan)]" />
+            <span className="mono text-[8px] text-[color:var(--cyan)] font-bold">LIVE</span>
+          </div>
         </div>
-      ))}
+
+        {/* Equalizer */}
+        <div className="flex-1 flex items-end justify-center gap-1.5 py-5">
+          {bars.map((h, i) => (
+            <div
+              key={i}
+              className="w-2 sm:w-2.5 rounded-sm eq-bar bg-gradient-to-t from-[color:var(--cyan)]/30 to-[color:var(--cyan)] shadow-[0_0_10px_color-mix(in_oklab,var(--cyan)_60%,transparent)]"
+              style={{ height: `${h}%`, animationDelay: `${i * 0.14}s`, animationDuration: `${1.4 + (i % 3) * 0.35}s` }}
+            />
+          ))}
+        </div>
+
+        {/* Metrics */}
+        <div className="grid grid-cols-2 gap-4 border-t border-[color:var(--cyan)]/20 pt-3">
+          <div>
+            <div className="mono text-[8px] text-muted-foreground tracking-widest uppercase">Stability</div>
+            <div className="mono text-sm font-bold text-[color:var(--cyan)]">99.98%</div>
+          </div>
+          <div>
+            <div className="mono text-[8px] text-muted-foreground tracking-widest uppercase">Latency</div>
+            <div className="mono text-sm font-bold text-[color:var(--cyan)]">14ms</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Satellite data points */}
+      <div className="absolute top-[14%] right-[2%] p-2 bg-background/70 border border-white/10 backdrop-blur-sm mono text-[8px] uppercase tracking-widest text-muted-foreground z-30">
+        Sat_Link: Established
+      </div>
+      <div className="absolute bottom-[16%] left-[0%] p-2 bg-background/70 border border-white/10 backdrop-blur-sm mono text-[8px] uppercase tracking-widest text-muted-foreground z-30">
+        Loc: Ahmedabad, IN
+      </div>
+
+      {/* Bottom ticker */}
+      <div className="absolute bottom-0 left-0 right-0 h-6 overflow-hidden bg-[color:var(--electric)]/5 border-y border-[color:var(--electric)]/15 z-20 flex items-center">
+        <div className="flex whitespace-nowrap mono text-[9px] tracking-widest text-[color:var(--electric)]/70 animate-marquee-rev">
+          <span className="px-6">ENCRYPTION: AES-256 // PROTOCOL: BIN-SYNC // SECTOR: DELTA-9 // THREAT_LEVEL: ZERO //&nbsp;</span>
+          <span className="px-6">ENCRYPTION: AES-256 // PROTOCOL: BIN-SYNC // SECTOR: DELTA-9 // THREAT_LEVEL: ZERO //&nbsp;</span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -71,26 +102,34 @@ function Hub() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-noise">
         <VectorBG variant="home" />
-        <div className="relative mx-auto max-w-7xl px-6 grid lg:grid-cols-[1.2fr_1fr] gap-14 items-center">
+        <div className="relative mx-auto max-w-7xl px-6 grid lg:grid-cols-[1.15fr_1fr] gap-14 items-center">
           <div className="reveal">
-            <span className="section-label"><Activity className="h-3 w-3" /> MISSION CONTROL · ONLINE</span>
-            <div className="mt-6 mono text-[11px] tracking-[0.32em] text-muted-foreground">
-              OPERATOR · {PROFILE.name.toUpperCase()}
-            </div>
-            <h1 className="mt-3 text-[2.8rem] sm:text-6xl lg:text-[4.5rem] font-bold leading-[1.02] tracking-tight">
-              Building <span className="text-gradient">intelligent systems</span>
-              <br />
-              <span className="text-foreground/90">where hardware meets software.</span>
+            <span className="section-label inline-flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--cyan)] opacity-75 animate-ping" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--cyan)] shadow-[0_0_8px_var(--cyan)]" />
+              </span>
+              MISSION CONTROL · ONLINE
+              <span className="hidden sm:inline-block h-px w-10 bg-[color:var(--cyan)]/30 mx-1" />
+              <span className="hidden sm:inline mono text-[10px] text-[color:var(--cyan)]/60 tracking-widest">OPERATOR · {PROFILE.name.toUpperCase()}</span>
+            </span>
+
+            <h1 className="mt-6 text-[2.8rem] sm:text-6xl lg:text-[4.6rem] font-bold leading-[0.98] tracking-tight">
+              Building <span className="text-gradient text-glow">intelligent systems</span>
+              <span className="block text-foreground/90">where hardware meets software.</span>
             </h1>
+
             <p className="mt-6 max-w-xl text-muted-foreground text-[15.5px] leading-relaxed">
-              I'm Jeet — Co-Founder @ <span className="text-foreground">BinBuddy</span>, an incubated &amp; funded startup.
-              I work across <span className="text-foreground">cybersecurity, robotics, web, and electronics</span> to
-              turn ambitious ideas into AI-driven products that ship and survive the real world.
+              I'm Jeet — Co-Founder @ <span className="text-[color:var(--cyan)]">BinBuddy</span>. I work across{" "}
+              <span className="text-foreground font-medium">cybersecurity</span>,{" "}
+              <span className="text-foreground font-medium">robotics</span>,{" "}
+              <span className="text-foreground font-medium">web</span>, and{" "}
+              <span className="text-foreground font-medium">electronics</span> to turn ambitious ideas into AI-driven products.
             </p>
 
             <div className="mt-5 flex flex-wrap gap-1.5">
               {ROLES.map((r) => (
-                <span key={r} className="mono text-[10.5px] tracking-widest text-foreground/80 border border-white/10 rounded-full px-2.5 py-1 bg-white/[0.03]">
+                <span key={r} className="mono text-[10.5px] tracking-widest text-foreground/80 border border-white/10 rounded-sm px-2.5 py-1 bg-white/[0.03]">
                   {r.toUpperCase()}
                 </span>
               ))}
@@ -127,10 +166,11 @@ function Hub() {
             </div>
           </div>
           <div className="relative flex justify-center reveal">
-            <VectorOrb />
+            <HudConsole />
           </div>
         </div>
       </section>
+
 
       {/* Dashboard stats */}
       <section className="relative py-10">

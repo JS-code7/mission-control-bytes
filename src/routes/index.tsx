@@ -2,12 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Activity, Rocket, Send, MapPin, Download, Linkedin, Github, Mail, Phone,
   Eye, Sparkles, FlaskConical, Brain, Star, Layers, Wifi, Terminal,
-  ChevronRight, Cpu,
+  ChevronRight, Cpu, Shield, Radio,
 } from "lucide-react";
 import { toast } from "sonner";
 import { PROFILE, NAV_ITEMS, PROJECTS, SKILLS } from "../lib/portfolio/data";
 import { useReveal } from "../lib/portfolio/shared";
 import { VectorBG } from "../lib/portfolio/VectorBG";
+import portrait from "../assets/jeet-soni.jpg.asset.json";
+
 
 export const Route = createFileRoute("/")({ component: Hub });
 
@@ -16,83 +18,99 @@ const ICONS: Record<string, typeof Eye> = {
   Timeline: Star, Modules: Layers, Transmit: Terminal, Contact: Wifi,
 };
 
-function HudConsole() {
-  const bars = [40, 70, 100, 60, 30, 85, 50];
+function PortraitCard() {
   return (
-    <div className="relative w-full max-w-md aspect-square mx-auto">
-      {/* Outer rotating ring */}
-      <div className="absolute inset-0 rounded-full border border-[color:var(--cyan)]/10 animate-spin-slow" />
-      <div className="absolute inset-4 rounded-full border border-dashed border-[color:var(--cyan)]/20" style={{ animation: "spin-slow 32s linear infinite reverse" }} />
+    <div className="relative w-full max-w-[420px] mx-auto group">
+      {/* Ambient halo */}
+      <div className="absolute -inset-10 rounded-[2.5rem] opacity-70 blur-3xl pointer-events-none"
+           style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--cyan) 35%, transparent), transparent 70%)" }} />
+      <div className="absolute -inset-10 rounded-[2.5rem] opacity-60 blur-3xl pointer-events-none"
+           style={{ background: "radial-gradient(closest-side at 80% 90%, color-mix(in oklab, var(--purple-glow) 40%, transparent), transparent 70%)" }} />
 
-      {/* Top telemetry ticker */}
-      <div className="absolute top-0 left-0 right-0 h-6 overflow-hidden bg-[color:var(--cyan)]/5 border-y border-[color:var(--cyan)]/15 z-20 flex items-center">
-        <div className="flex whitespace-nowrap mono text-[9px] tracking-widest text-[color:var(--cyan)]/70 animate-marquee">
-          <span className="px-6">SYSTEM_STATUS: NOMINAL // CORE_TEMP: 32C // MEMORY_LOAD: 42% // NETWORK_UPTIME: 99.99% // PACKET_LOSS: 0% //&nbsp;</span>
-          <span className="px-6">SYSTEM_STATUS: NOMINAL // CORE_TEMP: 32C // MEMORY_LOAD: 42% // NETWORK_UPTIME: 99.99% // PACKET_LOSS: 0% //&nbsp;</span>
-        </div>
-      </div>
+      {/* Orbiting rings */}
+      <div className="absolute -inset-6 rounded-[2rem] border border-[color:var(--cyan)]/15 animate-spin-slow pointer-events-none" />
+      <div className="absolute -inset-3 rounded-[1.75rem] border border-dashed border-[color:var(--purple-glow)]/20 pointer-events-none"
+           style={{ animation: "spin-slow 38s linear infinite reverse" }} />
 
-      {/* HUD core panel */}
-      <div className="absolute inset-10 sm:inset-12 hud-frame rounded-xl p-5 sm:p-6 flex flex-col justify-between overflow-hidden">
+      {/* Portrait frame */}
+      <div className="relative hud-frame rounded-[1.5rem] p-3 transition-transform duration-500 group-hover:-translate-y-1">
         <span className="hud-corner-tl" />
         <span className="hud-corner-tr" />
         <span className="hud-corner-bl" />
         <span className="hud-corner-br" />
 
-        {/* Header */}
-        <div className="flex justify-between items-start">
-          <div className="space-y-1">
-            <div className="mono text-[9px] text-[color:var(--cyan)]/70 tracking-widest uppercase">Core Identity</div>
-            <div className="mono text-lg sm:text-xl font-bold text-foreground tracking-tight">JS // v1.0.4</div>
+        {/* Frame header */}
+        <div className="flex items-center justify-between px-1.5 pt-1 pb-3">
+          <div className="flex items-center gap-2 mono text-[10px] tracking-widest text-[color:var(--cyan)]/80">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--cyan)] opacity-75 animate-ping" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[var(--cyan)]" />
+            </span>
+            OPERATOR · LIVE FEED
           </div>
-          <div className="flex items-center gap-1">
-            <div className="w-1.5 h-1.5 rounded-full bg-[var(--cyan)] animate-pulse shadow-[0_0_8px_var(--cyan)]" />
-            <span className="mono text-[8px] text-[color:var(--cyan)] font-bold">LIVE</span>
+          <span className="mono text-[10px] text-muted-foreground tracking-widest">ID · 0042</span>
+        </div>
+
+        {/* Image */}
+        <div className="relative overflow-hidden rounded-[1.1rem] aspect-[4/5]">
+          <img
+            src={portrait.url}
+            alt="Jeet Soni — Co-Founder @ BinBuddy"
+            loading="eager"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover object-[50%_28%] transition-transform duration-700 group-hover:scale-[1.04]"
+          />
+          {/* Tonal grade overlays */}
+          <div className="absolute inset-0 pointer-events-none"
+               style={{ background: "linear-gradient(180deg, transparent 35%, color-mix(in oklab, var(--bg) 85%, transparent) 100%)" }} />
+          <div className="absolute inset-0 pointer-events-none mix-blend-soft-light opacity-60"
+               style={{ background: "linear-gradient(135deg, color-mix(in oklab, var(--cyan) 30%, transparent), transparent 55%, color-mix(in oklab, var(--purple-glow) 35%, transparent))" }} />
+          {/* Scanline subtle */}
+          <div className="absolute inset-0 pointer-events-none opacity-[0.06]"
+               style={{ background: "repeating-linear-gradient(0deg, transparent, transparent 2px, white 2px, white 3px)" }} />
+
+          {/* Caption block */}
+          <div className="absolute left-3 right-3 bottom-3 flex items-end justify-between">
+            <div>
+              <div className="mono text-[10px] tracking-[0.25em] text-[color:var(--cyan)]/90">JEET SONI</div>
+              <div className="text-[13px] text-foreground/90 leading-tight mt-0.5">Co-Founder · BinBuddy</div>
+            </div>
+            <div className="hud-frame rounded-md px-2 py-1 mono text-[9px] tracking-widest text-[color:var(--cyan)]">
+              v1.0
+            </div>
           </div>
         </div>
 
-        {/* Equalizer */}
-        <div className="flex-1 flex items-end justify-center gap-1.5 py-5">
-          {bars.map((h, i) => (
-            <div
-              key={i}
-              className="w-2 sm:w-2.5 rounded-sm eq-bar bg-gradient-to-t from-[color:var(--cyan)]/30 to-[color:var(--cyan)] shadow-[0_0_10px_color-mix(in_oklab,var(--cyan)_60%,transparent)]"
-              style={{ height: `${h}%`, animationDelay: `${i * 0.14}s`, animationDuration: `${1.4 + (i % 3) * 0.35}s` }}
-            />
-          ))}
-        </div>
-
-        {/* Metrics */}
-        <div className="grid grid-cols-2 gap-4 border-t border-[color:var(--cyan)]/20 pt-3">
-          <div>
-            <div className="mono text-[8px] text-muted-foreground tracking-widest uppercase">Stability</div>
-            <div className="mono text-sm font-bold text-[color:var(--cyan)]">99.98%</div>
+        {/* Footer chips */}
+        <div className="grid grid-cols-3 gap-2 mt-3 px-1">
+          <div className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-1.5">
+            <div className="mono text-[8.5px] text-muted-foreground tracking-widest">FOCUS</div>
+            <div className="mono text-[10.5px] text-foreground/90">Security</div>
           </div>
-          <div>
-            <div className="mono text-[8px] text-muted-foreground tracking-widest uppercase">Latency</div>
-            <div className="mono text-sm font-bold text-[color:var(--cyan)]">14ms</div>
+          <div className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-1.5">
+            <div className="mono text-[8.5px] text-muted-foreground tracking-widest">BUILDS</div>
+            <div className="mono text-[10.5px] text-foreground/90">Robotics</div>
+          </div>
+          <div className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-1.5">
+            <div className="mono text-[8.5px] text-muted-foreground tracking-widest">SHIPS</div>
+            <div className="mono text-[10.5px] text-foreground/90">AI · Web</div>
           </div>
         </div>
       </div>
 
-      {/* Satellite data points */}
-      <div className="absolute top-[14%] right-[2%] p-2 bg-background/70 border border-white/10 backdrop-blur-sm mono text-[8px] uppercase tracking-widest text-muted-foreground z-30">
-        Sat_Link: Established
+      {/* Floating accent tags */}
+      <div className="hidden md:flex absolute -left-6 top-16 hud-frame rounded-md px-2.5 py-1.5 items-center gap-2 animate-float">
+        <Shield className="h-3.5 w-3.5 text-[var(--cyan)]" />
+        <span className="mono text-[10px] tracking-widest text-foreground/85">SECURE NODE</span>
       </div>
-      <div className="absolute bottom-[16%] left-[0%] p-2 bg-background/70 border border-white/10 backdrop-blur-sm mono text-[8px] uppercase tracking-widest text-muted-foreground z-30">
-        Loc: Ahmedabad, IN
-      </div>
-
-      {/* Bottom ticker */}
-      <div className="absolute bottom-0 left-0 right-0 h-6 overflow-hidden bg-[color:var(--electric)]/5 border-y border-[color:var(--electric)]/15 z-20 flex items-center">
-        <div className="flex whitespace-nowrap mono text-[9px] tracking-widest text-[color:var(--electric)]/70 animate-marquee-rev">
-          <span className="px-6">ENCRYPTION: AES-256 // PROTOCOL: BIN-SYNC // SECTOR: DELTA-9 // THREAT_LEVEL: ZERO //&nbsp;</span>
-          <span className="px-6">ENCRYPTION: AES-256 // PROTOCOL: BIN-SYNC // SECTOR: DELTA-9 // THREAT_LEVEL: ZERO //&nbsp;</span>
-        </div>
+      <div className="hidden md:flex absolute -right-4 bottom-24 hud-frame rounded-md px-2.5 py-1.5 items-center gap-2 animate-float" style={{ animationDelay: "1.2s" }}>
+        <Radio className="h-3.5 w-3.5 text-[var(--cyan)]" />
+        <span className="mono text-[10px] tracking-widest text-foreground/85">AHMEDABAD · IN</span>
       </div>
     </div>
   );
 }
+
 
 function Hub() {
   useReveal();
@@ -114,18 +132,22 @@ function Hub() {
               <span className="hidden sm:inline mono text-[10px] text-[color:var(--cyan)]/60 tracking-widest">OPERATOR · {PROFILE.name.toUpperCase()}</span>
             </span>
 
-            <h1 className="mt-6 text-[2.8rem] sm:text-6xl lg:text-[4.6rem] font-bold leading-[0.98] tracking-tight">
-              Building <span className="text-gradient text-glow">intelligent systems</span>
-              <span className="block text-foreground/90">where hardware meets software.</span>
+            <div className="mt-6 mono text-[11px] tracking-[0.32em] text-[color:var(--cyan)]/80">CO-FOUNDER @ BINBUDDY</div>
+            <h1 className="mt-3 text-[3rem] sm:text-6xl lg:text-[5rem] font-bold leading-[0.95] tracking-tight">
+              <span className="block">JEET <span className="text-gradient text-glow">SONI</span></span>
+              <span className="mt-3 block text-[1.4rem] sm:text-2xl lg:text-3xl font-medium text-foreground/80 tracking-tight leading-tight">
+                Building intelligent systems that bridge software, hardware, and the real world.
+              </span>
             </h1>
 
             <p className="mt-6 max-w-xl text-muted-foreground text-[15.5px] leading-relaxed">
-              I'm Jeet — Co-Founder @ <span className="text-[color:var(--cyan)]">BinBuddy</span>. I work across{" "}
-              <span className="text-foreground font-medium">cybersecurity</span>,{" "}
+              I co-build <span className="text-[color:var(--cyan)]">BinBuddy</span> — an incubated, funded startup —
+              and engineer products across <span className="text-foreground font-medium">cybersecurity</span>,{" "}
               <span className="text-foreground font-medium">robotics</span>,{" "}
-              <span className="text-foreground font-medium">web</span>, and{" "}
-              <span className="text-foreground font-medium">electronics</span> to turn ambitious ideas into AI-driven products.
+              <span className="text-foreground font-medium">AI systems</span>, and{" "}
+              <span className="text-foreground font-medium">web engineering</span>.
             </p>
+
 
             <div className="mt-5 flex flex-wrap gap-1.5">
               {ROLES.map((r) => (
@@ -166,7 +188,7 @@ function Hub() {
             </div>
           </div>
           <div className="relative flex justify-center reveal">
-            <HudConsole />
+            <PortraitCard />
           </div>
         </div>
       </section>

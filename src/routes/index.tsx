@@ -184,7 +184,7 @@ function Hub() {
             </div>
           </div>
           <div className="relative flex justify-center reveal">
-            <HudConsole />
+            <PortraitCard />
           </div>
         </div>
       </section>

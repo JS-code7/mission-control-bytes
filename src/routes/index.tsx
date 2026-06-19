@@ -2,12 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Activity, Rocket, Send, MapPin, Download, Linkedin, Github, Mail, Phone,
   Eye, Sparkles, FlaskConical, Brain, Star, Layers, Wifi, Terminal,
-  ChevronRight, Cpu,
+  ChevronRight, Cpu, Shield, Radio,
 } from "lucide-react";
 import { toast } from "sonner";
 import { PROFILE, NAV_ITEMS, PROJECTS, SKILLS } from "../lib/portfolio/data";
 import { useReveal } from "../lib/portfolio/shared";
 import { VectorBG } from "../lib/portfolio/VectorBG";
+import portrait from "../assets/jeet-soni.jpg.asset.json";
+
 
 export const Route = createFileRoute("/")({ component: Hub });
 

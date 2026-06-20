@@ -101,8 +101,11 @@ function ContactPage() {
               <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} rows={6} className="mt-1 w-full bg-white/5 border border-white/10 rounded-md px-3 py-2 text-[14px] outline-none focus:border-[var(--cyan)]" placeholder="What are we building?" />
             </label>
             <div className="flex items-center justify-between gap-3">
-              <span className="mono text-[10.5px] text-muted-foreground">END-TO-END · MAILTO</span>
-              <button type="submit" className="btn-hero"><Send className="h-4 w-4" /> Send Transmission</button>
+              <span className="mono text-[10.5px] text-muted-foreground">SECURE · STORED IN CLOUD</span>
+              <button type="submit" disabled={submitting} className="btn-hero disabled:opacity-60">
+                {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+                {submitting ? "Transmitting…" : "Send Transmission"}
+              </button>
             </div>
           </form>
         </div>

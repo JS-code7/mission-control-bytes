@@ -1,8 +1,9 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Github, Linkedin, Mail, Send, Terminal, Menu, X } from "lucide-react";
+import { Github, Linkedin, Mail, Send, Terminal, Menu, X, Download } from "lucide-react";
 import { NAV_ITEMS, PROFILE } from "./data";
 import { VectorBG, type BGVariant } from "./VectorBG";
+import { downloadResume } from "./resume";
 
 /* ---------------- hooks ---------------- */
 export function useReveal() {
@@ -209,6 +210,14 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 flex flex-wrap items-center justify-between gap-3">
         <div className="mono text-[11px] tracking-widest text-muted-foreground">© {new Date().getFullYear()} JEET SONI · ALL SIGNALS RESERVED</div>
         <div className="flex items-center gap-3">
+          <button
+            onClick={() => { downloadResume("footer").catch(() => {}); }}
+            className="btn-ghost !px-3"
+            aria-label="Download resume"
+            title="Download resume"
+          >
+            <Download className="h-4 w-4" />
+          </button>
           <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="btn-ghost !px-3" aria-label="LinkedIn"><Linkedin className="h-4 w-4" /></a>
           <a href={PROFILE.github} target="_blank" rel="noreferrer" className="btn-ghost !px-3" aria-label="GitHub"><Github className="h-4 w-4" /></a>
           <a href={`mailto:${PROFILE.email}`} className="btn-ghost !px-3" aria-label="Email"><Mail className="h-4 w-4" /></a>

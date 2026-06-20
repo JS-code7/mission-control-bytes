@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import { PROFILE, NAV_ITEMS, PROJECTS, SKILLS } from "../lib/portfolio/data";
 import { useReveal } from "../lib/portfolio/shared";
 import { VectorBG } from "../lib/portfolio/VectorBG";
+import { downloadResume } from "../lib/portfolio/resume";
+import { track } from "../lib/portfolio/analytics";
 import portrait from "../assets/jeet-soni.jpg.asset.json";
 
 
@@ -164,15 +166,25 @@ function Hub() {
             <div className="mt-7 flex flex-wrap gap-3">
               <Link to="/modules" className="btn-hero"><Rocket className="h-4 w-4" /> View Active Modules</Link>
               <Link to="/contact" className="btn-ghost"><Send className="h-4 w-4" /> Open Transmission</Link>
-              <button onClick={() => toast.success("Resume request received", { description: "Reach out via contact and I'll send a copy." })} className="btn-ghost">
+              <button
+                onClick={async () => {
+                  try {
+                    await downloadResume("home_hero");
+                    toast.success("Resume downloading", { description: "Jeet-Soni-Resume.pdf" });
+                  } catch {
+                    toast.error("Download failed. Please try again.");
+                  }
+                }}
+                className="btn-ghost"
+              >
                 <Download className="h-4 w-4" /> Resume
               </button>
             </div>
             <div className="mt-6 flex items-center gap-3">
-              <a aria-label="LinkedIn" href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="btn-ghost !px-3"><Linkedin className="h-4 w-4" /></a>
-              <a aria-label="GitHub" href={PROFILE.github} target="_blank" rel="noreferrer" className="btn-ghost !px-3"><Github className="h-4 w-4" /></a>
-              <a aria-label="Email" href={`mailto:${PROFILE.email}`} className="btn-ghost !px-3"><Mail className="h-4 w-4" /></a>
-              <a aria-label="Phone" href={`tel:${PROFILE.phone}`} className="btn-ghost !px-3"><Phone className="h-4 w-4" /></a>
+              <a aria-label="LinkedIn" href={PROFILE.linkedin} target="_blank" rel="noreferrer" onClick={() => track("social_click", { network: "linkedin" })} className="btn-ghost !px-3"><Linkedin className="h-4 w-4" /></a>
+              <a aria-label="GitHub" href={PROFILE.github} target="_blank" rel="noreferrer" onClick={() => track("social_click", { network: "github" })} className="btn-ghost !px-3"><Github className="h-4 w-4" /></a>
+              <a aria-label="Email" href={`mailto:${PROFILE.email}`} onClick={() => track("social_click", { network: "email" })} className="btn-ghost !px-3"><Mail className="h-4 w-4" /></a>
+              <a aria-label="Phone" href={`tel:${PROFILE.phone}`} onClick={() => track("social_click", { network: "phone" })} className="btn-ghost !px-3"><Phone className="h-4 w-4" /></a>
             </div>
             <div className="mt-10 grid grid-cols-3 max-w-md gap-3">
               {[

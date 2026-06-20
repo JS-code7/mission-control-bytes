@@ -13,6 +13,9 @@ import { Toaster } from "sonner";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Nav, Footer, Preloader, PageTransition, useCursorLight } from "../lib/portfolio/shared";
+import ChatWidget from "../components/ChatWidget";
+import { track } from "../lib/portfolio/analytics";
+import { useRouterState } from "@tanstack/react-router";
 
 function NotFoundComponent() {
   return (
@@ -108,6 +111,7 @@ function RootComponent() {
 function AppShell() {
   const [booting, setBooting] = useState(true);
   const cursor = useCursorLight();
+  const path = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -115,6 +119,11 @@ function AppShell() {
       setBooting(false);
     }
   }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || booting) return;
+    track("page_view", { path });
+  }, [path, booting]);
 
   const dismissBoot = () => {
     setBooting(false);
@@ -133,6 +142,7 @@ function AppShell() {
         </PageTransition>
       </main>
       <Footer />
+      {!booting && <ChatWidget />}
     </div>
   );
 }

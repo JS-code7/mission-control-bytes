@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Mail, Phone, Linkedin, Github, MapPin, Send, Terminal, ArrowRight, Wifi } from "lucide-react";
+import { Mail, Phone, Linkedin, Github, MapPin, Send, Terminal, ArrowRight, Wifi, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { z } from "zod";
 import { PROFILE } from "../lib/portfolio/data";
 import { PageHero, useReveal } from "../lib/portfolio/shared";
+import { supabase } from "@/integrations/supabase/client";
+import { track } from "../lib/portfolio/analytics";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
@@ -13,20 +16,37 @@ export const Route = createFileRoute("/contact")({
   ]}),
 });
 
+const ContactSchema = z.object({
+  name: z.string().trim().min(1, "Callsign required").max(100),
+  email: z.string().trim().email("Invalid channel address").max(255),
+  message: z.string().trim().min(4, "Transmission too short").max(2000),
+});
+
 function ContactPage() {
   useReveal();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
-      toast.error("All fields required to open the channel.");
+    const parsed = ContactSchema.safeParse(form);
+    if (!parsed.success) {
+      toast.error(parsed.error.issues[0]?.message ?? "Check your inputs.");
       return;
     }
-    const subject = encodeURIComponent(`Transmission from ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name}\n${form.email}`);
-    window.location.href = `mailto:${PROFILE.email}?subject=${subject}&body=${body}`;
-    toast.success("Transmission ready — your email client is opening.");
+    setSubmitting(true);
+    try {
+      const { error } = await supabase.from("contact_messages").insert(parsed.data);
+      if (error) throw error;
+      await track("contact_submit", { email_domain: parsed.data.email.split("@")[1] });
+      toast.success("Transmission received", { description: "Jeet will reply shortly." });
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error(err);
+      toast.error("Channel disrupted. Try email instead.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

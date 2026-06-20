@@ -26,7 +26,7 @@ export async function track(
     await supabase.from("analytics_events").insert({
       event_type: event_type.slice(0, 64),
       path: (path ?? window.location.pathname).slice(0, 256),
-      metadata,
+      metadata: metadata as never,
       session_id: getSessionId(),
       user_agent: navigator.userAgent.slice(0, 512),
       referrer: document.referrer ? document.referrer.slice(0, 512) : null,

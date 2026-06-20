@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Mail, Phone, Linkedin, Github, MapPin, Send, Terminal, ArrowRight, Wifi } from "lucide-react";
+import { Mail, Phone, Linkedin, Github, MapPin, Send, Terminal, ArrowRight, Wifi, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { z } from "zod";
 import { PROFILE } from "../lib/portfolio/data";
 import { PageHero, useReveal } from "../lib/portfolio/shared";
+import { supabase } from "@/integrations/supabase/client";
+import { track } from "../lib/portfolio/analytics";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
@@ -13,20 +16,37 @@ export const Route = createFileRoute("/contact")({
   ]}),
 });
 
+const ContactSchema = z.object({
+  name: z.string().trim().min(1, "Callsign required").max(100),
+  email: z.string().trim().email("Invalid channel address").max(255),
+  message: z.string().trim().min(4, "Transmission too short").max(2000),
+});
+
 function ContactPage() {
   useReveal();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
-      toast.error("All fields required to open the channel.");
+    const parsed = ContactSchema.safeParse(form);
+    if (!parsed.success) {
+      toast.error(parsed.error.issues[0]?.message ?? "Check your inputs.");
       return;
     }
-    const subject = encodeURIComponent(`Transmission from ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name}\n${form.email}`);
-    window.location.href = `mailto:${PROFILE.email}?subject=${subject}&body=${body}`;
-    toast.success("Transmission ready — your email client is opening.");
+    setSubmitting(true);
+    try {
+      const { error } = await supabase.from("contact_messages").insert(parsed.data);
+      if (error) throw error;
+      await track("contact_submit", { email_domain: parsed.data.email.split("@")[1] });
+      toast.success("Transmission received", { description: "Jeet will reply shortly." });
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error(err);
+      toast.error("Channel disrupted. Try email instead.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -81,8 +101,11 @@ function ContactPage() {
               <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} rows={6} className="mt-1 w-full bg-white/5 border border-white/10 rounded-md px-3 py-2 text-[14px] outline-none focus:border-[var(--cyan)]" placeholder="What are we building?" />
             </label>
             <div className="flex items-center justify-between gap-3">
-              <span className="mono text-[10.5px] text-muted-foreground">END-TO-END · MAILTO</span>
-              <button type="submit" className="btn-hero"><Send className="h-4 w-4" /> Send Transmission</button>
+              <span className="mono text-[10.5px] text-muted-foreground">SECURE · STORED IN CLOUD</span>
+              <button type="submit" disabled={submitting} className="btn-hero disabled:opacity-60">
+                {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+                {submitting ? "Transmitting…" : "Send Transmission"}
+              </button>
             </div>
           </form>
         </div>

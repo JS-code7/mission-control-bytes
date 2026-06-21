@@ -18,6 +18,7 @@ import { Route as LabRouteImport } from './routes/lab'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BrainRouteImport } from './routes/brain'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiMlRouteImport } from './routes/api/ml'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const TransmitRoute = TransmitRouteImport.update({
@@ -65,6 +66,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMlRoute = ApiMlRouteImport.update({
+  id: '/api/ml',
+  path: '/api/ml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/timeline': typeof TimelineRoute
   '/transmit': typeof TransmitRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/ml': typeof ApiMlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/timeline': typeof TimelineRoute
   '/transmit': typeof TransmitRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/ml': typeof ApiMlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -107,6 +115,7 @@ export interface FileRoutesById {
   '/timeline': typeof TimelineRoute
   '/transmit': typeof TransmitRoute
   '/api/chat': typeof ApiChatRoute
+  '/api/ml': typeof ApiMlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
     | '/timeline'
     | '/transmit'
     | '/api/chat'
+    | '/api/ml'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -133,6 +143,7 @@ export interface FileRouteTypes {
     | '/timeline'
     | '/transmit'
     | '/api/chat'
+    | '/api/ml'
   id:
     | '__root__'
     | '/'
@@ -145,6 +156,7 @@ export interface FileRouteTypes {
     | '/timeline'
     | '/transmit'
     | '/api/chat'
+    | '/api/ml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -158,6 +170,7 @@ export interface RootRouteChildren {
   TimelineRoute: typeof TimelineRoute
   TransmitRoute: typeof TransmitRoute
   ApiChatRoute: typeof ApiChatRoute
+  ApiMlRoute: typeof ApiMlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -225,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/ml': {
+      id: '/api/ml'
+      path: '/api/ml'
+      fullPath: '/api/ml'
+      preLoaderRoute: typeof ApiMlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/chat': {
       id: '/api/chat'
       path: '/api/chat'
@@ -246,6 +266,7 @@ const rootRouteChildren: RootRouteChildren = {
   TimelineRoute: TimelineRoute,
   TransmitRoute: TransmitRoute,
   ApiChatRoute: ApiChatRoute,
+  ApiMlRoute: ApiMlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

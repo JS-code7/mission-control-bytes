@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { Bot, FlaskConical, Play, Send, Workflow, Zap, ChevronRight, ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Bot, FlaskConical, Play, Send, Workflow, Zap, ChevronRight, ArrowRight, Sparkles, Tag, Smile, Loader2 } from "lucide-react";
 import { PageHero, useReveal } from "../lib/portfolio/shared";
+import { track } from "../lib/portfolio/analytics";
 
 export const Route = createFileRoute("/lab")({
   component: LabPage,
@@ -124,6 +125,179 @@ function TryThisDemo() {
   );
 }
 
+type MlResp = { task: string; result: Record<string, unknown>; error?: string };
+
+function MlDemo({
+  task,
+  title,
+  icon: Icon,
+  placeholder,
+  accent,
+  render,
+}: {
+  task: "sentiment" | "classify" | "keywords";
+  title: string;
+  icon: typeof Smile;
+  placeholder: string;
+  accent: string;
+  render: (r: Record<string, unknown>) => React.ReactNode;
+}) {
+  const [text, setText] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<Record<string, unknown> | null>(null);
+  const [err, setErr] = useState<string | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
+
+  const run = async () => {
+    if (!text.trim() || loading) return;
+    setLoading(true);
+    setErr(null);
+    setResult(null);
+    abortRef.current?.abort();
+    const ctrl = new AbortController();
+    abortRef.current = ctrl;
+    try {
+      track("ml_demo_run", { task });
+      const r = await fetch("/api/ml", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ task, text: text.trim() }),
+        signal: ctrl.signal,
+      });
+      const data = (await r.json()) as MlResp;
+      if (!r.ok) throw new Error(data.error || "Model error");
+      setResult(data.result);
+    } catch (e) {
+      if ((e as Error).name !== "AbortError") setErr((e as Error).message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="glass rounded-2xl p-4 hud-corner h-full flex flex-col card-hover">
+      <div className="flex items-center gap-2 mono text-[11px]" style={{ color: accent }}>
+        <Icon className="h-3.5 w-3.5" /> {title}
+        <span className="ml-auto opacity-60">LIVE · MODEL</span>
+      </div>
+      <div className="hairline my-3" />
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder={placeholder}
+        rows={3}
+        className="bg-white/5 border border-white/10 rounded-md px-3 py-2 text-[13px] outline-none focus:border-[var(--cyan)] resize-none transition-colors"
+      />
+      <button
+        onClick={run}
+        disabled={loading || !text.trim()}
+        className="btn-hero mt-3 !py-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {loading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Sparkles className="h-3.5 w-3.5" />}
+        {loading ? "Analyzing" : "Run model"}
+      </button>
+      <div className="mt-3 bg-black/30 rounded-md border border-white/10 p-3 flex-1 min-h-[110px] text-[13px] animate-fade-in">
+        {err && <div className="text-red-400 mono text-[11px]">! {err}</div>}
+        {!err && !result && !loading && (
+          <div className="mono text-[11px] text-muted-foreground">» awaiting input · powered by Lovable AI</div>
+        )}
+        {loading && <div className="mono text-[11px] text-muted-foreground">» computing · streaming inference</div>}
+        {result && render(result)}
+      </div>
+    </div>
+  );
+}
+
+function SentimentDemo() {
+  return (
+    <MlDemo
+      task="sentiment"
+      title="SENTIMENT · ANALYZER"
+      icon={Smile}
+      accent="var(--electric)"
+      placeholder="Paste a review, tweet, or note…"
+      render={(r) => {
+        const label = (r.label as string) ?? "—";
+        const score = typeof r.score === "number" ? r.score : 0;
+        const reason = (r.reason as string) ?? "";
+        const color =
+          label === "positive" ? "var(--teal)" : label === "negative" ? "#f87171" : "var(--gold)";
+        return (
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="mono text-[10px] tracking-widest opacity-70">LABEL</span>
+              <span className="mono text-[12px] uppercase font-semibold" style={{ color }}>
+                {label}
+              </span>
+              <span className="ml-auto mono text-[10px] opacity-70">{Math.round(score * 100)}%</span>
+            </div>
+            <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+              <div
+                className="h-full rounded-full transition-all duration-700"
+                style={{ width: `${Math.round(score * 100)}%`, background: color }}
+              />
+            </div>
+            <div className="text-foreground/80 text-[12.5px]">{reason}</div>
+          </div>
+        );
+      }}
+    />
+  );
+}
+
+function ClassifierDemo() {
+  return (
+    <MlDemo
+      task="classify"
+      title="TOPIC · CLASSIFIER"
+      icon={Tag}
+      accent="var(--purple-glow)"
+      placeholder="Paste a snippet — we'll route the topic…"
+      render={(r) => {
+        const topic = (r.topic as string) ?? "other";
+        const confidence = typeof r.confidence === "number" ? r.confidence : 0;
+        const why = (r.why as string) ?? "";
+        return (
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-2 px-2 py-1 rounded-md bg-[var(--purple-glow)]/15 border border-[var(--purple-glow)]/30">
+              <span className="mono text-[10px] tracking-widest text-[var(--purple-glow)]">{topic.toUpperCase()}</span>
+            </div>
+            <div className="mono text-[10px] opacity-70">CONFIDENCE · {Math.round(confidence * 100)}%</div>
+            <div className="text-foreground/80 text-[12.5px]">{why}</div>
+          </div>
+        );
+      }}
+    />
+  );
+}
+
+function KeywordDemo() {
+  return (
+    <MlDemo
+      task="keywords"
+      title="KEYWORD · EXTRACTOR"
+      icon={Sparkles}
+      accent="var(--cyan)"
+      placeholder="Drop a paragraph to extract its core terms…"
+      render={(r) => {
+        const kws = Array.isArray(r.keywords) ? (r.keywords as string[]) : [];
+        return (
+          <div className="flex flex-wrap gap-1.5">
+            {kws.map((k) => (
+              <span
+                key={k}
+                className="mono text-[11px] px-2 py-1 rounded-md bg-[var(--cyan)]/10 border border-[var(--cyan)]/30 text-[var(--cyan)]"
+              >
+                {k}
+              </span>
+            ))}
+          </div>
+        );
+      }}
+    />
+  );
+}
+
 function LabPage() {
   useReveal();
   return (
@@ -143,7 +317,24 @@ function LabPage() {
         </div>
       </section>
 
-      <section className="relative pb-20">
+      <section className="relative pb-6">
+        <div className="mx-auto max-w-7xl px-6 mb-4 flex items-end justify-between">
+          <div>
+            <div className="mono text-[10.5px] tracking-[0.22em] text-[var(--cyan)]">ML · MODELS · ONLINE</div>
+            <h2 className="text-2xl md:text-3xl font-semibold mt-1">Real inference, in your browser</h2>
+            <p className="text-muted-foreground text-[14px] mt-1 max-w-2xl">
+              Three live ML demos powered by the Lovable AI Gateway. Type anything — the model answers in real time.
+            </p>
+          </div>
+        </div>
+        <div className="mx-auto max-w-7xl px-6 grid md:grid-cols-3 gap-5">
+          <div className="reveal"><SentimentDemo /></div>
+          <div className="reveal"><ClassifierDemo /></div>
+          <div className="reveal"><KeywordDemo /></div>
+        </div>
+      </section>
+
+      <section className="relative pb-20 pt-10">
         <div className="mx-auto max-w-7xl px-6 grid md:grid-cols-3 gap-5">
           {[
             { t: "Edge perception", d: "On-device computer vision for fill-level and contamination classification." },

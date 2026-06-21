@@ -8,7 +8,7 @@ export const PROFILE = {
   role: "Co-Founder @ BinBuddy",
   tagline: "Building Intelligent AI-Driven Systems with Software & Hardware",
   location: "Greater Ahmedabad Area, India",
-  email: "sonijeet669@outlook.com",
+  email: "sonijeet660@gmail.com",
   phone: "9409205791",
   linkedin: "https://www.linkedin.com/in/jeet-soni-01bb09337/",
   github: "https://github.com/JS-code7",

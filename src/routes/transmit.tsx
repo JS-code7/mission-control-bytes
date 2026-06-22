@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Terminal, Activity, Wifi, ArrowRight, Server, Cpu, Shield } from "lucide-react";
+import { Terminal, Activity, Wifi, ArrowRight, Server, Cpu, Shield, Briefcase, Handshake, MessageCircle, Lightbulb, Copy, Check } from "lucide-react";
+import { toast } from "sonner";
+import { track } from "../lib/portfolio/analytics";
 import { PROFILE } from "../lib/portfolio/data";
 import { PageHero, useReveal } from "../lib/portfolio/shared";
 

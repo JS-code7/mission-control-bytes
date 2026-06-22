@@ -135,6 +135,7 @@ function AppShell() {
       <Toaster theme="dark" position="bottom-right" />
       {booting && <Preloader onDone={dismissBoot} />}
       <div ref={cursor} className="cursor-light hidden md:block" aria-hidden />
+      <div ref={dotRef} className="cursor-dot hidden md:block" aria-hidden />
       <Nav />
       <main>
         <PageTransition>

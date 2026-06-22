@@ -54,13 +54,13 @@ function PortraitCard() {
         </div>
 
         {/* Image */}
-        <div className="relative overflow-hidden rounded-[1.1rem] aspect-[4/5]">
+        <div className="relative overflow-hidden rounded-[1.1rem] aspect-square">
           <img
             src={portrait.url}
             alt="Jeet Soni — Co-Founder @ BinBuddy"
             loading="eager"
             decoding="async"
-            className="absolute inset-0 h-full w-full object-cover object-[50%_28%] transition-transform duration-700 group-hover:scale-[1.04]"
+            className="absolute inset-0 h-full w-full object-cover object-[50%_22%] transition-transform duration-700 group-hover:scale-[1.04]"
           />
           {/* Tonal grade overlays */}
           <div className="absolute inset-0 pointer-events-none"

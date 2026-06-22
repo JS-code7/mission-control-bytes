@@ -110,7 +110,7 @@ function RootComponent() {
 
 function AppShell() {
   const [booting, setBooting] = useState(true);
-  const cursor = useCursorLight();
+  const { ref: cursor, dotRef } = useCursorLight();
   const path = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
@@ -135,6 +135,7 @@ function AppShell() {
       <Toaster theme="dark" position="bottom-right" />
       {booting && <Preloader onDone={dismissBoot} />}
       <div ref={cursor} className="cursor-light hidden md:block" aria-hidden />
+      <div ref={dotRef} className="cursor-dot hidden md:block" aria-hidden />
       <Nav />
       <main>
         <PageTransition>

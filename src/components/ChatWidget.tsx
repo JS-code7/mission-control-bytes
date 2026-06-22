@@ -1,20 +1,21 @@
 import { useEffect, useRef, useState } from "react";
-import { MessageSquare, X, Send, Sparkles, Loader2 } from "lucide-react";
+import { X, Send, Loader2, Bot, User, Sparkles, RotateCcw } from "lucide-react";
 import { track } from "@/lib/portfolio/analytics";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
 const SUGGESTIONS = [
   "What is BinBuddy?",
-  "Show top projects",
-  "What are Jeet's skills?",
-  "Certifications?",
+  "Top projects",
+  "Skills & stack",
+  "Certifications",
+  "How to hire Jeet",
 ];
 
 const INTRO: Msg = {
   role: "assistant",
   content:
-    "MC-AI online. Ask me about Jeet's work, BinBuddy, projects, skills, certifications, or experience.",
+    "Hey — I'm MC-AI, Jeet's mission-control assistant. Ask me anything about his work, BinBuddy, projects, skills, or how to collaborate.",
 };
 
 export default function ChatWidget() {
@@ -23,7 +24,7 @@ export default function ChatWidget() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -51,17 +52,15 @@ export default function ChatWidget() {
         body: JSON.stringify({ messages: next.filter((m) => m !== INTRO) }),
       });
       const data = (await res.json()) as { reply?: string; error?: string };
-      if (!res.ok) {
-        setMessages((m) => [
-          ...m,
-          { role: "assistant", content: data.error || "Signal lost. Try again." },
-        ]);
-      } else {
-        setMessages((m) => [
-          ...m,
-          { role: "assistant", content: data.reply || "No response received." },
-        ]);
-      }
+      setMessages((m) => [
+        ...m,
+        {
+          role: "assistant",
+          content: !res.ok
+            ? data.error || "Signal lost. Try again."
+            : data.reply || "No response received.",
+        },
+      ]);
     } catch {
       setMessages((m) => [
         ...m,
@@ -73,6 +72,8 @@ export default function ChatWidget() {
     }
   }
 
+  const reset = () => setMessages([INTRO]);
+
   return (
     <>
       {/* Launcher */}
@@ -83,17 +84,20 @@ export default function ChatWidget() {
           className="fixed bottom-5 right-5 z-[90] group"
         >
           <span
-            className="absolute inset-0 rounded-full blur-xl opacity-70 group-hover:opacity-100 transition"
+            className="absolute inset-0 rounded-full blur-2xl opacity-70 group-hover:opacity-100 transition"
             style={{
               background:
                 "radial-gradient(closest-side, color-mix(in oklab, var(--cyan) 60%, transparent), transparent 70%)",
             }}
           />
-          <span className="relative flex items-center gap-2 px-4 py-3 rounded-full glass hud-corner border border-[color:var(--cyan)]/40">
-            <Sparkles className="h-4 w-4 text-[var(--cyan)]" />
-            <span className="mono text-[11px] tracking-widest text-foreground/90">MC-AI</span>
-            <span className="hidden sm:inline mono text-[10px] text-muted-foreground tracking-widest">
-              · ASK
+          <span className="relative flex items-center gap-2.5 px-4 py-3 rounded-full glass hud-corner border border-[color:var(--cyan)]/40 hover:border-[color:var(--cyan)]/80 transition-colors">
+            <span className="relative grid place-items-center h-7 w-7 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background">
+              <Bot className="h-3.5 w-3.5" />
+              <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-[var(--cyan)] ring-2 ring-background" />
+            </span>
+            <span className="flex flex-col items-start leading-tight">
+              <span className="mono text-[10.5px] tracking-widest text-[var(--cyan)]">MC-AI</span>
+              <span className="text-[11px] text-foreground/85">Ask anything</span>
             </span>
           </span>
         </button>
@@ -101,98 +105,134 @@ export default function ChatWidget() {
 
       {/* Panel */}
       {open && (
-        <div className="fixed bottom-5 right-5 z-[95] w-[min(380px,94vw)] h-[min(560px,80vh)] glass hud-corner rounded-2xl flex flex-col overflow-hidden border border-white/10">
-          <div className="flex items-center gap-2 px-3 py-2.5 border-b border-white/10">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--cyan)] opacity-75 animate-ping" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--cyan)]" />
-            </span>
-            <div className="mono text-[11px] tracking-widest text-[var(--cyan)]">MC-AI · ONLINE</div>
-            <span className="ml-auto mono text-[9.5px] tracking-widest text-muted-foreground">
-              grounded · profile
-            </span>
-            <button
-              onClick={() => setOpen(false)}
-              aria-label="Close"
-              className="ml-2 p-1 rounded-md hover:bg-white/10"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </div>
+        <div className="fixed bottom-5 right-5 z-[95] w-[min(420px,94vw)] h-[min(620px,84vh)] glass hud-corner rounded-2xl flex flex-col overflow-hidden border border-[color:var(--cyan)]/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)]">
+            <span className="hud-corner-tl" />
+            <span className="hud-corner-tr" />
+            <span className="hud-corner-bl" />
+            <span className="hud-corner-br" />
 
-          <div
-            ref={scrollRef}
-            className="flex-1 overflow-y-auto px-3 py-3 space-y-3 bg-black/20"
-          >
-            {messages.map((m, i) => (
-              <div
-                key={i}
-                className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
+            {/* Header */}
+            <div className="flex items-center gap-3 px-4 py-3 border-b border-white/10 bg-gradient-to-r from-[color:var(--cyan)]/10 via-transparent to-[color:var(--purple-glow)]/10">
+              <div className="relative grid place-items-center h-9 w-9 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background">
+                <Bot className="h-4 w-4" />
+                <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-[var(--cyan)] ring-2 ring-background animate-pulse" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[13px] font-semibold leading-tight">MC-AI Assistant</div>
+                <div className="mono text-[9.5px] tracking-widest text-[var(--cyan)]/80 flex items-center gap-1.5">
+                  <span className="h-1 w-1 rounded-full bg-[var(--cyan)]" /> ONLINE · GROUNDED ON PROFILE
+                </div>
+              </div>
+              <button
+                onClick={reset}
+                aria-label="Reset conversation"
+                title="New conversation"
+                className="p-1.5 rounded-md hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
               >
+                <RotateCcw className="h-3.5 w-3.5" />
+              </button>
+              <button
+                onClick={() => setOpen(false)}
+                aria-label="Close"
+                className="p-1.5 rounded-md hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            {/* Messages */}
+            <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-4 bg-black/20">
+              {messages.map((m, i) => (
                 <div
-                  className={`max-w-[85%] text-[13px] leading-relaxed px-3 py-2 rounded-xl ${
-                    m.role === "user"
-                      ? "bg-[color:var(--cyan)]/15 border border-[color:var(--cyan)]/30 text-foreground"
-                      : "bg-white/[0.04] border border-white/10 text-foreground/90"
-                  }`}
+                  key={i}
+                  className={`flex gap-2.5 animate-fade-in ${m.role === "user" ? "flex-row-reverse" : "flex-row"}`}
                 >
-                  {m.role === "assistant" && (
-                    <div className="mono text-[9.5px] tracking-widest text-[var(--cyan)] mb-1 flex items-center gap-1">
-                      <MessageSquare className="h-2.5 w-2.5" /> MC-AI
-                    </div>
-                  )}
-                  <div className="whitespace-pre-wrap">{m.content}</div>
+                  <div
+                    className={`shrink-0 grid place-items-center h-7 w-7 rounded-full ${
+                      m.role === "user"
+                        ? "bg-white/10 border border-white/15 text-foreground/80"
+                        : "bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background"
+                    }`}
+                  >
+                    {m.role === "user" ? <User className="h-3.5 w-3.5" /> : <Bot className="h-3.5 w-3.5" />}
+                  </div>
+                  <div
+                    className={`max-w-[78%] text-[13.5px] leading-relaxed px-3.5 py-2.5 rounded-2xl ${
+                      m.role === "user"
+                        ? "bg-[color:var(--cyan)]/12 border border-[color:var(--cyan)]/25 text-foreground rounded-tr-sm"
+                        : "bg-white/[0.04] border border-white/10 text-foreground/90 rounded-tl-sm"
+                    }`}
+                  >
+                    <div className="whitespace-pre-wrap">{m.content}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
-            {loading && (
-              <div className="flex justify-start">
-                <div className="bg-white/[0.04] border border-white/10 px-3 py-2 rounded-xl text-[13px] text-muted-foreground flex items-center gap-2">
-                  <Loader2 className="h-3 w-3 animate-spin text-[var(--cyan)]" />
-                  thinking…
+              ))}
+              {loading && (
+                <div className="flex gap-2.5 animate-fade-in">
+                  <div className="shrink-0 grid place-items-center h-7 w-7 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background">
+                    <Bot className="h-3.5 w-3.5" />
+                  </div>
+                  <div className="bg-white/[0.04] border border-white/10 px-3.5 py-2.5 rounded-2xl rounded-tl-sm text-[13px] text-muted-foreground flex items-center gap-2">
+                    <Loader2 className="h-3 w-3 animate-spin text-[var(--cyan)]" />
+                    <span className="mono text-[11px] tracking-wider">processing…</span>
+                  </div>
                 </div>
+              )}
+            </div>
+
+            {/* Suggestions strip */}
+            <div className="px-3 pt-2.5 pb-1 border-t border-white/10 bg-black/30">
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <Sparkles className="h-2.5 w-2.5 text-[var(--cyan)]" />
+                <span className="mono text-[9.5px] tracking-widest text-muted-foreground">QUICK PROMPTS</span>
               </div>
-            )}
-            {messages.length === 1 && !loading && (
-              <div className="flex flex-wrap gap-1.5 pt-1">
+              <div className="flex gap-1.5 overflow-x-auto pb-1 -mx-0.5 px-0.5 scrollbar-thin">
                 {SUGGESTIONS.map((s) => (
                   <button
                     key={s}
                     onClick={() => send(s)}
-                    className="mono text-[10.5px] tracking-wider px-2 py-1 rounded-md border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-[color:var(--cyan)]/40 transition-colors"
+                    disabled={loading}
+                    className="shrink-0 text-[11.5px] px-2.5 py-1 rounded-full border border-white/10 bg-white/[0.04] hover:bg-[color:var(--cyan)]/10 hover:border-[color:var(--cyan)]/40 hover:text-foreground text-foreground/75 transition-colors disabled:opacity-40"
                   >
                     {s}
                   </button>
                 ))}
               </div>
-            )}
-          </div>
+            </div>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              send(input);
-            }}
-            className="flex items-center gap-2 px-2.5 py-2 border-t border-white/10 bg-black/30"
-          >
-            <input
-              ref={inputRef}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about Jeet, BinBuddy, projects…"
-              disabled={loading}
-              className="flex-1 bg-white/5 border border-white/10 rounded-md px-3 py-2 text-[13px] outline-none focus:border-[var(--cyan)] disabled:opacity-50"
-              maxLength={500}
-            />
-            <button
-              type="submit"
-              disabled={loading || !input.trim()}
-              className="grid place-items-center h-9 w-9 rounded-md bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background disabled:opacity-40"
-              aria-label="Send"
+            {/* Composer */}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                send(input);
+              }}
+              className="flex items-end gap-2 px-3 py-3 border-t border-white/10 bg-black/40"
             >
-              <Send className="h-4 w-4" />
-            </button>
-          </form>
+              <textarea
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    send(input);
+                  }
+                }}
+                placeholder="Ask about Jeet, BinBuddy, projects…"
+                disabled={loading}
+                rows={1}
+                className="flex-1 resize-none bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-[13.5px] outline-none focus:border-[var(--cyan)] focus:bg-white/[0.07] disabled:opacity-50 max-h-28 leading-relaxed transition-colors"
+                maxLength={500}
+              />
+              <button
+                type="submit"
+                disabled={loading || !input.trim()}
+                className="shrink-0 grid place-items-center h-10 w-10 rounded-xl bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background disabled:opacity-40 hover:shadow-[0_0_20px_color-mix(in_oklab,var(--cyan)_50%,transparent)] transition-shadow"
+                aria-label="Send"
+              >
+                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+              </button>
+            </form>
         </div>
       )}
     </>

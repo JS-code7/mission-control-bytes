@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Terminal, Activity, Wifi, ArrowRight, Server, Cpu, Shield } from "lucide-react";
+import { Terminal, Activity, Wifi, ArrowRight, Server, Cpu, Shield, Briefcase, Handshake, MessageCircle, Lightbulb, Copy, Check } from "lucide-react";
+import { toast } from "sonner";
+import { track } from "../lib/portfolio/analytics";
 import { PROFILE } from "../lib/portfolio/data";
 import { PageHero, useReveal } from "../lib/portfolio/shared";
 
@@ -86,6 +88,8 @@ function TransmitPage() {
         </div>
       </section>
 
+      <TemplatesSection />
+
       <section className="relative pb-20">
         <div className="mx-auto max-w-7xl px-6">
           <div className="reveal glass rounded-2xl p-6 hud-corner flex flex-wrap items-center justify-between gap-4">
@@ -98,5 +102,103 @@ function TransmitPage() {
         </div>
       </section>
     </>
+  );
+}
+
+const TEMPLATES = [
+  {
+    icon: Briefcase,
+    tag: "HIRE",
+    title: "Recruit / Hire",
+    blurb: "Open role, internship, or contract engagement.",
+    subject: "Opportunity for Jeet — [Role]",
+    body: "Hi Jeet,\n\nI came across your mission control and would love to discuss a role at [Company].\n\nRole: \nLocation / Remote: \nStack: \nTimeline: \n\nLooking forward to connecting.\n\n— ",
+    color: "var(--cyan)",
+  },
+  {
+    icon: Handshake,
+    tag: "COLLAB",
+    title: "Collaboration",
+    blurb: "Co-build, partner, or contribute on a project.",
+    subject: "Collab proposal — [Project]",
+    body: "Hey Jeet,\n\nI'm working on [project] and think there's a strong fit with what you build.\n\nIdea: \nWhy you: \nWhat I bring: \nNext step: \n\n— ",
+    color: "var(--electric)",
+  },
+  {
+    icon: Lightbulb,
+    tag: "PITCH",
+    title: "Pitch an Idea",
+    blurb: "Got a startup, product, or research idea? Send it.",
+    subject: "Pitch — [Idea name]",
+    body: "Hi Jeet,\n\nQuick pitch:\n\nProblem: \nSolution: \nWhy now: \nWhat I need from you: \n\nHappy to share a deck / demo.\n\n— ",
+    color: "var(--purple-glow)",
+  },
+  {
+    icon: MessageCircle,
+    tag: "HELLO",
+    title: "Just say Hi",
+    blurb: "Questions, feedback, or a quick hello.",
+    subject: "Hello from the Mission Control",
+    body: "Hi Jeet,\n\nJust wanted to say — \n\n— ",
+    color: "var(--gold)",
+  },
+];
+
+function TemplatesSection() {
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const open = (t: (typeof TEMPLATES)[number]) => {
+    const href = `mailto:${PROFILE.email}?subject=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(t.body)}`;
+    track("transmit_template", { tag: t.tag });
+    window.location.href = href;
+  };
+
+  const copy = async (t: (typeof TEMPLATES)[number]) => {
+    try {
+      await navigator.clipboard.writeText(`To: ${PROFILE.email}\nSubject: ${t.subject}\n\n${t.body}`);
+      setCopied(t.tag);
+      toast.success("Template copied", { description: `${t.title} ready to paste.` });
+      setTimeout(() => setCopied(null), 1800);
+    } catch {
+      toast.error("Couldn't copy — try the mailto button.");
+    }
+  };
+
+  return (
+    <section className="relative py-6">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="flex items-end justify-between gap-4 mb-5">
+          <div>
+            <div className="mono text-[11px] tracking-widest text-[var(--cyan)]">QUICK · TRANSMISSIONS</div>
+            <h2 className="mt-1 text-2xl md:text-3xl font-semibold tracking-tight">Pre-loaded message templates</h2>
+            <p className="text-muted-foreground text-sm mt-1">One tap to draft an email, or copy the full template to send anywhere.</p>
+          </div>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {TEMPLATES.map((t) => (
+            <div key={t.tag} className="reveal glass rounded-2xl p-4 hud-corner card-hover flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <div className="grid place-items-center h-9 w-9 rounded-lg" style={{ background: `color-mix(in oklab, ${t.color} 18%, transparent)`, border: `1px solid color-mix(in oklab, ${t.color} 50%, transparent)` }}>
+                  <t.icon className="h-4 w-4" style={{ color: t.color }} />
+                </div>
+                <span className="mono text-[9.5px] tracking-widest px-2 py-0.5 rounded-full border border-white/10 text-muted-foreground">{t.tag}</span>
+              </div>
+              <div>
+                <div className="text-[15px] font-semibold">{t.title}</div>
+                <div className="text-[12.5px] text-muted-foreground mt-0.5">{t.blurb}</div>
+              </div>
+              <div className="mt-auto flex items-center gap-2">
+                <button onClick={() => open(t)} className="flex-1 inline-flex items-center justify-center gap-1.5 text-[12px] px-3 py-2 rounded-md bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background font-medium hover:opacity-90 transition">
+                  Send <ArrowRight className="h-3 w-3" />
+                </button>
+                <button onClick={() => copy(t)} aria-label="Copy template" className="grid place-items-center h-9 w-9 rounded-md border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] text-foreground/80 transition">
+                  {copied === t.tag ? <Check className="h-3.5 w-3.5 text-[var(--cyan)]" /> : <Copy className="h-3.5 w-3.5" />}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

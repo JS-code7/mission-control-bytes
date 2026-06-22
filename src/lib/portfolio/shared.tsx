@@ -22,16 +22,41 @@ export function useReveal() {
 
 export function useCursorLight() {
   const ref = useRef<HTMLDivElement | null>(null);
+  const dotRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
+    let dotX = 0, dotY = 0, tx = 0, ty = 0, raf = 0;
     const onMove = (e: MouseEvent) => {
-      if (!ref.current) return;
-      ref.current.style.left = e.clientX + "px";
-      ref.current.style.top = e.clientY + "px";
+      if (ref.current) {
+        ref.current.style.left = e.clientX + "px";
+        ref.current.style.top = e.clientY + "px";
+      }
+      tx = e.clientX;
+      ty = e.clientY;
     };
+    const onOver = (e: MouseEvent) => {
+      const el = e.target as HTMLElement | null;
+      const hover = !!el?.closest('a,button,[role="button"],input,textarea,select,label');
+      if (dotRef.current) dotRef.current.classList.toggle("cursor-dot--hover", hover);
+    };
+    const loop = () => {
+      dotX += (tx - dotX) * 0.22;
+      dotY += (ty - dotY) * 0.22;
+      if (dotRef.current) {
+        dotRef.current.style.left = dotX + "px";
+        dotRef.current.style.top = dotY + "px";
+      }
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
     window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
+    window.addEventListener("mouseover", onOver);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseover", onOver);
+      cancelAnimationFrame(raf);
+    };
   }, []);
-  return ref;
+  return { ref, dotRef };
 }
 
 /* ---------------- Preloader (premium JS) ---------------- */

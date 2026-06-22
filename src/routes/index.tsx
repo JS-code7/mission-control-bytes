@@ -22,7 +22,7 @@ const ICONS: Record<string, typeof Eye> = {
 
 function PortraitCard() {
   return (
-    <div className="relative w-full max-w-[420px] mx-auto group">
+    <div className="relative w-full max-w-[320px] mx-auto group">
       {/* Ambient halo */}
       <div className="absolute -inset-10 rounded-[2.5rem] opacity-70 blur-3xl pointer-events-none"
            style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--cyan) 35%, transparent), transparent 70%)" }} />

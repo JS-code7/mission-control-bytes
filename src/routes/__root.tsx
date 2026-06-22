@@ -110,7 +110,7 @@ function RootComponent() {
 
 function AppShell() {
   const [booting, setBooting] = useState(true);
-  const cursor = useCursorLight();
+  const { ref: cursor, dotRef } = useCursorLight();
   const path = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {

@@ -69,7 +69,10 @@ function MissionPage() {
                     <div className="text-lg font-semibold">{e.role}</div>
                     <div className="text-[var(--cyan)] mono text-[12px] tracking-widest mt-0.5">{e.company.toUpperCase()}</div>
                   </div>
-                  <div className="mono text-[11px] text-muted-foreground whitespace-nowrap">{e.period}</div>
+                  <div className="text-right">
+                    <div className="mono text-[11px] text-muted-foreground whitespace-nowrap">{e.period}</div>
+                    {e.location && <div className="mono text-[10px] text-muted-foreground/70 whitespace-nowrap mt-0.5">{e.location}</div>}
+                  </div>
                 </div>
                 <p className="mt-3 text-muted-foreground text-[14.5px] leading-relaxed">{e.summary}</p>
                 <div className="mt-4 flex flex-wrap gap-1.5">

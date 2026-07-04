@@ -90,14 +90,14 @@ export default function ChatWidget() {
                 "radial-gradient(closest-side, color-mix(in oklab, var(--cyan) 60%, transparent), transparent 70%)",
             }}
           />
-          <span className="relative flex items-center gap-2.5 px-4 py-3 rounded-full glass hud-corner border border-[color:var(--cyan)]/40 hover:border-[color:var(--cyan)]/80 transition-colors">
-            <span className="relative grid place-items-center h-7 w-7 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background">
-              <Bot className="h-3.5 w-3.5" />
+          <span className="relative flex items-center gap-3 pl-2 pr-4 py-2 rounded-full glass hud-corner border border-[color:var(--cyan)]/40 hover:border-[color:var(--cyan)]/80 transition-colors">
+            <span className="relative grid place-items-center h-9 w-9 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background shrink-0">
+              <Bot className="h-4 w-4" />
               <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-[var(--cyan)] ring-2 ring-background" />
             </span>
-            <span className="flex flex-col items-start leading-tight">
-              <span className="mono text-[10.5px] tracking-widest text-[var(--cyan)]">MC-AI</span>
-              <span className="text-[11px] text-foreground/85">Ask anything</span>
+            <span className="flex flex-col items-start leading-none whitespace-nowrap">
+              <span className="mono text-[10px] tracking-[0.18em] text-[var(--cyan)]">MC-AI</span>
+              <span className="text-[12px] text-foreground/90 mt-1">Ask anything</span>
             </span>
           </span>
         </button>

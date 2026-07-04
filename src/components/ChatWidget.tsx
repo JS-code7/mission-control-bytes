@@ -112,36 +112,38 @@ export default function ChatWidget() {
             <span className="hud-corner-br" />
 
             {/* Header */}
-            <div className="flex items-center gap-3 px-4 py-3 border-b border-white/10 bg-gradient-to-r from-[color:var(--cyan)]/10 via-transparent to-[color:var(--purple-glow)]/10">
-              <div className="relative grid place-items-center h-9 w-9 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background">
+            <div className="flex items-center gap-3 px-4 py-3.5 border-b border-white/10 bg-gradient-to-r from-[color:var(--cyan)]/10 via-transparent to-[color:var(--purple-glow)]/10">
+              <div className="relative grid place-items-center h-9 w-9 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background shrink-0">
                 <Bot className="h-4 w-4" />
                 <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-[var(--cyan)] ring-2 ring-background animate-pulse" />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-[13px] font-semibold leading-tight">MC-AI Assistant</div>
-                <div className="mono text-[9.5px] tracking-widest text-[var(--cyan)]/80 flex items-center gap-1.5">
+                <div className="text-[14px] font-semibold leading-tight">MC-AI Assistant</div>
+                <div className="mono text-[9.5px] tracking-[0.18em] text-[var(--cyan)]/80 flex items-center gap-1.5 mt-1">
                   <span className="h-1 w-1 rounded-full bg-[var(--cyan)]" /> ONLINE · GROUNDED ON PROFILE
                 </div>
               </div>
-              <button
-                onClick={reset}
-                aria-label="Reset conversation"
-                title="New conversation"
-                className="p-1.5 rounded-md hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <RotateCcw className="h-3.5 w-3.5" />
-              </button>
-              <button
-                onClick={() => setOpen(false)}
-                aria-label="Close"
-                className="p-1.5 rounded-md hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <X className="h-4 w-4" />
-              </button>
+              <div className="flex items-center gap-1 shrink-0">
+                <button
+                  onClick={reset}
+                  aria-label="Reset conversation"
+                  title="New conversation"
+                  className="p-1.5 rounded-md hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <RotateCcw className="h-3.5 w-3.5" />
+                </button>
+                <button
+                  onClick={() => setOpen(false)}
+                  aria-label="Close"
+                  className="p-1.5 rounded-md hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
             </div>
 
             {/* Messages */}
-            <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-4 bg-black/20">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-3.5 bg-black/20">
               {messages.map((m, i) => (
                 <div
                   key={i}
@@ -157,7 +159,7 @@ export default function ChatWidget() {
                     {m.role === "user" ? <User className="h-3.5 w-3.5" /> : <Bot className="h-3.5 w-3.5" />}
                   </div>
                   <div
-                    className={`max-w-[78%] text-[13.5px] leading-relaxed px-3.5 py-2.5 rounded-2xl ${
+                    className={`max-w-[80%] text-[13.5px] leading-relaxed px-3.5 py-2.5 rounded-2xl ${
                       m.role === "user"
                         ? "bg-[color:var(--cyan)]/12 border border-[color:var(--cyan)]/25 text-foreground rounded-tr-sm"
                         : "bg-white/[0.04] border border-white/10 text-foreground/90 rounded-tl-sm"
@@ -180,25 +182,27 @@ export default function ChatWidget() {
               )}
             </div>
 
-            {/* Suggestions strip */}
-            <div className="px-3 pt-2.5 pb-1 border-t border-white/10 bg-black/30">
-              <div className="flex items-center gap-1.5 mb-1.5">
-                <Sparkles className="h-2.5 w-2.5 text-[var(--cyan)]" />
-                <span className="mono text-[9.5px] tracking-widest text-muted-foreground">QUICK PROMPTS</span>
+            {/* Suggestions strip — only until the user starts chatting */}
+            {messages.length <= 1 && (
+              <div className="px-4 pt-3 pb-2 border-t border-white/10 bg-black/30">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <Sparkles className="h-3 w-3 text-[var(--cyan)]" />
+                  <span className="mono text-[9.5px] tracking-[0.18em] text-muted-foreground">QUICK PROMPTS</span>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {SUGGESTIONS.map((s) => (
+                    <button
+                      key={s}
+                      onClick={() => send(s)}
+                      disabled={loading}
+                      className="text-[11.5px] px-2.5 py-1 rounded-full border border-white/10 bg-white/[0.04] hover:bg-[color:var(--cyan)]/10 hover:border-[color:var(--cyan)]/40 hover:text-foreground text-foreground/75 transition-colors disabled:opacity-40"
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="flex gap-1.5 overflow-x-auto pb-1 -mx-0.5 px-0.5 scrollbar-thin">
-                {SUGGESTIONS.map((s) => (
-                  <button
-                    key={s}
-                    onClick={() => send(s)}
-                    disabled={loading}
-                    className="shrink-0 text-[11.5px] px-2.5 py-1 rounded-full border border-white/10 bg-white/[0.04] hover:bg-[color:var(--cyan)]/10 hover:border-[color:var(--cyan)]/40 hover:text-foreground text-foreground/75 transition-colors disabled:opacity-40"
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
-            </div>
+            )}
 
             {/* Composer */}
             <form

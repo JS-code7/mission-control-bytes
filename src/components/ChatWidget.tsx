@@ -15,7 +15,7 @@ const SUGGESTIONS = [
 const INTRO: Msg = {
   role: "assistant",
   content:
-    "Hey — I'm MC-AI, Jeet's mission-control assistant. Ask me anything about his work, BinBuddy, projects, skills, or how to collaborate.",
+    "Hey — I'm MC-AI, Jeet's mission-control assistant. Ask about his work, BinBuddy, projects, skills, or how to collaborate.",
 };
 
 export default function ChatWidget() {

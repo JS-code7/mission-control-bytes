@@ -21,10 +21,9 @@ export default defineTool({
         isError: true,
       };
     }
-    const { icon: _icon, ...rest } = project as unknown as Record<string, unknown>;
     return {
-      content: [{ type: "text", text: JSON.stringify(rest, null, 2) }],
-      structuredContent: rest as Record<string, unknown>,
+      content: [{ type: "text", text: JSON.stringify(project, null, 2) }],
+      structuredContent: project as unknown as Record<string, unknown>,
     };
   },
 });

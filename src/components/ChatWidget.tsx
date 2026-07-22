@@ -31,10 +31,14 @@ export default function ChatWidget() {
   }, [messages, loading]);
 
   useEffect(() => {
-    if (open) {
-      setTimeout(() => inputRef.current?.focus(), 50);
-      track("chat_open");
-    }
+    if (!open) return;
+    setTimeout(() => inputRef.current?.focus(), 50);
+    track("chat_open");
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
   async function send(text: string) {
@@ -105,20 +109,34 @@ export default function ChatWidget() {
 
       {/* Panel */}
       {open && (
-        <div className="fixed bottom-5 right-5 z-[95] w-[min(420px,94vw)] h-[min(620px,84vh)] glass hud-corner rounded-2xl flex flex-col overflow-hidden border border-[color:var(--cyan)]/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)]">
-            <span className="hud-corner-tl" />
-            <span className="hud-corner-tr" />
-            <span className="hud-corner-bl" />
-            <span className="hud-corner-br" />
+        <div
+          role="dialog"
+          aria-modal="false"
+          aria-labelledby="mcai-title"
+          className="fixed z-[95] glass hud-corner rounded-2xl flex flex-col overflow-hidden border border-[color:var(--cyan)]/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)]
+            right-[max(0.75rem,env(safe-area-inset-right))]
+            bottom-[max(0.75rem,env(safe-area-inset-bottom))]
+            left-[max(0.75rem,env(safe-area-inset-left))]
+            top-auto
+            sm:left-auto
+            w-auto sm:w-[min(420px,calc(100vw-2rem))]
+            h-[min(620px,calc(100dvh-1.5rem))]
+            max-h-[calc(100dvh-1.5rem)]"
+        >
+          <span className="hud-corner-tl" />
+          <span className="hud-corner-tr" />
+          <span className="hud-corner-bl" />
+          <span className="hud-corner-br" />
 
             {/* Header */}
             <div className="flex items-center gap-3 px-4 py-3.5 border-b border-white/10 bg-gradient-to-r from-[color:var(--cyan)]/10 via-transparent to-[color:var(--purple-glow)]/10">
               <div className="relative grid place-items-center h-9 w-9 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background shrink-0">
-                <Bot className="h-4 w-4" />
+                <Bot className="h-4 w-4" aria-hidden="true" />
                 <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-[var(--cyan)] ring-2 ring-background animate-pulse" />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-[14px] font-semibold leading-tight">MC-AI Assistant</div>
+                <div id="mcai-title" className="text-[14px] font-semibold leading-tight">MC-AI Assistant</div>
+
                 <div className="mono text-[9.5px] tracking-[0.18em] text-[var(--cyan)]/80 flex items-center gap-1.5 mt-1">
                   <span className="h-1 w-1 rounded-full bg-[var(--cyan)]" /> ONLINE · GROUNDED ON PROFILE
                 </div>

@@ -26,7 +26,7 @@ export type Experience = {
 
 export const EXPERIENCES: Experience[] = [
   {
-    company: "BinBuddy",
+    company: "BinBuddy Technologies",
     role: "Co-Founder",
     period: "Oct 2025 — Present",
     location: "Ahmedabad · Associated with GTU",
@@ -69,15 +69,17 @@ export const EXPERIENCES: Experience[] = [
 
 export const EDUCATION = [
   { school: "Gujarat Technological University (GTU)", degree: "Bachelor of Technology — Computer Engineering", period: "Sep 2024 — Sep 2028" },
+  { school: "Microsoft AI and Cloud Honors (GTU)", degree: "Bachelor of Technology — Computer Science", period: "Feb 2026" },
   { school: "Holy Angels Convent School — India", degree: "School Education", period: "Completed" },
 ];
 
 export const CERTIFICATIONS: { name: string; issuer: string; icon: LucideIcon }[] = [
+  { name: "Offensive Security Certified Professional (OSCP)", issuer: "OffSec", icon: Shield },
+  { name: "Deloitte Australia — Cyber Job Simulation", issuer: "Deloitte / Forage", icon: Shield },
   { name: "Microsoft Introduction to Cloud Infrastructure", issuer: "Microsoft", icon: Cloud },
   { name: "Applied Skills: Secure storage for Azure Files & Blob Storage", issuer: "Microsoft", icon: Lock },
   { name: "Microsoft Introduction to AI in Azure", issuer: "Microsoft", icon: Brain },
   { name: "Oracle Cloud Infrastructure Certified AI Foundations Associate", issuer: "Oracle", icon: Cloud },
-  { name: "Defensive Security Hacking", issuer: "Cybersecurity", icon: Shield },
 ];
 
 export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [

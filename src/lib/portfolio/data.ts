@@ -26,7 +26,7 @@ export type Experience = {
 
 export const EXPERIENCES: Experience[] = [
   {
-    company: "BinBuddy",
+    company: "BinBuddy Technologies",
     role: "Co-Founder",
     period: "Oct 2025 — Present",
     location: "Ahmedabad · Associated with GTU",

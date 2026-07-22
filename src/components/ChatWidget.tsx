@@ -31,10 +31,14 @@ export default function ChatWidget() {
   }, [messages, loading]);
 
   useEffect(() => {
-    if (open) {
-      setTimeout(() => inputRef.current?.focus(), 50);
-      track("chat_open");
-    }
+    if (!open) return;
+    setTimeout(() => inputRef.current?.focus(), 50);
+    track("chat_open");
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
   async function send(text: string) {

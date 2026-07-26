@@ -26,6 +26,14 @@ export type Experience = {
 
 export const EXPERIENCES: Experience[] = [
   {
+    company: "Google",
+    role: "Google Student Ambassador",
+    period: "Jul 2026 — Present",
+    location: "Ahmedabad",
+    summary: "Selected as a Google Student Ambassador 2026 representing Google Gemini on campus — running workshops, demos, and community initiatives that promote AI literacy, plus content and leadership activities alongside ambassadors across India.",
+    tags: ["Google Gemini", "AI Advocacy", "Community Building", "Leadership"],
+  },
+  {
     company: "BinBuddy Technologies",
     role: "Co-Founder",
     period: "Oct 2025 — Present",

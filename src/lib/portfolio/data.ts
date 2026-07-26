@@ -5,8 +5,8 @@ import {
 
 export const PROFILE = {
   name: "Jeet Soni",
-  role: "Co-Founder @ BinBuddy · Incubated & Funded Startup",
-  tagline: "Building Intelligent AI-Driven Systems with Software & Hardware — turning ideas into real-world technology.",
+  role: "Co-Founder @ BinBuddy · Google Student Ambassador '26",
+  tagline: "Engineering intelligent autonomous systems across AI, Robotics, Cloud, and Cybersecurity — builder, founder, community leader.",
   location: "Greater Ahmedabad Area, India",
   email: "sonijeet660@gmail.com",
   phone: "9409205791",

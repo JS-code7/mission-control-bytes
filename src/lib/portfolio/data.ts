@@ -5,8 +5,8 @@ import {
 
 export const PROFILE = {
   name: "Jeet Soni",
-  role: "Co-Founder @ BinBuddy · Incubated & Funded Startup",
-  tagline: "Building Intelligent AI-Driven Systems with Software & Hardware — turning ideas into real-world technology.",
+  role: "Co-Founder @ BinBuddy · Google Student Ambassador '26",
+  tagline: "Engineering intelligent autonomous systems across AI, Robotics, Cloud, and Cybersecurity — builder, founder, community leader.",
   location: "Greater Ahmedabad Area, India",
   email: "sonijeet660@gmail.com",
   phone: "9409205791",
@@ -25,6 +25,14 @@ export type Experience = {
 };
 
 export const EXPERIENCES: Experience[] = [
+  {
+    company: "Google",
+    role: "Google Student Ambassador",
+    period: "Jul 2026 — Present",
+    location: "Ahmedabad",
+    summary: "Selected as a Google Student Ambassador 2026 representing Google Gemini on campus — running workshops, demos, and community initiatives that promote AI literacy, plus content and leadership activities alongside ambassadors across India.",
+    tags: ["Google Gemini", "AI Advocacy", "Community Building", "Leadership"],
+  },
   {
     company: "BinBuddy Technologies",
     role: "Co-Founder",
@@ -83,14 +91,14 @@ export const CERTIFICATIONS: { name: string; issuer: string; icon: LucideIcon }[
 ];
 
 export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
-  { group: "AI / ML", icon: Brain, items: ["NLP", "Fraud Detection", "LLM Apps", "Computer Vision", "Model Integration"] },
+  { group: "AI / ML", icon: Brain, items: ["Google Gemini", "NLP", "LLM Apps", "Computer Vision", "Fraud Detection", "Model Integration"] },
   { group: "Cybersecurity", icon: Shield, items: ["Defensive Security", "Ethical Hacking", "Fraud Detection", "Threat Intelligence", "Secure Storage"] },
   { group: "Robotics & Electronics", icon: CircuitBoard, items: ["Embedded Systems", "Arduino / Uno", "Ultrasonic Sensors", "IoT Devices", "PCB Prototyping"] },
   { group: "Web Development", icon: Globe, items: ["HTML / CSS / JavaScript", "React / TypeScript", "Responsive Design", "REST & APIs"] },
   { group: "Cloud", icon: Cloud, items: ["Microsoft Azure", "Secure Azure Storage", "Blob Security", "OCI", "AWS"] },
   { group: "Game Development", icon: Gamepad2, items: ["Unreal Engine 4", "Blueprint Visual Scripting", "Game Logic Design", "UI Design"] },
   { group: "Programming & Tools", icon: Code2, items: ["Systems Design", "Automation", "Debugging", "Arduino IDE", "Amazon Q CLI"] },
-  { group: "Engineering Mindset", icon: Cpu, items: ["Systems Thinking", "Rapid Prototyping", "Product Sense", "Founder Operations"] },
+  { group: "Leadership & Community", icon: Cpu, items: ["Community Building", "Public Speaking", "Systems Thinking", "Rapid Prototyping", "Product Sense", "Founder Operations"] },
 ];
 
 export type Project = {

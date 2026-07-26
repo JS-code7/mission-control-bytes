@@ -98,7 +98,7 @@ export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
   { group: "Cloud", icon: Cloud, items: ["Microsoft Azure", "Secure Azure Storage", "Blob Security", "OCI", "AWS"] },
   { group: "Game Development", icon: Gamepad2, items: ["Unreal Engine 4", "Blueprint Visual Scripting", "Game Logic Design", "UI Design"] },
   { group: "Programming & Tools", icon: Code2, items: ["Systems Design", "Automation", "Debugging", "Arduino IDE", "Amazon Q CLI"] },
-  { group: "Engineering Mindset", icon: Cpu, items: ["Systems Thinking", "Rapid Prototyping", "Product Sense", "Founder Operations"] },
+  { group: "Leadership & Community", icon: Cpu, items: ["Community Building", "Public Speaking", "Systems Thinking", "Rapid Prototyping", "Product Sense", "Founder Operations"] },
 ];
 
 export type Project = {

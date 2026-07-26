@@ -91,7 +91,7 @@ export const CERTIFICATIONS: { name: string; issuer: string; icon: LucideIcon }[
 ];
 
 export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
-  { group: "AI / ML", icon: Brain, items: ["NLP", "Fraud Detection", "LLM Apps", "Computer Vision", "Model Integration"] },
+  { group: "AI / ML", icon: Brain, items: ["Google Gemini", "NLP", "LLM Apps", "Computer Vision", "Fraud Detection", "Model Integration"] },
   { group: "Cybersecurity", icon: Shield, items: ["Defensive Security", "Ethical Hacking", "Fraud Detection", "Threat Intelligence", "Secure Storage"] },
   { group: "Robotics & Electronics", icon: CircuitBoard, items: ["Embedded Systems", "Arduino / Uno", "Ultrasonic Sensors", "IoT Devices", "PCB Prototyping"] },
   { group: "Web Development", icon: Globe, items: ["HTML / CSS / JavaScript", "React / TypeScript", "Responsive Design", "REST & APIs"] },

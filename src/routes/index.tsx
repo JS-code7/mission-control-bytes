@@ -116,7 +116,7 @@ function PortraitCard() {
 
 function Hub() {
   useReveal();
-  const ROLES = ["Co-Founder", "Cybersecurity", "Robotics", "Web Dev", "Electronics", "AI Systems"];
+  const ROLES = ["Co-Founder", "Google Ambassador", "Cybersecurity", "Robotics", "AI Systems", "Community Leader"];
   return (
     <>
       {/* Hero */}
@@ -134,20 +134,23 @@ function Hub() {
               <span className="hidden sm:inline mono text-[10px] text-[color:var(--cyan)]/60 tracking-widest">OPERATOR · {PROFILE.name.toUpperCase()}</span>
             </span>
 
-            <div className="mt-6 mono text-[11px] tracking-[0.32em] text-[color:var(--cyan)]/80">CO-FOUNDER @ BINBUDDY</div>
+            <div className="mt-6 mono text-[11px] tracking-[0.32em] text-[color:var(--cyan)]/80">
+              CO-FOUNDER @ BINBUDDY · GOOGLE STUDENT AMBASSADOR ’26
+            </div>
             <h1 className="mt-3 text-[3rem] sm:text-6xl lg:text-[5rem] font-bold leading-[0.95] tracking-tight">
               <span className="block">JEET <span className="text-gradient text-glow">SONI</span></span>
               <span className="mt-3 block text-[1.4rem] sm:text-2xl lg:text-3xl font-medium text-foreground/80 tracking-tight leading-tight">
-                Building intelligent systems that bridge software, hardware, and the real world.
+                Engineering intelligent autonomous systems across AI, Robotics, Cloud, and Cybersecurity.
               </span>
             </h1>
 
             <p className="mt-6 max-w-xl text-muted-foreground text-[15.5px] leading-relaxed">
-              I co-build <span className="text-[color:var(--cyan)]">BinBuddy</span> — an incubated, funded startup —
-              and engineer products across <span className="text-foreground font-medium">cybersecurity</span>,{" "}
-              <span className="text-foreground font-medium">robotics</span>,{" "}
-              <span className="text-foreground font-medium">AI systems</span>, and{" "}
-              <span className="text-foreground font-medium">web engineering</span>.
+              Co-founder of <span className="text-[color:var(--cyan)]">BinBuddy</span> — an incubated, funded IoT startup — and a{" "}
+              <span className="text-foreground font-medium">Google Student Ambassador ’26</span> representing{" "}
+              <span className="text-foreground font-medium">Google Gemini</span> on campus. Builder across{" "}
+              <span className="text-foreground font-medium">cybersecurity</span>,{" "}
+              <span className="text-foreground font-medium">robotics</span>, and{" "}
+              <span className="text-foreground font-medium">AI systems</span>.
             </p>
 
 

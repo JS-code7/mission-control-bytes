@@ -191,8 +191,8 @@ function Hub() {
             </div>
             <div className="mt-10 grid grid-cols-3 max-w-md gap-3">
               {[
-                { k: "Incubated", v: "Funded Startup" },
-                { k: "Domains", v: "4+" },
+                { k: "Startup", v: "Incubated" },
+                { k: "Ambassador", v: "Google '26" },
                 { k: "Certs", v: "8+" },
               ].map((s) => (
                 <div key={s.k} className="glass-soft rounded-lg px-3 py-2.5">

@@ -128,7 +128,7 @@ export default function ChatWidget() {
           role="dialog"
           aria-modal="false"
           aria-labelledby="mcai-title"
-          className="fixed z-[95] hud-corner flex flex-col overflow-hidden rounded-xl border border-primary/25 bg-card/95 shadow-2xl backdrop-blur-xl
+          className="fixed z-[95] flex flex-col overflow-hidden rounded-xl border border-primary/25 bg-card/95 shadow-2xl backdrop-blur-xl
             right-3 bottom-3
             left-auto top-auto
             w-[calc(100vw-1.5rem)] max-w-[23.5rem]

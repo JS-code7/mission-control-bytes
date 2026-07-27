@@ -114,14 +114,12 @@ export default function ChatWidget() {
           aria-modal="false"
           aria-labelledby="mcai-title"
           className="fixed z-[95] glass hud-corner rounded-2xl flex flex-col overflow-hidden border border-[color:var(--cyan)]/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)]
-            right-[max(0.75rem,env(safe-area-inset-right))]
-            bottom-[max(0.75rem,env(safe-area-inset-bottom))]
-            left-[max(0.75rem,env(safe-area-inset-left))]
-            top-auto
-            sm:left-auto
-            w-auto sm:w-[min(420px,calc(100vw-2rem))]
-            h-[min(620px,calc(100dvh-1.5rem))]
-            max-h-[calc(100dvh-1.5rem)]"
+            right-[max(1rem,env(safe-area-inset-right))]
+            bottom-[max(1rem,env(safe-area-inset-bottom))]
+            left-auto top-auto
+            w-[min(400px,calc(100vw-2rem))]
+            h-[min(600px,calc(100dvh-2rem))]
+            max-h-[calc(100dvh-2rem)]"
         >
           <span className="hud-corner-tl" />
           <span className="hud-corner-tr" />

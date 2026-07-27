@@ -75,7 +75,7 @@ function PortraitCard() {
           <div className="absolute left-3 right-3 bottom-3 flex items-end justify-between">
             <div>
               <div className="mono text-[10px] tracking-[0.25em] text-[color:var(--cyan)]/90">JEET SONI</div>
-              <div className="text-[13px] text-foreground/90 leading-tight mt-0.5">Co-Founder · BinBuddy</div>
+              <div className="text-[13px] text-foreground/90 leading-tight mt-0.5">Co-Founder · Google Ambassador ’26</div>
             </div>
             <div className="hud-frame rounded-md px-2 py-1 mono text-[9px] tracking-widest text-[color:var(--cyan)]">
               v1.0
@@ -86,16 +86,16 @@ function PortraitCard() {
         {/* Footer chips */}
         <div className="grid grid-cols-3 gap-2 mt-3 px-1">
           <div className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-1.5">
-            <div className="mono text-[8.5px] text-muted-foreground tracking-widest">FOCUS</div>
-            <div className="mono text-[10.5px] text-foreground/90">Security</div>
+            <div className="mono text-[8.5px] text-muted-foreground tracking-widest">STARTUP</div>
+            <div className="mono text-[10.5px] text-foreground/90">BinBuddy</div>
           </div>
           <div className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-1.5">
-            <div className="mono text-[8.5px] text-muted-foreground tracking-widest">BUILDS</div>
-            <div className="mono text-[10.5px] text-foreground/90">Robotics</div>
+            <div className="mono text-[8.5px] text-muted-foreground tracking-widest">GOOGLE</div>
+            <div className="mono text-[10.5px] text-foreground/90">Gemini '26</div>
           </div>
           <div className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-1.5">
             <div className="mono text-[8.5px] text-muted-foreground tracking-widest">SHIPS</div>
-            <div className="mono text-[10.5px] text-foreground/90">AI · Web</div>
+            <div className="mono text-[10.5px] text-foreground/90">AI · IoT</div>
           </div>
         </div>
       </div>

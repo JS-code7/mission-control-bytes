@@ -103,7 +103,7 @@ export default function ChatWidget() {
           variant="ghost"
           onClick={() => setOpen(true)}
           aria-label="Open MC-AI assistant"
-          className="group fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-[90] h-auto rounded-full p-0 hover:bg-transparent"
+          className="group fixed bottom-4 right-4 z-[90] h-auto rounded-full p-0 hover:bg-transparent sm:bottom-5 sm:right-5"
         >
           <span
             className="absolute inset-0 rounded-full bg-primary/20 blur-2xl opacity-70 transition group-hover:opacity-100"
@@ -129,14 +129,11 @@ export default function ChatWidget() {
           aria-modal="false"
           aria-labelledby="mcai-title"
           className="fixed z-[95] hud-corner flex flex-col overflow-hidden rounded-xl border border-primary/25 bg-card/95 shadow-2xl backdrop-blur-xl
-            right-[max(0.75rem,env(safe-area-inset-right))]
-            bottom-[max(0.75rem,env(safe-area-inset-bottom))]
+            right-3 bottom-3
             left-auto top-auto
-            w-[min(23.5rem,calc(100vw-1.5rem))]
-            h-[min(34.5rem,calc(100dvh-1.5rem))]
-            max-h-[calc(100dvh-1.5rem)]
-            sm:right-[max(1.25rem,env(safe-area-inset-right))]
-            sm:bottom-[max(1.25rem,env(safe-area-inset-bottom))]
+            w-[calc(100vw-1.5rem)] max-w-[23.5rem]
+            h-[calc(100dvh-1.5rem)] max-h-[34.5rem]
+            sm:right-5 sm:bottom-5
             sm:w-[23.5rem]
             md:w-[24rem]"
         >

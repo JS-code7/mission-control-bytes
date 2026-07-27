@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { X, Send, Loader2, Bot, User, Sparkles, RotateCcw } from "lucide-react";
+import { X, Send, Loader2, User, Sparkles, RotateCcw, RadioTower } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { track } from "@/lib/portfolio/analytics";
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -15,8 +16,23 @@ const SUGGESTIONS = [
 const INTRO: Msg = {
   role: "assistant",
   content:
-    "Hey — I'm MC-AI, Jeet's mission-control assistant. Ask about his work, BinBuddy, projects, skills, or how to collaborate.",
+    "MC-AI online. Ask about Jeet's current roles, BinBuddy Technologies, projects, skills, certifications, or collaboration fit.",
 };
+
+function AgentMark({ compact = false }: { compact?: boolean }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`relative grid shrink-0 place-items-center overflow-hidden rounded-lg border border-primary/35 bg-primary/15 text-primary shadow-[0_0_24px_color-mix(in_oklab,var(--primary)_24%,transparent)] ${
+        compact ? "h-8 w-8" : "h-9 w-9"
+      }`}
+    >
+      <span className="absolute inset-1 rounded-full border border-primary/25" />
+      <span className="absolute h-px w-8 rotate-45 bg-primary/45" />
+      <span className="mono relative text-[10px] font-semibold tracking-normal text-primary">MC</span>
+    </span>
+  );
+}
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
@@ -82,29 +98,28 @@ export default function ChatWidget() {
     <>
       {/* Launcher */}
       {!open && (
-        <button
+        <Button
+          type="button"
+          variant="ghost"
           onClick={() => setOpen(true)}
           aria-label="Open MC-AI assistant"
-          className="fixed bottom-5 right-5 z-[90] group"
+          className="group fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-[90] h-auto rounded-full p-0 hover:bg-transparent"
         >
           <span
-            className="absolute inset-0 rounded-full blur-2xl opacity-70 group-hover:opacity-100 transition"
+            className="absolute inset-0 rounded-full bg-primary/20 blur-2xl opacity-70 transition group-hover:opacity-100"
             style={{
               background:
-                "radial-gradient(closest-side, color-mix(in oklab, var(--cyan) 60%, transparent), transparent 70%)",
+                "radial-gradient(closest-side, color-mix(in oklab, var(--primary) 50%, transparent), transparent 70%)",
             }}
           />
-          <span className="relative flex items-center gap-3 pl-2 pr-4 py-2 rounded-full glass hud-corner border border-[color:var(--cyan)]/40 hover:border-[color:var(--cyan)]/80 transition-colors">
-            <span className="relative grid place-items-center h-9 w-9 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background shrink-0">
-              <Bot className="h-4 w-4" />
-              <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-[var(--cyan)] ring-2 ring-background" />
-            </span>
-            <span className="flex flex-col items-start leading-none whitespace-nowrap">
-              <span className="mono text-[10px] tracking-[0.18em] text-[var(--cyan)]">MC-AI</span>
-              <span className="text-[12px] text-foreground/90 mt-1">Ask anything</span>
+          <span className="hud-corner relative grid grid-cols-[auto_minmax(0,1fr)] items-center gap-2 rounded-full border border-primary/35 bg-card/90 py-1.5 pl-1.5 pr-3 text-left shadow-2xl backdrop-blur-xl transition-colors group-hover:border-primary/70">
+            <AgentMark compact />
+            <span className="flex min-w-0 flex-col leading-none">
+              <span className="mono text-[10px] font-semibold tracking-[0.14em] text-primary">MC-AI</span>
+              <span className="mt-1 text-[11px] font-medium text-foreground/85">Ask Jeet's profile</span>
             </span>
           </span>
-        </button>
+        </Button>
       )}
 
       {/* Panel */}
@@ -113,13 +128,17 @@ export default function ChatWidget() {
           role="dialog"
           aria-modal="false"
           aria-labelledby="mcai-title"
-          className="fixed z-[95] glass hud-corner rounded-2xl flex flex-col overflow-hidden border border-[color:var(--cyan)]/20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)]
-            right-[max(1rem,env(safe-area-inset-right))]
-            bottom-[max(1rem,env(safe-area-inset-bottom))]
+          className="fixed z-[95] hud-corner flex flex-col overflow-hidden rounded-xl border border-primary/25 bg-card/95 shadow-2xl backdrop-blur-xl
+            right-[max(0.75rem,env(safe-area-inset-right))]
+            bottom-[max(0.75rem,env(safe-area-inset-bottom))]
             left-auto top-auto
-            w-[min(400px,calc(100vw-2rem))]
-            h-[min(600px,calc(100dvh-2rem))]
-            max-h-[calc(100dvh-2rem)]"
+            w-[min(23.5rem,calc(100vw-1.5rem))]
+            h-[min(34.5rem,calc(100dvh-1.5rem))]
+            max-h-[calc(100dvh-1.5rem)]
+            sm:right-[max(1.25rem,env(safe-area-inset-right))]
+            sm:bottom-[max(1.25rem,env(safe-area-inset-bottom))]
+            sm:w-[23.5rem]
+            md:w-[24rem]"
         >
           <span className="hud-corner-tl" />
           <span className="hud-corner-tr" />
@@ -127,58 +146,62 @@ export default function ChatWidget() {
           <span className="hud-corner-br" />
 
             {/* Header */}
-            <div className="flex items-center gap-3 px-4 py-3.5 border-b border-white/10 bg-gradient-to-r from-[color:var(--cyan)]/10 via-transparent to-[color:var(--purple-glow)]/10">
-              <div className="relative grid place-items-center h-9 w-9 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background shrink-0">
-                <Bot className="h-4 w-4" aria-hidden="true" />
-                <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-[var(--cyan)] ring-2 ring-background animate-pulse" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div id="mcai-title" className="text-[14px] font-semibold leading-tight">MC-AI Assistant</div>
+            <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 border-b border-border bg-background/55 px-3.5 py-3">
+              <AgentMark />
+              <div className="min-w-0">
+                <div id="mcai-title" className="truncate text-[13px] font-semibold leading-tight text-foreground">MC-AI Concierge</div>
 
-                <div className="mono text-[9.5px] tracking-[0.18em] text-[var(--cyan)]/80 flex items-center gap-1.5 mt-1">
-                  <span className="h-1 w-1 rounded-full bg-[var(--cyan)]" /> ONLINE · GROUNDED ON PROFILE
+                <div className="mono mt-1 flex min-w-0 items-center gap-1.5 text-[8.5px] font-medium tracking-[0.14em] text-primary/80">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary animate-pulse" />
+                  <span className="truncate">ONLINE · PROFILE-GROUNDED</span>
                 </div>
               </div>
               <div className="flex items-center gap-1 shrink-0">
-                <button
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
                   onClick={reset}
                   aria-label="Reset conversation"
                   title="New conversation"
-                  className="p-1.5 rounded-md hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
+                  className="h-8 w-8 rounded-md text-muted-foreground hover:bg-secondary/70 hover:text-foreground"
                 >
                   <RotateCcw className="h-3.5 w-3.5" />
-                </button>
-                <button
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
                   onClick={() => setOpen(false)}
                   aria-label="Close"
-                  className="p-1.5 rounded-md hover:bg-white/10 text-muted-foreground hover:text-foreground transition-colors"
+                  className="h-8 w-8 rounded-md text-muted-foreground hover:bg-secondary/70 hover:text-foreground"
                 >
                   <X className="h-4 w-4" />
-                </button>
+                </Button>
               </div>
             </div>
 
             {/* Messages */}
-            <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-3.5 bg-black/20">
+            <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto bg-background/35 px-3.5 py-3.5">
               {messages.map((m, i) => (
                 <div
                   key={i}
                   className={`flex gap-2.5 animate-fade-in ${m.role === "user" ? "flex-row-reverse" : "flex-row"}`}
                 >
                   <div
-                    className={`shrink-0 grid place-items-center h-7 w-7 rounded-full ${
+                    className={`grid h-7 w-7 shrink-0 place-items-center rounded-lg border ${
                       m.role === "user"
-                        ? "bg-white/10 border border-white/15 text-foreground/80"
-                        : "bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background"
+                        ? "border-border bg-secondary/70 text-secondary-foreground"
+                        : "border-primary/30 bg-primary/15 text-primary"
                     }`}
                   >
-                    {m.role === "user" ? <User className="h-3.5 w-3.5" /> : <Bot className="h-3.5 w-3.5" />}
+                    {m.role === "user" ? <User className="h-3.5 w-3.5" /> : <RadioTower className="h-3.5 w-3.5" />}
                   </div>
                   <div
-                    className={`max-w-[80%] text-[13.5px] leading-relaxed px-3.5 py-2.5 rounded-2xl ${
+                    className={`max-w-[82%] rounded-lg px-3 py-2 text-[13px] leading-relaxed ${
                       m.role === "user"
-                        ? "bg-[color:var(--cyan)]/12 border border-[color:var(--cyan)]/25 text-foreground rounded-tr-sm"
-                        : "bg-white/[0.04] border border-white/10 text-foreground/90 rounded-tl-sm"
+                        ? "border border-primary/30 bg-primary/15 text-foreground rounded-tr-sm"
+                        : "border border-border bg-card/55 text-foreground/90 rounded-tl-sm"
                     }`}
                   >
                     <div className="whitespace-pre-wrap">{m.content}</div>
@@ -187,12 +210,12 @@ export default function ChatWidget() {
               ))}
               {loading && (
                 <div className="flex gap-2.5 animate-fade-in">
-                  <div className="shrink-0 grid place-items-center h-7 w-7 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background">
-                    <Bot className="h-3.5 w-3.5" />
+                  <div className="grid h-7 w-7 shrink-0 place-items-center rounded-lg border border-primary/30 bg-primary/15 text-primary">
+                    <RadioTower className="h-3.5 w-3.5" />
                   </div>
-                  <div className="bg-white/[0.04] border border-white/10 px-3.5 py-2.5 rounded-2xl rounded-tl-sm text-[13px] text-muted-foreground flex items-center gap-2">
-                    <Loader2 className="h-3 w-3 animate-spin text-[var(--cyan)]" />
-                    <span className="mono text-[11px] tracking-wider">processing…</span>
+                  <div className="flex items-center gap-2 rounded-lg rounded-tl-sm border border-border bg-card/55 px-3 py-2 text-[12px] text-muted-foreground">
+                    <Loader2 className="h-3 w-3 animate-spin text-primary" />
+                    <span className="mono text-[10px] tracking-[0.12em]">processing…</span>
                   </div>
                 </div>
               )}
@@ -200,21 +223,24 @@ export default function ChatWidget() {
 
             {/* Suggestions strip — only until the user starts chatting */}
             {messages.length <= 1 && (
-              <div className="px-4 pt-3 pb-2 border-t border-white/10 bg-black/30">
-                <div className="flex items-center gap-1.5 mb-2">
-                  <Sparkles className="h-3 w-3 text-[var(--cyan)]" />
-                  <span className="mono text-[9.5px] tracking-[0.18em] text-muted-foreground">QUICK PROMPTS</span>
+              <div className="border-t border-border bg-background/60 px-3.5 pb-2.5 pt-3">
+                <div className="mb-2 flex items-center gap-1.5">
+                  <Sparkles className="h-3 w-3 text-primary" aria-hidden="true" />
+                  <span className="mono text-[9px] font-medium tracking-[0.16em] text-muted-foreground">QUICK PROMPTS</span>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {SUGGESTIONS.map((s) => (
-                    <button
+                    <Button
+                      type="button"
                       key={s}
+                      variant="outline"
+                      size="sm"
                       onClick={() => send(s)}
                       disabled={loading}
-                      className="text-[11.5px] px-2.5 py-1 rounded-full border border-white/10 bg-white/[0.04] hover:bg-[color:var(--cyan)]/10 hover:border-[color:var(--cyan)]/40 hover:text-foreground text-foreground/75 transition-colors disabled:opacity-40"
+                      className="h-auto rounded-full border-border bg-card/60 px-2.5 py-1 text-[11px] font-medium text-foreground/75 hover:border-primary/45 hover:bg-primary/10 hover:text-foreground disabled:opacity-40"
                     >
                       {s}
-                    </button>
+                    </Button>
                   ))}
                 </div>
               </div>
@@ -226,7 +252,7 @@ export default function ChatWidget() {
                 e.preventDefault();
                 send(input);
               }}
-              className="flex items-end gap-2 px-3 py-3 border-t border-white/10 bg-black/40"
+              className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-2 border-t border-border bg-background/70 px-3 py-3"
             >
               <textarea
                 ref={inputRef}
@@ -241,17 +267,18 @@ export default function ChatWidget() {
                 placeholder="Ask about Jeet, BinBuddy, projects…"
                 disabled={loading}
                 rows={1}
-                className="flex-1 resize-none bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-[13.5px] outline-none focus:border-[var(--cyan)] focus:bg-white/[0.07] disabled:opacity-50 max-h-28 leading-relaxed transition-colors"
+                className="min-h-10 max-h-24 min-w-0 resize-none rounded-lg border border-input bg-card/60 px-3 py-2.5 text-[13px] leading-relaxed text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:bg-card disabled:opacity-50"
                 maxLength={500}
               />
-              <button
+              <Button
                 type="submit"
+                size="icon"
                 disabled={loading || !input.trim()}
-                className="shrink-0 grid place-items-center h-10 w-10 rounded-xl bg-gradient-to-br from-[var(--cyan)] to-[var(--electric)] text-background disabled:opacity-40 hover:shadow-[0_0_20px_color-mix(in_oklab,var(--cyan)_50%,transparent)] transition-shadow"
+                className="h-10 w-10 shrink-0 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-40"
                 aria-label="Send"
               >
                 {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
-              </button>
+              </Button>
             </form>
         </div>
       )}

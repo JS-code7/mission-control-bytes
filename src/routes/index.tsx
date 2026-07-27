@@ -75,7 +75,7 @@ function PortraitCard() {
           <div className="absolute left-3 right-3 bottom-3 flex items-end justify-between">
             <div>
               <div className="mono text-[10px] tracking-[0.25em] text-[color:var(--cyan)]/90">JEET SONI</div>
-              <div className="text-[13px] text-foreground/90 leading-tight mt-0.5">Co-Founder · BinBuddy</div>
+              <div className="text-[13px] text-foreground/90 leading-tight mt-0.5">Co-Founder · Google Ambassador ’26</div>
             </div>
             <div className="hud-frame rounded-md px-2 py-1 mono text-[9px] tracking-widest text-[color:var(--cyan)]">
               v1.0
@@ -86,16 +86,16 @@ function PortraitCard() {
         {/* Footer chips */}
         <div className="grid grid-cols-3 gap-2 mt-3 px-1">
           <div className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-1.5">
-            <div className="mono text-[8.5px] text-muted-foreground tracking-widest">FOCUS</div>
-            <div className="mono text-[10.5px] text-foreground/90">Security</div>
+            <div className="mono text-[8.5px] text-muted-foreground tracking-widest">STARTUP</div>
+            <div className="mono text-[10.5px] text-foreground/90">BinBuddy</div>
           </div>
           <div className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-1.5">
-            <div className="mono text-[8.5px] text-muted-foreground tracking-widest">BUILDS</div>
-            <div className="mono text-[10.5px] text-foreground/90">Robotics</div>
+            <div className="mono text-[8.5px] text-muted-foreground tracking-widest">GOOGLE</div>
+            <div className="mono text-[10.5px] text-foreground/90">Gemini '26</div>
           </div>
           <div className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-1.5">
             <div className="mono text-[8.5px] text-muted-foreground tracking-widest">SHIPS</div>
-            <div className="mono text-[10.5px] text-foreground/90">AI · Web</div>
+            <div className="mono text-[10.5px] text-foreground/90">AI · IoT</div>
           </div>
         </div>
       </div>
@@ -116,7 +116,7 @@ function PortraitCard() {
 
 function Hub() {
   useReveal();
-  const ROLES = ["Co-Founder", "Cybersecurity", "Robotics", "Web Dev", "Electronics", "AI Systems"];
+  const ROLES = ["Co-Founder", "Google Ambassador", "Cybersecurity", "Robotics", "AI Systems", "Community Leader"];
   return (
     <>
       {/* Hero */}
@@ -134,20 +134,23 @@ function Hub() {
               <span className="hidden sm:inline mono text-[10px] text-[color:var(--cyan)]/60 tracking-widest">OPERATOR · {PROFILE.name.toUpperCase()}</span>
             </span>
 
-            <div className="mt-6 mono text-[11px] tracking-[0.32em] text-[color:var(--cyan)]/80">CO-FOUNDER @ BINBUDDY</div>
+            <div className="mt-6 mono text-[11px] tracking-[0.32em] text-[color:var(--cyan)]/80">
+              CO-FOUNDER @ BINBUDDY · GOOGLE STUDENT AMBASSADOR ’26
+            </div>
             <h1 className="mt-3 text-[3rem] sm:text-6xl lg:text-[5rem] font-bold leading-[0.95] tracking-tight">
               <span className="block">JEET <span className="text-gradient text-glow">SONI</span></span>
               <span className="mt-3 block text-[1.4rem] sm:text-2xl lg:text-3xl font-medium text-foreground/80 tracking-tight leading-tight">
-                Building intelligent systems that bridge software, hardware, and the real world.
+                Engineering intelligent autonomous systems across AI, Robotics, Cloud, and Cybersecurity.
               </span>
             </h1>
 
             <p className="mt-6 max-w-xl text-muted-foreground text-[15.5px] leading-relaxed">
-              I co-build <span className="text-[color:var(--cyan)]">BinBuddy</span> — an incubated, funded startup —
-              and engineer products across <span className="text-foreground font-medium">cybersecurity</span>,{" "}
-              <span className="text-foreground font-medium">robotics</span>,{" "}
-              <span className="text-foreground font-medium">AI systems</span>, and{" "}
-              <span className="text-foreground font-medium">web engineering</span>.
+              Co-founder of <span className="text-[color:var(--cyan)]">BinBuddy</span> — an incubated, funded IoT startup — and a{" "}
+              <span className="text-foreground font-medium">Google Student Ambassador ’26</span> representing{" "}
+              <span className="text-foreground font-medium">Google Gemini</span> on campus. Builder across{" "}
+              <span className="text-foreground font-medium">cybersecurity</span>,{" "}
+              <span className="text-foreground font-medium">robotics</span>, and{" "}
+              <span className="text-foreground font-medium">AI systems</span>.
             </p>
 
 
@@ -188,8 +191,8 @@ function Hub() {
             </div>
             <div className="mt-10 grid grid-cols-3 max-w-md gap-3">
               {[
-                { k: "Incubated", v: "Funded Startup" },
-                { k: "Domains", v: "4+" },
+                { k: "Startup", v: "Incubated" },
+                { k: "Ambassador", v: "Google '26" },
                 { k: "Certs", v: "8+" },
               ].map((s) => (
                 <div key={s.k} className="glass-soft rounded-lg px-3 py-2.5">

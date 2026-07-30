@@ -218,13 +218,22 @@ export default function ChatWidget() {
 
 
             {/* Messages */}
-            <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto bg-background/35 px-3.5 py-3.5">
+            <div
+              ref={scrollRef}
+              role="log"
+              aria-live="polite"
+              aria-relevant="additions text"
+              aria-label="MC-AI conversation"
+              tabIndex={0}
+              className="flex-1 space-y-3 overflow-y-auto bg-background/35 px-3.5 py-3.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
+            >
               {messages.map((m, i) => (
                 <div
                   key={i}
                   className={`flex gap-2.5 animate-fade-in ${m.role === "user" ? "flex-row-reverse" : "flex-row"}`}
                 >
                   <div
+                    aria-hidden="true"
                     className={`grid h-7 w-7 shrink-0 place-items-center rounded-lg border ${
                       m.role === "user"
                         ? "border-border bg-secondary/70 text-secondary-foreground"
@@ -240,22 +249,26 @@ export default function ChatWidget() {
                         : "border border-border bg-card/55 text-foreground/90 rounded-tl-sm"
                     }`}
                   >
+                    <span className="sr-only">{m.role === "user" ? "You said:" : "MC-AI replied:"}</span>
                     <div className="whitespace-pre-wrap">{m.content}</div>
                   </div>
                 </div>
               ))}
               {loading && (
                 <div className="flex gap-2.5 animate-fade-in">
-                  <div className="grid h-7 w-7 shrink-0 place-items-center rounded-lg border border-primary/30 bg-primary/15 text-primary">
+                  <div className="grid h-7 w-7 shrink-0 place-items-center rounded-lg border border-primary/30 bg-primary/15 text-primary" aria-hidden="true">
                     <RadioTower className="h-3.5 w-3.5" />
                   </div>
                   <div className="flex items-center gap-2 rounded-lg rounded-tl-sm border border-border bg-card/55 px-3 py-2 text-[12px] text-muted-foreground">
-                    <Loader2 className="h-3 w-3 animate-spin text-primary" />
-                    <span className="mono text-[10px] tracking-[0.12em]">processing…</span>
+                    <Loader2 className="h-3 w-3 animate-spin text-primary" aria-hidden="true" />
+                    <span className="mono text-[10px] tracking-[0.12em]" role="status">
+                      <span className="sr-only">MC-AI is </span>processing…
+                    </span>
                   </div>
                 </div>
               )}
             </div>
+
 
             {/* Suggestions strip — only until the user starts chatting */}
             {messages.length <= 1 && (

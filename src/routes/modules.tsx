@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { pageHead } from "../lib/portfolio/seo";
 import { useMemo, useState } from "react";
 import { Layers, Sparkles, ArrowRight } from "lucide-react";
 import { PROJECTS } from "../lib/portfolio/data";
@@ -6,10 +7,12 @@ import { PageHero, useReveal } from "../lib/portfolio/shared";
 
 export const Route = createFileRoute("/modules")({
   component: ModulesPage,
-  head: () => ({ meta: [
-    { title: "Modules — Jeet Soni" },
-    { name: "description", content: "Active modules — projects with problem, approach, outcome, impact, learnings, and future scope." },
-  ]}),
+  head: () => pageHead({
+    path: "/modules",
+    title: "Active Modules — Projects & Case Studies | Jeet Soni",
+    description: "Project case studies by Jeet Soni including BinBuddy: problem, approach, outcome, impact, learnings, and future scope.",
+    type: "website",
+  }),
 });
 
 function ModulesPage() {

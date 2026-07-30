@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/auth")({
+  head: () => ({ meta: [{ title: "Sign in — Jeet Soni" }, { name: "robots", content: "noindex, nofollow" }] }),
   ssr: false,
   validateSearch: (s: Record<string, unknown>) => ({
     next: typeof s.next === "string" ? s.next : "/",

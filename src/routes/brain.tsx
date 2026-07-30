@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { pageHead } from "../lib/portfolio/seo";
 import { useMemo, useState } from "react";
 import { Brain as BrainIcon, ArrowRight } from "lucide-react";
 import { BRAIN_NODES } from "../lib/portfolio/data";
@@ -6,10 +7,12 @@ import { PageHero, useReveal } from "../lib/portfolio/shared";
 
 export const Route = createFileRoute("/brain")({
   component: BrainPage,
-  head: () => ({ meta: [
-    { title: "Brain Map — Jeet Soni" },
-    { name: "description", content: "Interconnected map of skills across security, robotics, AI, web, and cloud." },
-  ]}),
+  head: () => pageHead({
+    path: "/brain",
+    title: "Brain Map — Skills Network | Jeet Soni",
+    description: "An interconnected map of Jeet Soni's skills across cybersecurity, robotics, AI, web engineering, and cloud.",
+    type: "website",
+  }),
 });
 
 function BrainPage() {

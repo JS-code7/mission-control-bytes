@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { pageHead } from "../lib/portfolio/seo";
 import { useEffect, useRef, useState } from "react";
 import { Bot, FlaskConical, Play, Send, Workflow, Zap, ChevronRight, ArrowRight, Sparkles, Tag, Smile, Loader2 } from "lucide-react";
 import { PageHero, useReveal } from "../lib/portfolio/shared";
@@ -6,10 +7,12 @@ import { track } from "../lib/portfolio/analytics";
 
 export const Route = createFileRoute("/lab")({
   component: LabPage,
-  head: () => ({ meta: [
-    { title: "Lab — Jeet Soni" },
-    { name: "description", content: "Interactive demos: AI concierge, adaptive traffic simulator, and a research console." },
-  ]}),
+  head: () => pageHead({
+    path: "/lab",
+    title: "Interactive AI Lab — Live Demos | Jeet Soni",
+    description: "Try live demos built by Jeet Soni: a profile-grounded AI concierge, an adaptive traffic simulator, and an ML research console.",
+    type: "website",
+  }),
 });
 
 function ChatbotDemo() {

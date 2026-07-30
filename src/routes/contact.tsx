@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { pageHead } from "../lib/portfolio/seo";
 import { useState } from "react";
 import { Mail, Phone, Linkedin, Github, MapPin, Send, Terminal, ArrowRight, Wifi, Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -10,10 +11,12 @@ import { track } from "../lib/portfolio/analytics";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
-  head: () => ({ meta: [
-    { title: "Contact — Jeet Soni" },
-    { name: "description", content: "Open a direct channel. Email, phone, LinkedIn, GitHub — all functional." },
-  ]}),
+  head: () => pageHead({
+    path: "/contact",
+    title: "Contact Jeet Soni — Open a Channel",
+    description: "Reach Jeet Soni directly by email, phone, LinkedIn, or GitHub for collaborations, pitches, and engineering opportunities.",
+    type: "website",
+  }),
 });
 
 const ContactSchema = z.object({

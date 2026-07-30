@@ -11,9 +11,40 @@ import { VectorBG } from "../lib/portfolio/VectorBG";
 import { downloadResume } from "../lib/portfolio/resume";
 import { track } from "../lib/portfolio/analytics";
 import portrait from "../assets/jeet-soni.jpg.asset.json";
+import { pageHead, SITE_URL, OG_IMAGE } from "../lib/portfolio/seo";
 
 
-export const Route = createFileRoute("/")({ component: Hub });
+export const Route = createFileRoute("/")({
+  component: Hub,
+  head: () => {
+    const base = pageHead({
+      path: "/",
+      title: "Jeet Soni — Mission Control | Co-Founder @ BinBuddy",
+      description:
+        "Mission control portfolio of Jeet Soni — Co-Founder at BinBuddy Technologies and Google Student Ambassador '26, building across AI, robotics, cybersecurity, and the web.",
+    });
+    return {
+      ...base,
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Jeet Soni",
+            url: SITE_URL,
+            image: OG_IMAGE,
+            jobTitle: "Co-Founder @ BinBuddy Technologies",
+            worksFor: { "@type": "Organization", name: "BinBuddy Technologies" },
+            email: "mailto:sonijeet660@gmail.com",
+            knowsAbout: ["Artificial Intelligence", "Robotics", "Cybersecurity", "Cloud Computing", "Web Engineering"],
+            sameAs: [PROFILE.linkedin, PROFILE.github].filter(Boolean),
+          }),
+        },
+      ],
+    };
+  },
+});
 
 const ICONS: Record<string, typeof Eye> = {
   Mission: Eye, Story: Sparkles, Lab: FlaskConical, Brain: Brain,

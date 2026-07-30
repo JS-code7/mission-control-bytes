@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { pageHead } from "../lib/portfolio/seo";
 import { useEffect, useState } from "react";
 import { Sparkles, ArrowRight } from "lucide-react";
 import { CHAPTERS } from "../lib/portfolio/data";
@@ -6,10 +7,12 @@ import { PageHero, useReveal } from "../lib/portfolio/shared";
 
 export const Route = createFileRoute("/story")({
   component: StoryPage,
-  head: () => ({ meta: [
-    { title: "Story — Jeet Soni" },
-    { name: "description", content: "Five chapters from curiosity to founder — an interactive documentary." },
-  ]}),
+  head: () => pageHead({
+    path: "/story",
+    title: "Story Mode — From Curiosity to Founder | Jeet Soni",
+    description: "Five chapters tracing Jeet Soni's arc from first soldered circuit to funded, incubated founder — an interactive documentary.",
+    type: "article",
+  }),
 });
 
 function StoryPage() {

@@ -156,9 +156,12 @@ export default function ChatWidget() {
       {/* Panel */}
       {open && (
         <div
+          ref={panelRef}
+          id="mcai-panel"
           role="dialog"
           aria-modal="false"
           aria-labelledby="mcai-title"
+          aria-describedby="mcai-desc"
           className="fixed z-[95] flex flex-col overflow-hidden rounded-xl border border-primary/25 bg-card/95 shadow-2xl backdrop-blur-xl
             right-3 bottom-3
             left-auto top-auto

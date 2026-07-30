@@ -127,10 +127,14 @@ export default function ChatWidget() {
       {!open && (
         <Button
           type="button"
+          ref={launcherRef}
           variant="ghost"
           onClick={() => setOpen(true)}
-          aria-label="Open MC-AI assistant"
-          className="group fixed bottom-4 right-4 z-[90] h-auto rounded-full p-0 hover:bg-transparent sm:bottom-5 sm:right-5"
+          aria-label="Open MC-AI assistant chat"
+          aria-expanded={false}
+          aria-haspopup="dialog"
+          aria-controls="mcai-panel"
+          className="group fixed bottom-4 right-4 z-[90] h-auto rounded-full p-0 hover:bg-transparent focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:bottom-5 sm:right-5"
         >
           <span
             className="absolute inset-0 rounded-full bg-primary/20 blur-2xl opacity-70 transition group-hover:opacity-100"

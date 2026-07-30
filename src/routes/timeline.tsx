@@ -1,14 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { pageHead } from "../lib/portfolio/seo";
 import { Star, ArrowRight } from "lucide-react";
 import { TIMELINE } from "../lib/portfolio/data";
 import { PageHero, useReveal } from "../lib/portfolio/shared";
 
 export const Route = createFileRoute("/timeline")({
   component: TimelinePage,
-  head: () => ({ meta: [
-    { title: "Timeline — Jeet Soni" },
-    { name: "description", content: "Evolution checkpoints: beginner → builder → operator → engineer → founder." },
-  ]}),
+  head: () => pageHead({
+    path: "/timeline",
+    title: "Evolution Timeline — Checkpoints | Jeet Soni",
+    description: "Career checkpoints for Jeet Soni: beginner, builder, operator, engineer, founder — with the milestone behind each leap.",
+    type: "website",
+  }),
 });
 
 const STAGES = [

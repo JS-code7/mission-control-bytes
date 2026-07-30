@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { pageHead } from "../lib/portfolio/seo";
 import { useEffect, useState } from "react";
 import { Terminal, Activity, Wifi, ArrowRight, Server, Cpu, Shield, Briefcase, Handshake, MessageCircle, Lightbulb, Copy, Check } from "lucide-react";
 import { toast } from "sonner";
@@ -8,10 +9,12 @@ import { PageHero, useReveal } from "../lib/portfolio/shared";
 
 export const Route = createFileRoute("/transmit")({
   component: TransmitPage,
-  head: () => ({ meta: [
-    { title: "Transmit — Jeet Soni" },
-    { name: "description", content: "System messages, activity logs, and uplink status." },
-  ]}),
+  head: () => pageHead({
+    path: "/transmit",
+    title: "Transmission Console — Activity Log | Jeet Soni",
+    description: "Live system messages, activity logs, and uplink status from Jeet Soni's mission control.",
+    type: "website",
+  }),
 });
 
 const SEED = [

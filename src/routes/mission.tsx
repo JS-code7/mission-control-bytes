@@ -1,14 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { pageHead } from "../lib/portfolio/seo";
 import { Eye, Terminal, Briefcase, GraduationCap, Award, Cpu, Linkedin, Github, Mail, Cloud } from "lucide-react";
 import { PROFILE, EXPERIENCES, EDUCATION, CERTIFICATIONS, SKILLS } from "../lib/portfolio/data";
 import { PageHero, useReveal } from "../lib/portfolio/shared";
 
 export const Route = createFileRoute("/mission")({
   component: MissionPage,
-  head: () => ({ meta: [
-    { title: "Mission — Jeet Soni" },
-    { name: "description", content: "Operator profile, experience, education, and system capabilities." },
-  ]}),
+  head: () => pageHead({
+    path: "/mission",
+    title: "Mission — Operator Profile | Jeet Soni",
+    description: "Operator profile of Jeet Soni: Co-Founder at BinBuddy Technologies and Google Student Ambassador — experience, education, certifications, and capability matrix.",
+    type: "profile",
+  }),
 });
 
 function MissionPage() {

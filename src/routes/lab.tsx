@@ -53,9 +53,10 @@ function ChatbotDemo() {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && send()}
           placeholder="Try: tell me about BinBuddy"
+          aria-label="Ask the lab assistant a question"
           className="flex-1 bg-white/5 border border-white/10 rounded-md px-3 py-2 text-[13px] outline-none focus:border-[var(--cyan)]"
         />
-        <button onClick={send} className="btn-hero !py-2 !px-3"><Send className="h-3.5 w-3.5" /></button>
+        <button type="button" onClick={send} aria-label="Send question" className="btn-hero !py-2 !px-3"><Send className="h-3.5 w-3.5" aria-hidden="true" /></button>
       </div>
     </div>
   );

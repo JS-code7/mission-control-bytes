@@ -171,19 +171,23 @@ export default function ChatWidget() {
             sm:w-[23.5rem]
             md:w-[24rem]"
         >
-          <span className="hud-corner-tl" />
-          <span className="hud-corner-tr" />
-          <span className="hud-corner-bl" />
-          <span className="hud-corner-br" />
+          <span className="hud-corner-tl" aria-hidden="true" />
+          <span className="hud-corner-tr" aria-hidden="true" />
+          <span className="hud-corner-bl" aria-hidden="true" />
+          <span className="hud-corner-br" aria-hidden="true" />
+          <p id="mcai-desc" className="sr-only">
+            MC-AI is an assistant grounded in Jeet Soni's profile. Type a question and press Enter to send. Press
+            Escape to close this panel.
+          </p>
 
             {/* Header */}
             <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 border-b border-border bg-background/55 px-3.5 py-3">
               <AgentMark />
               <div className="min-w-0">
-                <div id="mcai-title" className="truncate text-[13px] font-semibold leading-tight text-foreground">MC-AI Concierge</div>
+                <h2 id="mcai-title" className="truncate text-[13px] font-semibold leading-tight text-foreground">MC-AI Concierge</h2>
 
                 <div className="mono mt-1 flex min-w-0 items-center gap-1.5 text-[8.5px] font-medium tracking-[0.14em] text-primary/80">
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary animate-pulse" />
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary animate-pulse" aria-hidden="true" />
                   <span className="truncate">ONLINE · PROFILE-GROUNDED</span>
                 </div>
               </div>
@@ -193,24 +197,25 @@ export default function ChatWidget() {
                   variant="ghost"
                   size="icon"
                   onClick={reset}
-                  aria-label="Reset conversation"
+                  aria-label="Reset conversation and start a new chat"
                   title="New conversation"
-                  className="h-8 w-8 rounded-md text-muted-foreground hover:bg-secondary/70 hover:text-foreground"
+                  className="h-8 w-8 rounded-md text-muted-foreground hover:bg-secondary/70 hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary"
                 >
-                  <RotateCcw className="h-3.5 w-3.5" />
+                  <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
                 </Button>
                 <Button
                   type="button"
                   variant="ghost"
                   size="icon"
                   onClick={() => setOpen(false)}
-                  aria-label="Close"
-                  className="h-8 w-8 rounded-md text-muted-foreground hover:bg-secondary/70 hover:text-foreground"
+                  aria-label="Close MC-AI assistant"
+                  className="h-8 w-8 rounded-md text-muted-foreground hover:bg-secondary/70 hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary"
                 >
-                  <X className="h-4 w-4" />
+                  <X className="h-4 w-4" aria-hidden="true" />
                 </Button>
               </div>
             </div>
+
 
             {/* Messages */}
             <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto bg-background/35 px-3.5 py-3.5">

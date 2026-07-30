@@ -275,9 +275,9 @@ export default function ChatWidget() {
               <div className="border-t border-border bg-background/60 px-3.5 pb-2.5 pt-3">
                 <div className="mb-2 flex items-center gap-1.5">
                   <Sparkles className="h-3 w-3 text-primary" aria-hidden="true" />
-                  <span className="mono text-[9px] font-medium tracking-[0.16em] text-muted-foreground">QUICK PROMPTS</span>
+                  <span id="mcai-prompts" className="mono text-[9px] font-medium tracking-[0.16em] text-muted-foreground">QUICK PROMPTS</span>
                 </div>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-1.5" role="group" aria-labelledby="mcai-prompts">
                   {SUGGESTIONS.map((s) => (
                     <Button
                       type="button"
@@ -286,7 +286,8 @@ export default function ChatWidget() {
                       size="sm"
                       onClick={() => send(s)}
                       disabled={loading}
-                      className="h-auto rounded-full border-border bg-card/60 px-2.5 py-1 text-[11px] font-medium text-foreground/75 hover:border-primary/45 hover:bg-primary/10 hover:text-foreground disabled:opacity-40"
+                      aria-label={`Ask MC-AI: ${s}`}
+                      className="h-auto rounded-full border-border bg-card/60 px-2.5 py-1 text-[11px] font-medium text-foreground/75 hover:border-primary/45 hover:bg-primary/10 hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-40"
                     >
                       {s}
                     </Button>
@@ -303,7 +304,11 @@ export default function ChatWidget() {
               }}
               className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-2 border-t border-border bg-background/70 px-3 py-3"
             >
+              <label htmlFor="mcai-input" className="sr-only">
+                Ask MC-AI about Jeet Soni, BinBuddy, projects, or skills
+              </label>
               <textarea
+                id="mcai-input"
                 ref={inputRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -316,19 +321,24 @@ export default function ChatWidget() {
                 placeholder="Ask about Jeet, BinBuddy, projects…"
                 disabled={loading}
                 rows={1}
-                className="min-h-10 max-h-24 min-w-0 resize-none rounded-lg border border-input bg-card/60 px-3 py-2.5 text-[13px] leading-relaxed text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:bg-card disabled:opacity-50"
+                aria-describedby="mcai-input-hint"
+                className="min-h-10 max-h-24 min-w-0 resize-none rounded-lg border border-input bg-card/60 px-3 py-2.5 text-[13px] leading-relaxed text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:bg-card focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-50"
                 maxLength={500}
               />
+              <span id="mcai-input-hint" className="sr-only">
+                Press Enter to send, Shift plus Enter for a new line. Maximum 500 characters.
+              </span>
               <Button
                 type="submit"
                 size="icon"
                 disabled={loading || !input.trim()}
-                className="h-10 w-10 shrink-0 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-40"
-                aria-label="Send"
+                className="h-10 w-10 shrink-0 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-40"
+                aria-label="Send message to MC-AI"
               >
-                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+                {loading ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Send className="h-4 w-4" aria-hidden="true" />}
               </Button>
             </form>
+
         </div>
       )}
     </>

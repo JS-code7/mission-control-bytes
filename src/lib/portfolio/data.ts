@@ -91,14 +91,17 @@ export const CERTIFICATIONS: { name: string; issuer: string; icon: LucideIcon }[
 ];
 
 export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
-  { group: "AI / ML", icon: Brain, items: ["Google Gemini", "NLP", "LLM Apps", "Computer Vision", "Fraud Detection", "Model Integration"] },
-  { group: "Cybersecurity", icon: Shield, items: ["Defensive Security", "Ethical Hacking", "Fraud Detection", "Threat Intelligence", "Secure Storage"] },
-  { group: "Robotics & Electronics", icon: CircuitBoard, items: ["Embedded Systems", "Arduino / Uno", "Ultrasonic Sensors", "IoT Devices", "PCB Prototyping"] },
-  { group: "Web Development", icon: Globe, items: ["HTML / CSS / JavaScript", "React / TypeScript", "Responsive Design", "REST & APIs"] },
-  { group: "Cloud", icon: Cloud, items: ["Microsoft Azure", "Secure Azure Storage", "Blob Security", "OCI", "AWS"] },
-  { group: "Game Development", icon: Gamepad2, items: ["Unreal Engine 4", "Blueprint Visual Scripting", "Game Logic Design", "UI Design"] },
-  { group: "Programming & Tools", icon: Code2, items: ["Systems Design", "Automation", "Debugging", "Arduino IDE", "Amazon Q CLI"] },
-  { group: "Leadership & Community", icon: Cpu, items: ["Community Building", "Public Speaking", "Systems Thinking", "Rapid Prototyping", "Product Sense", "Founder Operations"] },
+  { group: "Programming", icon: Code2, items: ["Python", "Java", "C", "C++", "JavaScript", "TypeScript", "SQL"] },
+  { group: "Frontend", icon: Globe, items: ["HTML5", "CSS3", "React", "Tailwind CSS", "Responsive Web Design", "UI/UX Design"] },
+  { group: "Backend & APIs", icon: Server, items: ["Node.js", "Express.js", "REST API", "Authentication", "System Design"] },
+  { group: "AI / ML", icon: Brain, items: ["Google Gemini", "NLP", "LLM Applications", "Computer Vision", "OpenCV", "NumPy", "Pandas"] },
+  { group: "Cybersecurity", icon: Shield, items: ["Ethical Hacking", "Defensive Security", "Kali Linux", "Wireshark", "Nmap", "Burp Suite", "Fraud Detection"] },
+  { group: "Robotics & Embedded", icon: CircuitBoard, items: ["Arduino", "ESP32", "Ultrasonic Sensors", "Embedded Systems", "IoT Devices", "PCB Prototyping"] },
+  { group: "Cloud", icon: Cloud, items: ["Microsoft Azure", "Azure Blob & File Security", "Oracle Cloud Infrastructure", "AWS", "Firebase"] },
+  { group: "Database", icon: Database, items: ["MySQL", "MongoDB", "SQL Queries", "Data Modeling"] },
+  { group: "DevOps & Tools", icon: GitBranch, items: ["Git", "GitHub", "Linux", "Docker", "Arduino IDE", "Amazon Q CLI"] },
+  { group: "Game Development", icon: Gamepad2, items: ["Unreal Engine", "Blueprint Visual Scripting", "Game Logic Design"] },
+  { group: "Leadership & Community", icon: Cpu, items: ["Community Building", "Public Speaking", "Founder Operations", "Product Sense", "Rapid Prototyping"] },
 ];
 
 export type Project = {

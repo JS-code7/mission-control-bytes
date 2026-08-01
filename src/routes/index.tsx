@@ -11,7 +11,7 @@ import { VectorBG } from "../lib/portfolio/VectorBG";
 import { downloadResume } from "../lib/portfolio/resume";
 import { track } from "../lib/portfolio/analytics";
 import portrait from "../assets/jeet-soni.jpg.asset.json";
-import { pageHead, SITE_URL, OG_IMAGE } from "../lib/portfolio/seo";
+import { pageHead } from "../lib/portfolio/seo";
 
 
 export const Route = createFileRoute("/")({

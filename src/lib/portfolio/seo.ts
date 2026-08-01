@@ -11,8 +11,8 @@ type PageSeo = {
 };
 
 /**
- * Builds a complete per-route head(): title, description, Open Graph,
- * Twitter card, self-referencing og:url + canonical.
+ * Builds a per-route head(): title, description, and Open Graph tags.
+ * No canonical, Twitter, or structured-data tags.
  */
 export function pageHead({ path, title, description, type = "website" }: PageSeo) {
   const url = `${SITE_URL}${path}`;
@@ -25,11 +25,6 @@ export function pageHead({ path, title, description, type = "website" }: PageSeo
       { property: "og:type", content: type },
       { property: "og:url", content: url },
       { property: "og:image", content: OG_IMAGE },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: title },
-      { name: "twitter:description", content: description },
-      { name: "twitter:image", content: OG_IMAGE },
     ],
-    links: [{ rel: "canonical", href: url }],
   };
 }

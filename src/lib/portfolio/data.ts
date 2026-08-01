@@ -1,5 +1,6 @@
 import {
   Cloud, Lock, Brain, Shield, Server, CircuitBoard, Globe, Cpu, Gamepad2, Code2,
+  Database, GitBranch,
   type LucideIcon,
 } from "lucide-react";
 

@@ -5,7 +5,8 @@ import { PROJECTS } from "@/lib/portfolio/data";
 export default defineTool({
   name: "get_project",
   title: "Get project detail",
-  description: "Return the full detail (problem, approach, outcome, impact, learned, future) for a project by title.",
+  description:
+    "Return the full detail (problem, approach, outcome, impact, learned, future) for a project by title.",
   inputSchema: {
     title: z.string().min(1).describe("Case-insensitive project title match."),
   },

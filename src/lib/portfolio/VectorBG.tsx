@@ -58,8 +58,18 @@ function Defs() {
 function Ambient({ tone = "cool" }: { tone?: "cool" | "warm" }) {
   return (
     <>
-      <circle cx="18%" cy="22%" r="260" fill={tone === "warm" ? "url(#vbg-orb2)" : "url(#vbg-orb)"} />
-      <circle cx="82%" cy="78%" r="320" fill={tone === "warm" ? "url(#vbg-orb)" : "url(#vbg-orb2)"} />
+      <circle
+        cx="18%"
+        cy="22%"
+        r="260"
+        fill={tone === "warm" ? "url(#vbg-orb2)" : "url(#vbg-orb)"}
+      />
+      <circle
+        cx="82%"
+        cy="78%"
+        r="320"
+        fill={tone === "warm" ? "url(#vbg-orb)" : "url(#vbg-orb2)"}
+      />
     </>
   );
 }
@@ -157,8 +167,16 @@ function LabArt() {
 /* ---- BRAIN: connected arcs ---- */
 function BrainArt() {
   const nodes = [
-    [200, 200], [420, 140], [640, 260], [880, 160], [1100, 280],
-    [320, 420], [560, 520], [800, 460], [1040, 580], [1300, 360],
+    [200, 200],
+    [420, 140],
+    [640, 260],
+    [880, 160],
+    [1100, 280],
+    [320, 420],
+    [560, 520],
+    [800, 460],
+    [1040, 580],
+    [1300, 360],
   ];
   return (
     <g>
@@ -178,7 +196,7 @@ function BrainArt() {
               strokeWidth="1"
             />
           );
-        })
+        }),
       )}
       {nodes.map(([x, y], i) => (
         <circle key={i} cx={x} cy={y} r="4" fill={C_CYAN} opacity="0.8" />

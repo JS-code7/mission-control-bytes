@@ -27,7 +27,10 @@ export const Route = createFileRoute("/api/chat")({
 
         const incoming = Array.isArray(body.messages) ? body.messages : [];
         const clean = incoming
-          .filter((m) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
+          .filter(
+            (m) =>
+              m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string",
+          )
           .slice(-12)
           .map((m) => ({ role: m.role, content: m.content.slice(0, 4000) }));
 
@@ -68,10 +71,10 @@ export const Route = createFileRoute("/api/chat")({
         if (!upstream.ok) {
           const text = await upstream.text();
           console.error("AI gateway error", upstream.status, text);
-          return new Response(
-            JSON.stringify({ error: "Assistant unavailable. Try again." }),
-            { status: 502, headers: { "content-type": "application/json" } },
-          );
+          return new Response(JSON.stringify({ error: "Assistant unavailable. Try again." }), {
+            status: 502,
+            headers: { "content-type": "application/json" },
+          });
         }
 
         const json = (await upstream.json()) as {

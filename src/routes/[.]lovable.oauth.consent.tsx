@@ -96,9 +96,7 @@ function Consent() {
         <div className="mono text-[10px] tracking-[0.24em] text-[var(--cyan)] mb-2">
           MCP · CONNECTION REQUEST
         </div>
-        <h1 className="text-xl font-semibold mb-2">
-          Connect {clientName} to Mission Control
-        </h1>
+        <h1 className="text-xl font-semibold mb-2">Connect {clientName} to Mission Control</h1>
         <p className="text-sm text-muted-foreground mb-6">
           {clientName} will be able to call this app's enabled MCP tools while you are signed in.
           This does not bypass this app's permissions or backend policies.
@@ -115,7 +113,11 @@ function Consent() {
           </div>
         </div>
 
-        {error && <p role="alert" className="text-sm text-red-400 mb-4">{error}</p>}
+        {error && (
+          <p role="alert" className="text-sm text-red-400 mb-4">
+            {error}
+          </p>
+        )}
 
         <div className="flex gap-2">
           <button

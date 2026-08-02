@@ -4,7 +4,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/auth")({
-  head: () => ({ meta: [{ title: "Sign in — Jeet Soni" }, { name: "robots", content: "noindex, nofollow" }] }),
+  head: () => ({
+    meta: [{ title: "Sign in — Jeet Soni" }, { name: "robots", content: "noindex, nofollow" }],
+  }),
   ssr: false,
   validateSearch: (s: Record<string, unknown>) => ({
     next: typeof s.next === "string" ? s.next : "/",
@@ -74,7 +76,9 @@ function AuthPage() {
   return (
     <div className="min-h-screen grid place-items-center px-4 py-24">
       <div className="w-full max-w-md glass hud-corner rounded-2xl p-8 border border-[color:var(--cyan)]/20">
-        <div className="mono text-[10px] tracking-[0.24em] text-[var(--cyan)] mb-2">ACCESS · CONTROL</div>
+        <div className="mono text-[10px] tracking-[0.24em] text-[var(--cyan)] mb-2">
+          ACCESS · CONTROL
+        </div>
         <h1 className="text-2xl font-semibold mb-1">
           {mode === "signin" ? "Sign in" : "Create account"}
         </h1>

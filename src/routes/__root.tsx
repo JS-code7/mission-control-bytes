@@ -27,7 +27,9 @@ function NotFoundComponent() {
           This sector is offline. Return to mission control.
         </p>
         <div className="mt-6">
-          <Link to="/" className="btn-hero">Go to Mission Control</Link>
+          <Link to="/" className="btn-hero">
+            Go to Mission Control
+          </Link>
         </div>
       </div>
     </div>
@@ -45,10 +47,22 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">System fault</h1>
-        <p className="mt-2 text-sm text-muted-foreground">A subsystem failed to mount. Retry or return to base.</p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          A subsystem failed to mount. Retry or return to base.
+        </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <button onClick={() => { router.invalidate(); reset(); }} className="btn-hero">Retry</button>
-          <a href="/" className="btn-ghost">Go home</a>
+          <button
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
+            className="btn-hero"
+          >
+            Retry
+          </button>
+          <a href="/" className="btn-ghost">
+            Go home
+          </a>
         </div>
       </div>
     </div>
@@ -61,21 +75,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Jeet Soni — Mission Control" },
-      { name: "description", content: "Jeet Soni — Co-Founder @ BinBuddy. A multi-page mission control built around AI, robotics, cybersecurity, and the web." },
+      {
+        name: "description",
+        content:
+          "Jeet Soni — Co-Founder @ BinBuddy. A multi-page mission control built around AI, robotics, cybersecurity, and the web.",
+      },
       { name: "author", content: "Jeet Soni" },
       { name: "robots", content: "index, follow" },
       { property: "og:site_name", content: "Jeet Soni — Mission Control" },
       { property: "og:locale", content: "en_US" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -126,7 +146,11 @@ function AppShell() {
 
   const dismissBoot = () => {
     setBooting(false);
-    try { sessionStorage.setItem("js-booted", "1"); } catch {}
+    try {
+      sessionStorage.setItem("js-booted", "1");
+    } catch {
+      // sessionStorage unavailable (private mode) — boot flag is best-effort
+    }
   };
 
   return (

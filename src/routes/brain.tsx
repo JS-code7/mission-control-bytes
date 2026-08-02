@@ -7,12 +7,14 @@ import { PageHero, useReveal } from "../lib/portfolio/shared";
 
 export const Route = createFileRoute("/brain")({
   component: BrainPage,
-  head: () => pageHead({
-    path: "/brain",
-    title: "Brain Map — Skills Network | Jeet Soni",
-    description: "An interconnected map of Jeet Soni's skills across cybersecurity, robotics, AI, web engineering, and cloud.",
-    type: "website",
-  }),
+  head: () =>
+    pageHead({
+      path: "/brain",
+      title: "Brain Map — Skills Network | Jeet Soni",
+      description:
+        "An interconnected map of Jeet Soni's skills across cybersecurity, robotics, AI, web engineering, and cloud.",
+      type: "website",
+    }),
 });
 
 function BrainPage() {
@@ -28,10 +30,19 @@ function BrainPage() {
 
   return (
     <>
-      <PageHero variant="brain"
-        eyebrow={<><BrainIcon className="h-3 w-3" /> SYSTEM · 04 · BRAIN</>}
+      <PageHero
+        variant="brain"
+        eyebrow={
+          <>
+            <BrainIcon className="h-3 w-3" /> SYSTEM · 04 · BRAIN
+          </>
+        }
         code={`${BRAIN_NODES.length} NODES · LINKED`}
-        title={<>Brain <span className="text-gradient">Map</span></>}
+        title={
+          <>
+            Brain <span className="text-gradient">Map</span>
+          </>
+        }
         subtitle="The stack is a network, not a list. Hover any node to light its connections."
       />
 
@@ -39,20 +50,28 @@ function BrainPage() {
         <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-[1.5fr_1fr] gap-6">
           <div className="reveal relative glass rounded-2xl p-2 hud-corner aspect-[16/10] overflow-hidden">
             <div className="absolute inset-0 bg-grid opacity-40" />
-            <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+            <svg
+              viewBox="0 0 100 100"
+              className="absolute inset-0 w-full h-full"
+              preserveAspectRatio="none"
+            >
               {BRAIN_NODES.flatMap((n) =>
                 n.related.map((r) => {
                   const t = BRAIN_NODES.find((x) => x.id === r)!;
                   const active = activeSet.has(n.id) && activeSet.has(r);
                   return (
-                    <line key={n.id + r}
-                      x1={n.x} y1={n.y} x2={t.x} y2={t.y}
+                    <line
+                      key={n.id + r}
+                      x1={n.x}
+                      y1={n.y}
+                      x2={t.x}
+                      y2={t.y}
                       stroke={active ? "var(--cyan)" : "rgba(255,255,255,0.12)"}
                       strokeWidth={active ? 0.4 : 0.2}
                       style={{ transition: "all .3s" }}
                     />
                   );
-                })
+                }),
               )}
             </svg>
             {BRAIN_NODES.map((n) => {
@@ -68,18 +87,30 @@ function BrainPage() {
                   style={{ left: `${n.x}%`, top: `${n.y}%`, opacity: isActive ? 1 : 0.35 }}
                 >
                   <span className="relative grid place-items-center">
-                    <span className="absolute inset-0 rounded-full animate-pulse-ring" style={{ background: n.color, opacity: 0.4 }} />
-                    <span className="relative h-4 w-4 rounded-full" style={{ background: n.color, boxShadow: `0 0 18px ${n.color}` }} />
+                    <span
+                      className="absolute inset-0 rounded-full animate-pulse-ring"
+                      style={{ background: n.color, opacity: 0.4 }}
+                    />
+                    <span
+                      className="relative h-4 w-4 rounded-full"
+                      style={{ background: n.color, boxShadow: `0 0 18px ${n.color}` }}
+                    />
                   </span>
-                  <span className="mt-2 block mono text-[10.5px] tracking-widest text-foreground/85 whitespace-nowrap">{n.label.toUpperCase()}</span>
+                  <span className="mt-2 block mono text-[10.5px] tracking-widest text-foreground/85 whitespace-nowrap">
+                    {n.label.toUpperCase()}
+                  </span>
                 </button>
               );
             })}
           </div>
 
           <div className="reveal glass rounded-2xl p-5 hud-corner">
-            <div className="mono text-[11px] tracking-widest text-[var(--cyan)]">NODE · INSPECTOR</div>
-            <div className="mt-3 text-2xl font-semibold">{current ? current.label : "Hover a node"}</div>
+            <div className="mono text-[11px] tracking-widest text-[var(--cyan)]">
+              NODE · INSPECTOR
+            </div>
+            <div className="mt-3 text-2xl font-semibold">
+              {current ? current.label : "Hover a node"}
+            </div>
             <p className="mt-2 text-muted-foreground text-[14px]">
               {current
                 ? "Linked domains light up across the map. Each connection represents a real project where these disciplines met."
@@ -100,7 +131,9 @@ function BrainPage() {
               ))}
             </div>
             <div className="mt-6">
-              <Link to="/timeline" className="btn-hero w-full justify-center">Open Evolution Timeline <ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/timeline" className="btn-hero w-full justify-center">
+                Open Evolution Timeline <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </div>
         </div>

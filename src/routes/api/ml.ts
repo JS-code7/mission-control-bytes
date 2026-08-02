@@ -9,8 +9,7 @@ const SYSTEMS: Record<MlTask, string> = {
     'You are a zero-shot topic classifier for short text. Respond ONLY with strict JSON: {"topic":"tech|business|product|security|ai|other","confidence":0..1,"why":"<12 words"}.',
   summary:
     'You are a TL;DR engine. Respond ONLY with strict JSON: {"summary":"one sentence, <=140 chars"}.',
-  keywords:
-    'You extract 3-6 keywords. Respond ONLY with strict JSON: {"keywords":["..."]}.',
+  keywords: 'You extract 3-6 keywords. Respond ONLY with strict JSON: {"keywords":["..."]}.',
 };
 
 export const Route = createFileRoute("/api/ml")({
@@ -56,7 +55,9 @@ export const Route = createFileRoute("/api/ml")({
         });
 
         if (upstream.status === 429)
-          return new Response(JSON.stringify({ error: "Rate limited. Try again shortly." }), { status: 429 });
+          return new Response(JSON.stringify({ error: "Rate limited. Try again shortly." }), {
+            status: 429,
+          });
         if (upstream.status === 402)
           return new Response(JSON.stringify({ error: "AI credits exhausted." }), { status: 402 });
         if (!upstream.ok) {

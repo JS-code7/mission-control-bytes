@@ -1,4 +1,12 @@
-import { PROFILE, EXPERIENCES, EDUCATION, CERTIFICATIONS, SKILLS, PROJECTS, TIMELINE } from "./data";
+import {
+  PROFILE,
+  EXPERIENCES,
+  EDUCATION,
+  CERTIFICATIONS,
+  SKILLS,
+  PROJECTS,
+  TIMELINE,
+} from "./data";
 
 /**
  * Static knowledge base text the AI assistant is grounded on.

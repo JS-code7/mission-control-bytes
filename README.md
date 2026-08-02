@@ -16,6 +16,7 @@ This portfolio uses a **dark futuristic theme** with carefully balanced accent c
 - **🟡 Soft Gold** — premium accent for emphasis
 
 The style combines:
+
 - glassmorphism panels
 - subtle glow effects
 - vector motion
@@ -45,6 +46,7 @@ Building intelligent AI-driven systems with software and hardware.
 This website is structured like a **mission-control dashboard** for a modern developer-founder.
 
 ### Core sections:
+
 - **Mission** → Home hub / overview
 - **Story** → journey chapters
 - **Lab** → experimental playground
@@ -314,3 +316,4 @@ If you want, I can also make this into a **fancier GitHub-style README** with:
 - emoji section dividers,
 - a skills grid,
 - and a cleaner “project showcase” block.
+```

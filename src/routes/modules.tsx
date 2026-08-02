@@ -7,12 +7,14 @@ import { PageHero, useReveal } from "../lib/portfolio/shared";
 
 export const Route = createFileRoute("/modules")({
   component: ModulesPage,
-  head: () => pageHead({
-    path: "/modules",
-    title: "Active Modules — Projects & Case Studies | Jeet Soni",
-    description: "Project case studies by Jeet Soni including BinBuddy: problem, approach, outcome, impact, learnings, and future scope.",
-    type: "website",
-  }),
+  head: () =>
+    pageHead({
+      path: "/modules",
+      title: "Active Modules — Projects & Case Studies | Jeet Soni",
+      description:
+        "Project case studies by Jeet Soni including BinBuddy: problem, approach, outcome, impact, learnings, and future scope.",
+      type: "website",
+    }),
 });
 
 function ModulesPage() {
@@ -24,10 +26,19 @@ function ModulesPage() {
 
   return (
     <>
-      <PageHero variant="modules"
-        eyebrow={<><Layers className="h-3 w-3" /> SYSTEM · 06 · MODULES</>}
+      <PageHero
+        variant="modules"
+        eyebrow={
+          <>
+            <Layers className="h-3 w-3" /> SYSTEM · 06 · MODULES
+          </>
+        }
         code={`${PROJECTS.length} MODULES · IN-FLIGHT`}
-        title={<>Active <span className="text-gradient">Modules</span></>}
+        title={
+          <>
+            Active <span className="text-gradient">Modules</span>
+          </>
+        }
         subtitle="Projects with weight behind them. Each one a real loop of problem, approach, outcome, impact — plus what I learned and what's next."
       >
         <div className="mt-8 flex flex-wrap gap-1.5">
@@ -50,19 +61,28 @@ function ModulesPage() {
       <section className="relative py-10">
         <div className="mx-auto max-w-7xl px-6">
           {list.length === 0 ? (
-            <div className="glass rounded-2xl p-8 text-center text-muted-foreground">No modules in this category yet.</div>
+            <div className="glass rounded-2xl p-8 text-center text-muted-foreground">
+              No modules in this category yet.
+            </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
               {list.map((p) => {
                 const isOpen = open === p.title;
                 return (
-                  <article key={p.title} className="reveal glass rounded-2xl p-5 hud-corner card-hover flex flex-col">
+                  <article
+                    key={p.title}
+                    className="reveal glass rounded-2xl p-5 hud-corner card-hover flex flex-col"
+                  >
                     <div className="flex items-center justify-between">
-                      <span className="mono text-[10.5px] tracking-widest text-[var(--cyan)]">{p.category.toUpperCase()}</span>
+                      <span className="mono text-[10.5px] tracking-widest text-[var(--cyan)]">
+                        {p.category.toUpperCase()}
+                      </span>
                       <Sparkles className="h-3.5 w-3.5 text-[var(--gold)]" />
                     </div>
                     <h3 className="mt-3 text-lg font-semibold leading-tight">{p.title}</h3>
-                    <p className="mt-2 text-[14px] text-muted-foreground leading-relaxed">{p.summary}</p>
+                    <p className="mt-2 text-[14px] text-muted-foreground leading-relaxed">
+                      {p.summary}
+                    </p>
                     {isOpen && (
                       <div className="mt-4 grid gap-2">
                         {[
@@ -74,7 +94,9 @@ function ModulesPage() {
                           ["Future Improvements", p.future],
                         ].map(([k, v]) => (
                           <div key={k} className="glass-soft rounded-lg p-3">
-                            <div className="mono text-[10px] tracking-widest text-[var(--cyan)]">{k.toUpperCase()}</div>
+                            <div className="mono text-[10px] tracking-widest text-[var(--cyan)]">
+                              {k.toUpperCase()}
+                            </div>
                             <div className="text-[13px] text-foreground/90 mt-1">{v}</div>
                           </div>
                         ))}
@@ -82,14 +104,20 @@ function ModulesPage() {
                     )}
                     <div className="mt-4 flex flex-wrap gap-1.5">
                       {p.tags.map((t) => (
-                        <span key={t} className="mono text-[10px] tracking-widest px-1.5 py-0.5 rounded-md border border-white/10 bg-white/[0.04] text-foreground/75">{t.toUpperCase()}</span>
+                        <span
+                          key={t}
+                          className="mono text-[10px] tracking-widest px-1.5 py-0.5 rounded-md border border-white/10 bg-white/[0.04] text-foreground/75"
+                        >
+                          {t.toUpperCase()}
+                        </span>
                       ))}
                     </div>
                     <button
                       onClick={() => setOpen(isOpen ? null : p.title)}
                       className="mt-4 inline-flex items-center justify-between text-[12.5px] mono text-foreground/85 hover:text-[var(--cyan)] transition-colors"
                     >
-                      {isOpen ? "COLLAPSE BRIEF" : "OPEN MODULE BRIEF"} <ArrowRight className="h-3.5 w-3.5" />
+                      {isOpen ? "COLLAPSE BRIEF" : "OPEN MODULE BRIEF"}{" "}
+                      <ArrowRight className="h-3.5 w-3.5" />
                     </button>
                   </article>
                 );

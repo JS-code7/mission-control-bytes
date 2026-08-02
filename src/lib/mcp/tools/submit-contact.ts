@@ -12,7 +12,8 @@ function supabaseForUser(ctx: ToolContext) {
 export default defineTool({
   name: "submit_contact",
   title: "Submit a contact message",
-  description: "Send Jeet a transmission — same as the site's Contact form. Requires a signed-in user.",
+  description:
+    "Send Jeet a transmission — same as the site's Contact form. Requires a signed-in user.",
   inputSchema: {
     name: z.string().min(1).max(100),
     email: z.string().min(3).max(255),

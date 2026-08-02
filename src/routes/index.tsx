@@ -1,8 +1,26 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  Activity, Rocket, Send, MapPin, Download, Linkedin, Github, Mail, Phone,
-  Eye, Sparkles, FlaskConical, Brain, Star, Layers, Wifi, Terminal,
-  ChevronRight, Cpu, Shield, Radio,
+  Activity,
+  Rocket,
+  Send,
+  MapPin,
+  Download,
+  Linkedin,
+  Github,
+  Mail,
+  Phone,
+  Eye,
+  Sparkles,
+  FlaskConical,
+  Brain,
+  Star,
+  Layers,
+  Wifi,
+  Terminal,
+  ChevronRight,
+  Cpu,
+  Shield,
+  Radio,
 } from "lucide-react";
 import { toast } from "sonner";
 import { PROFILE, NAV_ITEMS, PROJECTS, SKILLS } from "../lib/portfolio/data";
@@ -12,7 +30,6 @@ import { downloadResume } from "../lib/portfolio/resume";
 import { track } from "../lib/portfolio/analytics";
 import portrait from "../assets/jeet-soni.jpg.asset.json";
 import { pageHead } from "../lib/portfolio/seo";
-
 
 export const Route = createFileRoute("/")({
   component: Hub,
@@ -26,23 +43,41 @@ export const Route = createFileRoute("/")({
 });
 
 const ICONS: Record<string, typeof Eye> = {
-  Mission: Eye, Story: Sparkles, Lab: FlaskConical, Brain: Brain,
-  Timeline: Star, Modules: Layers, Transmit: Terminal, Contact: Wifi,
+  Mission: Eye,
+  Story: Sparkles,
+  Lab: FlaskConical,
+  Brain: Brain,
+  Timeline: Star,
+  Modules: Layers,
+  Transmit: Terminal,
+  Contact: Wifi,
 };
 
 function PortraitCard() {
   return (
     <div className="relative w-full max-w-[320px] mx-auto group">
       {/* Ambient halo */}
-      <div className="absolute -inset-10 rounded-[2.5rem] opacity-70 blur-3xl pointer-events-none"
-           style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--cyan) 35%, transparent), transparent 70%)" }} />
-      <div className="absolute -inset-10 rounded-[2.5rem] opacity-60 blur-3xl pointer-events-none"
-           style={{ background: "radial-gradient(closest-side at 80% 90%, color-mix(in oklab, var(--purple-glow) 40%, transparent), transparent 70%)" }} />
+      <div
+        className="absolute -inset-10 rounded-[2.5rem] opacity-70 blur-3xl pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(closest-side, color-mix(in oklab, var(--cyan) 35%, transparent), transparent 70%)",
+        }}
+      />
+      <div
+        className="absolute -inset-10 rounded-[2.5rem] opacity-60 blur-3xl pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(closest-side at 80% 90%, color-mix(in oklab, var(--purple-glow) 40%, transparent), transparent 70%)",
+        }}
+      />
 
       {/* Orbiting rings */}
       <div className="absolute -inset-6 rounded-[2rem] border border-[color:var(--cyan)]/15 animate-spin-slow pointer-events-none" />
-      <div className="absolute -inset-3 rounded-[1.75rem] border border-dashed border-[color:var(--purple-glow)]/20 pointer-events-none"
-           style={{ animation: "spin-slow 38s linear infinite reverse" }} />
+      <div
+        className="absolute -inset-3 rounded-[1.75rem] border border-dashed border-[color:var(--purple-glow)]/20 pointer-events-none"
+        style={{ animation: "spin-slow 38s linear infinite reverse" }}
+      />
 
       {/* Portrait frame */}
       <div className="relative hud-frame rounded-[1.5rem] p-3 transition-transform duration-500 group-hover:-translate-y-1">
@@ -73,19 +108,38 @@ function PortraitCard() {
             className="absolute inset-0 h-full w-full object-cover object-[50%_22%] transition-transform duration-700 group-hover:scale-[1.04]"
           />
           {/* Tonal grade overlays */}
-          <div className="absolute inset-0 pointer-events-none"
-               style={{ background: "linear-gradient(180deg, transparent 35%, color-mix(in oklab, var(--bg) 85%, transparent) 100%)" }} />
-          <div className="absolute inset-0 pointer-events-none mix-blend-soft-light opacity-60"
-               style={{ background: "linear-gradient(135deg, color-mix(in oklab, var(--cyan) 30%, transparent), transparent 55%, color-mix(in oklab, var(--purple-glow) 35%, transparent))" }} />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(180deg, transparent 35%, color-mix(in oklab, var(--bg) 85%, transparent) 100%)",
+            }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none mix-blend-soft-light opacity-60"
+            style={{
+              background:
+                "linear-gradient(135deg, color-mix(in oklab, var(--cyan) 30%, transparent), transparent 55%, color-mix(in oklab, var(--purple-glow) 35%, transparent))",
+            }}
+          />
           {/* Scanline subtle */}
-          <div className="absolute inset-0 pointer-events-none opacity-[0.06]"
-               style={{ background: "repeating-linear-gradient(0deg, transparent, transparent 2px, white 2px, white 3px)" }} />
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.06]"
+            style={{
+              background:
+                "repeating-linear-gradient(0deg, transparent, transparent 2px, white 2px, white 3px)",
+            }}
+          />
 
           {/* Caption block */}
           <div className="absolute left-3 right-3 bottom-3 flex items-end justify-between">
             <div>
-              <div className="mono text-[10px] tracking-[0.25em] text-[color:var(--cyan)]/90">JEET SONI</div>
-              <div className="text-[13px] text-foreground/90 leading-tight mt-0.5">Co-Founder · Google Ambassador ’26</div>
+              <div className="mono text-[10px] tracking-[0.25em] text-[color:var(--cyan)]/90">
+                JEET SONI
+              </div>
+              <div className="text-[13px] text-foreground/90 leading-tight mt-0.5">
+                Co-Founder · Google Ambassador ’26
+              </div>
             </div>
             <div className="hud-frame rounded-md px-2 py-1 mono text-[9px] tracking-widest text-[color:var(--cyan)]">
               v1.0
@@ -115,7 +169,10 @@ function PortraitCard() {
         <Shield className="h-3.5 w-3.5 text-[var(--cyan)]" />
         <span className="mono text-[10px] tracking-widest text-foreground/85">SECURE NODE</span>
       </div>
-      <div className="hidden md:flex absolute -right-4 bottom-24 hud-frame rounded-md px-2.5 py-1.5 items-center gap-2 animate-float" style={{ animationDelay: "1.2s" }}>
+      <div
+        className="hidden md:flex absolute -right-4 bottom-24 hud-frame rounded-md px-2.5 py-1.5 items-center gap-2 animate-float"
+        style={{ animationDelay: "1.2s" }}
+      >
         <Radio className="h-3.5 w-3.5 text-[var(--cyan)]" />
         <span className="mono text-[10px] tracking-widest text-foreground/85">AHMEDABAD · IN</span>
       </div>
@@ -123,10 +180,16 @@ function PortraitCard() {
   );
 }
 
-
 function Hub() {
   useReveal();
-  const ROLES = ["Co-Founder", "Google Ambassador", "Cybersecurity", "Robotics", "AI Systems", "Community Leader"];
+  const ROLES = [
+    "Co-Founder",
+    "Google Ambassador",
+    "Cybersecurity",
+    "Robotics",
+    "AI Systems",
+    "Community Leader",
+  ];
   return (
     <>
       {/* Hero */}
@@ -141,32 +204,41 @@ function Hub() {
               </span>
               MISSION CONTROL · ONLINE
               <span className="hidden sm:inline-block h-px w-10 bg-[color:var(--cyan)]/30 mx-1" />
-              <span className="hidden sm:inline mono text-[10px] text-[color:var(--cyan)]/60 tracking-widest">OPERATOR · {PROFILE.name.toUpperCase()}</span>
+              <span className="hidden sm:inline mono text-[10px] text-[color:var(--cyan)]/60 tracking-widest">
+                OPERATOR · {PROFILE.name.toUpperCase()}
+              </span>
             </span>
 
             <div className="mt-6 mono text-[11px] tracking-[0.32em] text-[color:var(--cyan)]/80">
               CO-FOUNDER @ BINBUDDY · GOOGLE STUDENT AMBASSADOR ’26
             </div>
             <h1 className="mt-3 text-[3rem] sm:text-6xl lg:text-[5rem] font-bold leading-[0.95] tracking-tight">
-              <span className="block">JEET <span className="text-gradient text-glow">SONI</span></span>
+              <span className="block">
+                JEET <span className="text-gradient text-glow">SONI</span>
+              </span>
               <span className="mt-3 block text-[1.4rem] sm:text-2xl lg:text-3xl font-medium text-foreground/80 tracking-tight leading-tight">
-                Engineering intelligent autonomous systems across AI, Robotics, Cloud, and Cybersecurity.
+                Engineering intelligent autonomous systems across AI, Robotics, Cloud, and
+                Cybersecurity.
               </span>
             </h1>
 
             <p className="mt-6 max-w-xl text-muted-foreground text-[15.5px] leading-relaxed">
-              Co-founder of <span className="text-[color:var(--cyan)]">BinBuddy</span> — an incubated, funded IoT startup — and a{" "}
-              <span className="text-foreground font-medium">Google Student Ambassador ’26</span> representing{" "}
-              <span className="text-foreground font-medium">Google Gemini</span> on campus. Builder across{" "}
+              Co-founder of <span className="text-[color:var(--cyan)]">BinBuddy</span> — an
+              incubated, funded IoT startup — and a{" "}
+              <span className="text-foreground font-medium">Google Student Ambassador ’26</span>{" "}
+              representing <span className="text-foreground font-medium">Google Gemini</span> on
+              campus. Builder across{" "}
               <span className="text-foreground font-medium">cybersecurity</span>,{" "}
               <span className="text-foreground font-medium">robotics</span>, and{" "}
               <span className="text-foreground font-medium">AI systems</span>.
             </p>
 
-
             <div className="mt-5 flex flex-wrap gap-1.5">
               {ROLES.map((r) => (
-                <span key={r} className="mono text-[10.5px] tracking-widest text-foreground/80 border border-white/10 rounded-sm px-2.5 py-1 bg-white/[0.03]">
+                <span
+                  key={r}
+                  className="mono text-[10.5px] tracking-widest text-foreground/80 border border-white/10 rounded-sm px-2.5 py-1 bg-white/[0.03]"
+                >
                   {r.toUpperCase()}
                 </span>
               ))}
@@ -177,8 +249,12 @@ function Hub() {
             </div>
 
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link to="/modules" className="btn-hero"><Rocket className="h-4 w-4" /> View Active Modules</Link>
-              <Link to="/contact" className="btn-ghost"><Send className="h-4 w-4" /> Open Transmission</Link>
+              <Link to="/modules" className="btn-hero">
+                <Rocket className="h-4 w-4" /> View Active Modules
+              </Link>
+              <Link to="/contact" className="btn-ghost">
+                <Send className="h-4 w-4" /> Open Transmission
+              </Link>
               <button
                 onClick={async () => {
                   try {
@@ -194,10 +270,42 @@ function Hub() {
               </button>
             </div>
             <div className="mt-6 flex items-center gap-3">
-              <a aria-label="LinkedIn" href={PROFILE.linkedin} target="_blank" rel="noreferrer" onClick={() => track("social_click", { network: "linkedin" })} className="btn-ghost !px-3"><Linkedin className="h-4 w-4" /></a>
-              <a aria-label="GitHub" href={PROFILE.github} target="_blank" rel="noreferrer" onClick={() => track("social_click", { network: "github" })} className="btn-ghost !px-3"><Github className="h-4 w-4" /></a>
-              <a aria-label="Email" href={`mailto:${PROFILE.email}`} onClick={() => track("social_click", { network: "email" })} className="btn-ghost !px-3"><Mail className="h-4 w-4" /></a>
-              <a aria-label="Phone" href={`tel:${PROFILE.phone}`} onClick={() => track("social_click", { network: "phone" })} className="btn-ghost !px-3"><Phone className="h-4 w-4" /></a>
+              <a
+                aria-label="LinkedIn"
+                href={PROFILE.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => track("social_click", { network: "linkedin" })}
+                className="btn-ghost !px-3"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+              <a
+                aria-label="GitHub"
+                href={PROFILE.github}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => track("social_click", { network: "github" })}
+                className="btn-ghost !px-3"
+              >
+                <Github className="h-4 w-4" />
+              </a>
+              <a
+                aria-label="Email"
+                href={`mailto:${PROFILE.email}`}
+                onClick={() => track("social_click", { network: "email" })}
+                className="btn-ghost !px-3"
+              >
+                <Mail className="h-4 w-4" />
+              </a>
+              <a
+                aria-label="Phone"
+                href={`tel:${PROFILE.phone}`}
+                onClick={() => track("social_click", { network: "phone" })}
+                className="btn-ghost !px-3"
+              >
+                <Phone className="h-4 w-4" />
+              </a>
             </div>
             <div className="mt-10 grid grid-cols-3 max-w-md gap-3">
               {[
@@ -206,7 +314,9 @@ function Hub() {
                 { k: "Certs", v: "8+" },
               ].map((s) => (
                 <div key={s.k} className="glass-soft rounded-lg px-3 py-2.5">
-                  <div className="mono text-[10px] text-[var(--cyan)] tracking-widest">{s.k.toUpperCase()}</div>
+                  <div className="mono text-[10px] text-[var(--cyan)] tracking-widest">
+                    {s.k.toUpperCase()}
+                  </div>
                   <div className="text-sm font-medium">{s.v}</div>
                 </div>
               ))}
@@ -218,19 +328,30 @@ function Hub() {
         </div>
       </section>
 
-
       {/* Dashboard stats */}
       <section className="relative py-10">
         <div className="mx-auto max-w-7xl px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
-            { k: "Active Modules", v: `${PROJECTS.length}`, sub: "shipped & in-flight", icon: Layers },
-            { k: "System Capabilities", v: `${SKILLS.length}`, sub: "core stacks online", icon: Cpu },
+            {
+              k: "Active Modules",
+              v: `${PROJECTS.length}`,
+              sub: "shipped & in-flight",
+              icon: Layers,
+            },
+            {
+              k: "System Capabilities",
+              v: `${SKILLS.length}`,
+              sub: "core stacks online",
+              icon: Cpu,
+            },
             { k: "Uplink", v: "99.9%", sub: "transmission stable", icon: Wifi },
             { k: "Operator", v: "ONLINE", sub: "ready for collab", icon: Activity },
           ].map((p) => (
             <div key={p.k} className="reveal glass rounded-2xl p-4 hud-corner card-hover">
               <div className="flex items-center justify-between">
-                <div className="mono text-[10.5px] tracking-widest text-[var(--cyan)]">{p.k.toUpperCase()}</div>
+                <div className="mono text-[10.5px] tracking-widest text-[var(--cyan)]">
+                  {p.k.toUpperCase()}
+                </div>
                 <p.icon className="h-4 w-4 text-[var(--cyan)]" />
               </div>
               <div className="mt-3 text-3xl font-semibold text-gradient">{p.v}</div>
@@ -245,11 +366,19 @@ function Hub() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="reveal flex items-end justify-between flex-wrap gap-4">
             <div>
-              <span className="section-label"><Eye className="h-3 w-3" /> NAVIGATION · HUB</span>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight">Choose a system</h2>
-              <p className="mt-2 text-muted-foreground text-[15px] max-w-xl">Each card is a module of the operating system. Engage one to enter.</p>
+              <span className="section-label">
+                <Eye className="h-3 w-3" /> NAVIGATION · HUB
+              </span>
+              <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight">
+                Choose a system
+              </h2>
+              <p className="mt-2 text-muted-foreground text-[15px] max-w-xl">
+                Each card is a module of the operating system. Engage one to enter.
+              </p>
             </div>
-            <span className="mono text-[11px] tracking-widest text-muted-foreground">8 SYSTEMS · ALL ONLINE</span>
+            <span className="mono text-[11px] tracking-widest text-muted-foreground">
+              8 SYSTEMS · ALL ONLINE
+            </span>
           </div>
 
           <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -262,11 +391,15 @@ function Hub() {
                   className="reveal module-card glass rounded-2xl p-5 hud-corner card-hover group flex flex-col"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="mono text-[10.5px] tracking-widest text-[var(--cyan)]">SYSTEM · {String(i + 1).padStart(2, "0")}</div>
+                    <div className="mono text-[10.5px] tracking-widest text-[var(--cyan)]">
+                      SYSTEM · {String(i + 1).padStart(2, "0")}
+                    </div>
                     <Icon className="h-4 w-4 text-[var(--cyan)]" />
                   </div>
                   <div className="mt-5 text-2xl font-semibold">{it.label}</div>
-                  <p className="mt-1.5 text-[13px] text-muted-foreground leading-relaxed">{it.desc}</p>
+                  <p className="mt-1.5 text-[13px] text-muted-foreground leading-relaxed">
+                    {it.desc}
+                  </p>
                   <div className="mt-auto pt-6 flex items-center gap-1 text-[12px] mono text-foreground/80 group-hover:text-[var(--cyan)] transition-colors">
                     ENGAGE <ChevronRight className="h-3.5 w-3.5" />
                   </div>
@@ -287,10 +420,22 @@ function Hub() {
             </div>
             <div className="hairline my-3" />
             <div className="mono text-[13px] grid sm:grid-cols-2 gap-y-1.5 gap-x-6 text-foreground/85">
-              <div><span className="text-[var(--cyan)]">›</span> operator: <span className="text-foreground">{PROFILE.name}</span></div>
-              <div><span className="text-[var(--cyan)]">›</span> base: <span className="text-foreground">{PROFILE.location}</span></div>
-              <div><span className="text-[var(--cyan)]">›</span> mode: <span className="text-foreground">building · shipping · learning</span></div>
-              <div><span className="text-[var(--cyan)]">›</span> stack: <span className="text-foreground">AI · IoT · Cloud · Security</span></div>
+              <div>
+                <span className="text-[var(--cyan)]">›</span> operator:{" "}
+                <span className="text-foreground">{PROFILE.name}</span>
+              </div>
+              <div>
+                <span className="text-[var(--cyan)]">›</span> base:{" "}
+                <span className="text-foreground">{PROFILE.location}</span>
+              </div>
+              <div>
+                <span className="text-[var(--cyan)]">›</span> mode:{" "}
+                <span className="text-foreground">building · shipping · learning</span>
+              </div>
+              <div>
+                <span className="text-[var(--cyan)]">›</span> stack:{" "}
+                <span className="text-foreground">AI · IoT · Cloud · Security</span>
+              </div>
             </div>
           </div>
         </div>

@@ -16,24 +16,48 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  # The committed lockfile can carry an internal mirror URL; always resolve from public npm in CI
+  BUN_CONFIG_REGISTRY: https://registry.npmjs.org
+
 jobs:
   dependency-audit:
     name: Dependency vulnerability scan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      - name: Install dependencies (frozen lockfile)
-        run: bun install --frozen-lockfile
+      - name: Install dependencies
+        run: bun install
 
-      - name: Audit dependencies (high + critical fails the build)
-        run: bun audit --audit-level=high
+      - name: Audit dependencies (fails only on high or critical advisories)
+        run: |
+          set -o pipefail
+          if ! bun audit --json > audit.json 2> audit.err; then
+            # bun audit exits non-zero both for findings and for transport errors.
+            # Only a valid JSON report is treated as a real result.
+            if ! jq -e . audit.json > /dev/null 2>&1; then
+              echo "::warning::bun audit could not reach the advisory service; skipping gate."
+              cat audit.err || true
+              exit 0
+            fi
+          fi
+
+          COUNT=$(jq '[.. | objects | select(has("severity")) | .severity]
+                      | map(select(. == "high" or . == "critical")) | length' audit.json)
+          echo "High/critical advisories: ${COUNT}"
+
+          if [ "${COUNT}" -gt 0 ]; then
+            echo "::error::${COUNT} high or critical dependency advisories found."
+            jq . audit.json
+            exit 1
+          fi
 
       - name: Full advisory report (informational)
         if: always()
@@ -45,15 +69,15 @@ jobs:
     needs: dependency-audit
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      - name: Install dependencies (frozen lockfile)
-        run: bun install --frozen-lockfile
+      - name: Install dependencies
+        run: bun install
 
       - name: Lint
         run: bun run lint

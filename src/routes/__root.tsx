@@ -148,7 +148,9 @@ function AppShell() {
     setBooting(false);
     try {
       sessionStorage.setItem("js-booted", "1");
-    } catch {}
+    } catch {
+      // sessionStorage unavailable (private mode) — boot flag is best-effort
+    }
   };
 
   return (

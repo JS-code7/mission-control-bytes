@@ -16,9 +16,9 @@ import {
 
 export const PROFILE = {
   name: "Jeet Soni",
-  role: "Co-Founder @ BinBuddy · Google Student Ambassador '26",
+  role: "Co-Founder @ BinBuddy · Google SA ’26 · Internshala ISP ’26 · Rotaract SAA ’26",
   tagline:
-    "Engineering intelligent autonomous systems across AI, Robotics, Cloud, and Cybersecurity — builder, founder, community leader.",
+    "Building intelligent autonomous systems across software, hardware, cybersecurity, robotics, and web technologies.",
   location: "Greater Ahmedabad Area, India",
   email: "sonijeet660@gmail.com",
   phone: "9409205791",
@@ -38,13 +38,40 @@ export type Experience = {
 
 export const EXPERIENCES: Experience[] = [
   {
+    company: "Internshala",
+    role: "Internshala Student Partner (ISP)",
+    period: "Aug 2026 — Present",
+    location: "Gurugram",
+    summary:
+      "Selected as an Internshala Student Partner, supporting student outreach, career awareness, and communication around internships, jobs, and online training.",
+    tags: ["Outreach", "Career Awareness", "Communication", "Branding"],
+  },
+  {
     company: "Google",
     role: "Google Student Ambassador",
     period: "Jul 2026 — Present",
     location: "Ahmedabad",
     summary:
-      "Selected as a Google Student Ambassador 2026 representing Google Gemini on campus — running workshops, demos, and community initiatives that promote AI literacy, plus content and leadership activities alongside ambassadors across India.",
+      "Selected as a Google Student Ambassador 2026 representing Google Gemini on campus through workshops, demos, campaigns, educational content, and community initiatives.",
     tags: ["Google Gemini", "AI Advocacy", "Community Building", "Leadership"],
+  },
+  {
+    company: "Rotaract Club of New L.J.I.E.T",
+    role: "Sergeant-at-Arms",
+    period: "Jun 2026 — Present",
+    location: "Greater Ahmedabad Area",
+    summary:
+      "Serving as Sergeant-at-Arms, supporting structure, discipline, and smooth execution across club meetings and events.",
+    tags: ["Leadership", "Operations", "Service"],
+  },
+  {
+    company: "Rotaract Club of New L.J.I.E.T",
+    role: "Associate Professional Service Director",
+    period: "Jul 2025 — Jun 2026",
+    location: "Greater Ahmedabad Area",
+    summary:
+      "Contributed to professional service initiatives and community-focused club programming as Associate Professional Service Director.",
+    tags: ["Professional Service", "Community", "Leadership"],
   },
   {
     company: "BinBuddy Technologies",
@@ -52,7 +79,7 @@ export const EXPERIENCES: Experience[] = [
     period: "Oct 2025 — Present",
     location: "Ahmedabad · Associated with GTU",
     summary:
-      "Incubated and funded startup building an IoT-enabled smart waste-management system — real-time bin fill tracking, route optimization, and cloud analytics for smarter urban operations.",
+      "Co-founded an incubated and funded startup focused on intelligent waste-management systems and the intersection of software, hardware, IoT, and automation.",
     tags: ["Founder", "IoT", "Cloud Analytics", "Arduino", "Product"],
   },
   {
@@ -61,7 +88,7 @@ export const EXPERIENCES: Experience[] = [
     period: "Jun 2026 — Present",
     location: "Ahmedabad",
     summary:
-      "Core team member driving visual identity, campaign design, and storytelling assets for a growing Ahmedabad-based community initiative.",
+      "Contributing graphic design, visual communication, and core-team support to an Ahmedabad-based community initiative.",
     tags: ["Design", "Branding", "Community"],
   },
   {
@@ -70,7 +97,7 @@ export const EXPERIENCES: Experience[] = [
     period: "May 2026 — Present",
     location: "Ahmedabad",
     summary:
-      "Creator behind an Ahmedabad-focused reading community — producing content, curating book conversations, and building an engaged local audience.",
+      "Creator of an Ahmedabad-based reading community focused on content, local conversations, and knowledge exchange.",
     tags: ["Creator", "Content", "Community"],
   },
   {
@@ -79,17 +106,17 @@ export const EXPERIENCES: Experience[] = [
     period: "Jun 2026 — Present",
     location: "Greater Ahmedabad Area",
     summary:
-      "Overseeing discipline, order, and structure across meetings and events. Previously Associate Professional Service Director (Jul 2025 – Jun 2026), leading professional service initiatives for a 100+ member chapter.",
+      "Leadership role focused on club structure, discipline, and event operations.",
     tags: ["Leadership", "Operations", "Service"],
   },
   {
     company: "Webcart",
     role: "Software Engineer",
     period: "Mar 2026 — Apr 2026",
-    location: "Ahmedabad",
+    location: "Ahmedabad, Gujarat, India",
     summary:
-      "Engineered full-stack web modules, refined UX flows, and shipped production features focused on performance, reliability, and clean product surfaces.",
-    tags: ["Full-Stack", "Web", "Product"],
+      "Worked as a Software Engineer in a short-term product environment, building practical software experience alongside academic and community work.",
+    tags: ["Software Engineering", "Web", "Product"],
   },
 ];
 
@@ -108,8 +135,8 @@ export const EDUCATION = [
 ];
 
 export const CERTIFICATIONS: { name: string; issuer: string; icon: LucideIcon }[] = [
-  { name: "Offensive Security Certified Professional (OSCP)", issuer: "OffSec", icon: Shield },
   { name: "Deloitte Australia — Cyber Job Simulation", issuer: "Deloitte / Forage", icon: Shield },
+  { name: "Internshala", issuer: "Internshala", icon: Award },
   { name: "Microsoft Introduction to Cloud Infrastructure", issuer: "Microsoft", icon: Cloud },
   {
     name: "Applied Skills: Secure storage for Azure Files & Blob Storage",
@@ -117,11 +144,6 @@ export const CERTIFICATIONS: { name: string; issuer: string; icon: LucideIcon }[
     icon: Lock,
   },
   { name: "Microsoft Introduction to AI in Azure", issuer: "Microsoft", icon: Brain },
-  {
-    name: "Oracle Cloud Infrastructure Certified AI Foundations Associate",
-    issuer: "Oracle",
-    icon: Cloud,
-  },
 ];
 
 export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
@@ -185,7 +207,6 @@ export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
       "Microsoft Azure",
       "Azure Blob & File Security",
       "Oracle Cloud Infrastructure",
-      "AWS",
       "Firebase",
     ],
   },
@@ -197,7 +218,7 @@ export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
   {
     group: "DevOps & Tools",
     icon: GitBranch,
-    items: ["Git", "GitHub", "Linux", "Docker", "Arduino IDE", "Amazon Q CLI"],
+    items: ["Git", "GitHub", "Linux", "Docker", "Arduino IDE", "Amazon Q CLI", "OpenTelemetry", "Whisper", "BM25"],
   },
   {
     group: "Game Development",
@@ -242,8 +263,7 @@ export const PROJECTS: Project[] = [
       "Urban waste collection runs on guesswork — overflowing bins, wasted fuel, and no visibility into ground truth.",
     approach:
       "Connected bins with fill sensors, an Arduino-based edge node, and a cloud analytics layer that produces routes, alerts, and operations dashboards.",
-    outcome:
-      "Incubated and funded startup with a working MVP, active pilots, and an investor-backed roadmap.",
+    outcome: "Incubated and funded startup with an active product direction.",
     impact:
       "Cuts collection trips, reduces overflow events, and turns urban waste ops into measurable, optimizable data.",
     learned:
@@ -301,7 +321,7 @@ export const PROJECTS: Project[] = [
     impact: "A safe test-bed for smart-city control strategies before touching real intersections.",
     learned: "Embedded control loops are only as good as their worst-case latency budget.",
     future: "RL-based controller, CCTV-based vehicle counting, and hardware-in-the-loop city sim.",
-    tags: ["Arduino", "IoT", "AWS"],
+    tags: ["Arduino", "IoT", "Cloud"],
   },
   {
     title: "JOKER — Intelligent Automation Assistant",
@@ -437,7 +457,7 @@ export const TIMELINE = [
   {
     year: "2025",
     label: "Builder",
-    text: "Shipped ScamGuard UPI, Smart Traffic, Obstacle Bot, Rotaract site, JOKER, and Chess CLI.",
+    text: "Built projects spanning fraud detection, smart traffic, robotics, community web, automation, and game logic.",
   },
   {
     year: "Oct 2025",

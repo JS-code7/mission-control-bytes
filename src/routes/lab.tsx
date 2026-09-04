@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { PageHero, useReveal } from "../lib/portfolio/shared";
 import { track } from "../lib/portfolio/analytics";
+import { PROJECTS } from "../lib/portfolio/data";
 
 export const Route = createFileRoute("/lab")({
   component: LabPage,
@@ -47,8 +48,7 @@ function ChatbotDemo() {
       const a = q.toLowerCase();
       let reply = "Routing your question to the operator. For a direct reply, hit /contact.";
       if (a.includes("project"))
-        reply =
-          "Six modules are live — BinBuddy, Adaptive Traffic, Defensive Toolkit, Azure Blueprint, AI Concierge, Robotics Rig.";
+         reply = `${PROJECTS.length} portfolio modules are documented — including BinBuddy, fraud detection, smart traffic, automation, robotics, and game development.`;
       else if (a.includes("hire") || a.includes("work"))
         reply =
           "Open to founder/engineer collaborations in AI, robotics, and secure systems. Email or LinkedIn is fastest.";

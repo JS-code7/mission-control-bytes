@@ -158,6 +158,16 @@ function MissionPage() {
                 <p className="mt-3 text-muted-foreground text-[14.5px] leading-relaxed">
                   {e.summary}
                 </p>
+                {e.bullets && (
+                  <ul className="mt-3 space-y-1.5 text-[13px] leading-relaxed text-foreground/80">
+                    {e.bullets.map((bullet) => (
+                      <li key={bullet} className="flex gap-2">
+                        <span className="mt-[0.55rem] h-1 w-1 shrink-0 rounded-full bg-[var(--cyan)]" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {e.tags.map((t) => (
                     <span

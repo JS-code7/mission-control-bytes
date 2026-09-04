@@ -38,7 +38,7 @@ export const Route = createFileRoute("/")({
       path: "/",
       title: "Jeet Soni — Mission Control | Co-Founder @ BinBuddy",
       description:
-        "Mission control portfolio of Jeet Soni — Co-Founder at BinBuddy Technologies and Google Student Ambassador '26, building across AI, robotics, cybersecurity, and the web.",
+        "Mission control portfolio of Jeet Soni — Co-Founder at BinBuddy, Google Student Ambassador ’26, Internshala Student Partner ’26, and Rotaract SAA ’26.",
     }),
 });
 
@@ -138,7 +138,7 @@ function PortraitCard() {
                 JEET SONI
               </div>
               <div className="text-[13px] text-foreground/90 leading-tight mt-0.5">
-                Co-Founder · Google Ambassador ’26
+                Co-Founder · Google SA ’26
               </div>
             </div>
             <div className="hud-frame rounded-md px-2 py-1 mono text-[9px] tracking-widest text-[color:var(--cyan)]">
@@ -210,7 +210,7 @@ function Hub() {
             </span>
 
             <div className="mt-6 mono text-[11px] tracking-[0.32em] text-[color:var(--cyan)]/80">
-              CO-FOUNDER @ BINBUDDY · GOOGLE STUDENT AMBASSADOR ’26
+              CO-FOUNDER @ BINBUDDY · GOOGLE SA ’26 · INTERNSHALA ISP ’26 · ROTARACT SAA ’26
             </div>
             <h1 className="mt-3 text-[3rem] sm:text-6xl lg:text-[5rem] font-bold leading-[0.95] tracking-tight">
               <span className="block">
@@ -223,14 +223,11 @@ function Hub() {
             </h1>
 
             <p className="mt-6 max-w-xl text-muted-foreground text-[15.5px] leading-relaxed">
-              Co-founder of <span className="text-[color:var(--cyan)]">BinBuddy</span> — an
-              incubated, funded IoT startup — and a{" "}
+              {PROFILE.summary} Co-founder of{" "}
+              <span className="text-[color:var(--cyan)]"> BinBuddy</span> — an incubated and
+              funded startup — and a{" "}
               <span className="text-foreground font-medium">Google Student Ambassador ’26</span>{" "}
-              representing <span className="text-foreground font-medium">Google Gemini</span> on
-              campus. Builder across{" "}
-              <span className="text-foreground font-medium">cybersecurity</span>,{" "}
-              <span className="text-foreground font-medium">robotics</span>, and{" "}
-              <span className="text-foreground font-medium">AI systems</span>.
+              representing Google Gemini on campus.
             </p>
 
             <div className="mt-5 flex flex-wrap gap-1.5">

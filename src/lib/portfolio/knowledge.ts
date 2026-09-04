@@ -25,13 +25,15 @@ GitHub: ${PROFILE.github}
 Tagline: ${PROFILE.tagline}
 
 ## Summary
-Jeet Soni is an aspiring software developer and co-founder of BinBuddy (an incubated, funded startup).
-His focus areas are cybersecurity, ethical hacking, robotics, electronics, AI/ML, web engineering, and Microsoft Azure cloud.
+${PROFILE.summary}
+His focus areas are cybersecurity, ethical hacking, robotics, electronics, AI/ML, web engineering, Microsoft Azure, and emerging technologies including Oracle AI.
 Currently pursuing a Bachelor of Technology in Computer Engineering at Gujarat Technological University (GTU), 2024–2028.
 He builds intelligent systems that bridge software and hardware and ships things end-to-end.
 
 ## Experience
-${EXPERIENCES.map((e) => `- ${e.role} @ ${e.company} (${e.period}): ${e.summary}`).join("\n")}
+${EXPERIENCES.map(
+  (e) => `- ${e.role} @ ${e.company} (${e.period}): ${e.summary}${e.bullets ? `\n  ${e.bullets.join("\n  ")}` : ""}`,
+).join("\n")}
 
 ## Education
 ${EDUCATION.map((e) => `- ${e.school} — ${e.degree} (${e.period})`).join("\n")}

@@ -17,9 +17,12 @@ import {
 
 export const PROFILE = {
   name: "Jeet Soni",
-  role: "Co-Founder @ BinBuddy · Google SA ’26 · Internshala ISP ’26 · Rotaract SAA ’26",
+  role:
+    "Co-Founder @ BinBuddy (Incubated & Funded Startup) | Google SA ’26 | Internshala ISP ’26 | Rotaract SAA ’26 | Building Intelligent Autonomous Systems | Microsoft Azure • Oracle AI • Deloitte Cyber",
   tagline:
-    "Building intelligent autonomous systems across software, hardware, cybersecurity, robotics, and web technologies.",
+    "Building intelligent AI-driven systems combining software, hardware, cybersecurity, robotics, and web technologies.",
+  summary:
+    "I’m an aspiring software developer with a strong interest in cybersecurity, ethical hacking, machine learning, AI, robotics, and emerging technologies. I build practical systems across software and hardware while pursuing a Bachelor of Technology in Computer Engineering at Gujarat Technological University.",
   location: "Greater Ahmedabad Area, India",
   email: "sonijeet660@gmail.com",
   phone: "9409205791",
@@ -34,6 +37,7 @@ export type Experience = {
   period: string;
   location?: string;
   summary: string;
+  bullets?: string[];
   tags: string[];
 };
 
@@ -45,6 +49,12 @@ export const EXPERIENCES: Experience[] = [
     location: "Gurugram",
     summary:
       "Selected as an Internshala Student Partner, supporting student outreach, career awareness, and communication around internships, jobs, and online training.",
+    bullets: [
+      "Promote awareness of Internshala internships, jobs, and online training opportunities among students.",
+      "Support Internshala campaigns and student engagement initiatives within the college community.",
+      "Participate in social media branding campaigns and build practical digital communication experience.",
+      "Help students discover relevant opportunities for upskilling and career development.",
+    ],
     tags: ["Outreach", "Career Awareness", "Communication", "Branding"],
   },
   {
@@ -54,6 +64,12 @@ export const EXPERIENCES: Experience[] = [
     location: "Ahmedabad",
     summary:
       "Selected as a Google Student Ambassador 2026 representing Google Gemini on campus through workshops, demos, campaigns, educational content, and community initiatives.",
+    bullets: [
+      "Promote AI literacy by introducing students to Google Gemini through workshops, demos, campaigns, and community initiatives.",
+      "Build and engage a student community through learning sessions, technical events, and collaborative activities.",
+      "Create educational and technical content showcasing real-world applications of Gemini and Google’s AI ecosystem.",
+      "Collaborate with fellow Student Ambassadors across India through training, challenges, and leadership initiatives.",
+    ],
     tags: ["Google Gemini", "AI Advocacy", "Community Building", "Leadership"],
   },
   {
@@ -63,6 +79,10 @@ export const EXPERIENCES: Experience[] = [
     location: "Greater Ahmedabad Area",
     summary:
       "Serving as Sergeant-at-Arms, supporting structure, discipline, and smooth execution across club meetings and events.",
+    bullets: [
+      "Maintain discipline, order, and process across meetings and events.",
+      "Previously served as Associate Professional Service Director from Jul 2025 to Jun 2026.",
+    ],
     tags: ["Leadership", "Operations", "Service"],
   },
   {
@@ -81,6 +101,10 @@ export const EXPERIENCES: Experience[] = [
     location: "Ahmedabad · Associated with GTU",
     summary:
       "Co-founded an incubated and funded startup focused on intelligent waste-management systems and the intersection of software, hardware, IoT, and automation.",
+    bullets: [
+      "Co-founded a GTU-incubated and funded venture building an IoT-enabled smart waste-management platform.",
+      "Own product direction across sensor hardware, edge firmware, cloud analytics, and route optimization.",
+    ],
     tags: ["Founder", "IoT", "Cloud Analytics", "Arduino", "Product"],
   },
   {
@@ -90,6 +114,9 @@ export const EXPERIENCES: Experience[] = [
     location: "Ahmedabad",
     summary:
       "Contributing graphic design, visual communication, and core-team support to an Ahmedabad-based community initiative.",
+    bullets: [
+      "Lead visual identity, campaign design, and storytelling assets for the community initiative.",
+    ],
     tags: ["Design", "Branding", "Community"],
   },
   {
@@ -99,16 +126,10 @@ export const EXPERIENCES: Experience[] = [
     location: "Ahmedabad",
     summary:
       "Creator of an Ahmedabad-based reading community focused on content, local conversations, and knowledge exchange.",
+    bullets: [
+      "Founded and run an Ahmedabad-focused reading community through curated conversations and content.",
+    ],
     tags: ["Creator", "Content", "Community"],
-  },
-  {
-    company: "Rotaract Club of New L.J.I.E.T",
-    role: "Sergeant-at-Arms",
-    period: "Jun 2026 — Present",
-    location: "Greater Ahmedabad Area",
-    summary:
-      "Leadership role focused on club structure, discipline, and event operations.",
-    tags: ["Leadership", "Operations", "Service"],
   },
   {
     company: "Webcart",
@@ -117,6 +138,10 @@ export const EXPERIENCES: Experience[] = [
     location: "Ahmedabad, Gujarat, India",
     summary:
       "Worked as a Software Engineer in a short-term product environment, building practical software experience alongside academic and community work.",
+    bullets: [
+      "Shipped full-stack web modules with a focus on performance, reliability, and clean product surfaces.",
+      "Rebuilt key UX flows and hardened production features against edge-case failures.",
+    ],
     tags: ["Software Engineering", "Web", "Product"],
   },
 ];
@@ -136,6 +161,7 @@ export const EDUCATION = [
 ];
 
 export const CERTIFICATIONS: { name: string; issuer: string; icon: LucideIcon }[] = [
+  { name: "Offensive Security Certified Professional (OSCP)", issuer: "OffSec", icon: Shield },
   { name: "Deloitte Australia — Cyber Job Simulation", issuer: "Deloitte / Forage", icon: Shield },
   { name: "Internshala", issuer: "Internshala", icon: Award },
   { name: "Microsoft Introduction to Cloud Infrastructure", issuer: "Microsoft", icon: Cloud },
@@ -145,13 +171,14 @@ export const CERTIFICATIONS: { name: string; issuer: string; icon: LucideIcon }[
     icon: Lock,
   },
   { name: "Microsoft Introduction to AI in Azure", issuer: "Microsoft", icon: Brain },
+  { name: "Oracle Cloud Infrastructure Certified AI Foundations Associate", issuer: "Oracle", icon: Cloud },
 ];
 
 export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
   {
     group: "Programming",
     icon: Code2,
-    items: ["Python", "Java", "C", "C++", "JavaScript", "TypeScript", "SQL"],
+    items: ["Python", "JavaScript", "TypeScript", "Systems Design", "Automation", "Debugging"],
   },
   {
     group: "Frontend",
@@ -171,9 +198,8 @@ export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
       "NLP",
       "LLM Applications",
       "Computer Vision",
-      "OpenCV",
-      "NumPy",
-      "Pandas",
+      "Fraud Detection",
+      "Model Integration",
     ],
   },
   {
@@ -186,7 +212,8 @@ export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
       "Wireshark",
       "Nmap",
       "Burp Suite",
-      "Fraud Detection",
+      "Threat Intelligence",
+      "Fraud Analytics",
     ],
   },
   {
@@ -208,7 +235,7 @@ export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
       "Microsoft Azure",
       "Azure Blob & File Security",
       "Oracle Cloud Infrastructure",
-      "Firebase",
+      "AWS",
     ],
   },
   {
@@ -219,7 +246,17 @@ export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
   {
     group: "DevOps & Tools",
     icon: GitBranch,
-    items: ["Git", "GitHub", "Linux", "Docker", "Arduino IDE", "Amazon Q CLI", "OpenTelemetry", "Whisper", "BM25"],
+    items: [
+      "Git",
+      "GitHub",
+      "Linux",
+      "Docker",
+      "Arduino IDE",
+      "Amazon Q CLI",
+      "OpenTelemetry",
+      "Whisper",
+      "BM25",
+    ],
   },
   {
     group: "Game Development",

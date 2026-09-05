@@ -22,7 +22,7 @@ export const Route = createFileRoute("/mission")({
       path: "/mission",
       title: "Mission — Operator Profile | Jeet Soni",
       description:
-        "Operator profile of Jeet Soni: Co-Founder at BinBuddy Technologies and Google Student Ambassador — experience, education, certifications, and capability matrix.",
+        "Operator profile of Jeet Soni: BinBuddy co-founder, Google Student Ambassador ’26, Internshala Student Partner ’26, and GTU Computer Engineering student.",
       type: "profile",
     }),
 });

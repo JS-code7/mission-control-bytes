@@ -32,7 +32,8 @@ He builds intelligent systems that bridge software and hardware and ships things
 
 ## Experience
 ${EXPERIENCES.map(
-  (e) => `- ${e.role} @ ${e.company} (${e.period}): ${e.summary}${e.bullets ? `\n  ${e.bullets.join("\n  ")}` : ""}`,
+  (e) =>
+    `- ${e.role} @ ${e.company} (${e.period}): ${e.summary}${e.bullets ? `\n  ${e.bullets.join("\n  ")}` : ""}`,
 ).join("\n")}
 
 ## Education

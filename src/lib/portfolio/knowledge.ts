@@ -31,8 +31,8 @@ Currently pursuing a Bachelor of Technology in Computer Engineering at Gujarat T
 He builds intelligent systems that bridge software and hardware and ships things end-to-end.
 
 ## Experience
-${EXPERIENCES.map(
-  (e) => `- ${e.role} @ ${e.company} (${e.period}): ${e.summary}${e.bullets ? `\n  ${e.bullets.join("\n  ")}` : ""}`,
+${EXPERIENCES.map((e) =>
+  `- ${e.role} @ ${e.company} (${e.period}): ${e.summary}${e.bullets ? `\n  ${e.bullets.join("\n  ")}` : ""}`,
 ).join("\n")}
 
 ## Education

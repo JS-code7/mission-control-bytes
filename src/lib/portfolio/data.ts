@@ -229,11 +229,7 @@ export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
   {
     group: "Cloud",
     icon: Cloud,
-    items: [
-      "Microsoft Azure",
-      "Azure Blob & File Security",
-      "Cloud Infrastructure",
-    ],
+    items: ["Microsoft Azure", "Azure Blob & File Security", "Cloud Infrastructure"],
   },
   {
     group: "Database",

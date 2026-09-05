@@ -224,8 +224,8 @@ function Hub() {
 
             <p className="mt-6 max-w-xl text-muted-foreground text-[15.5px] leading-relaxed">
               {PROFILE.summary} Co-founder of{" "}
-              <span className="text-[color:var(--cyan)]"> BinBuddy</span> — an incubated and
-              funded startup — and a{" "}
+              <span className="text-[color:var(--cyan)]"> BinBuddy</span> — an incubated and funded
+              startup — and a{" "}
               <span className="text-foreground font-medium">Google Student Ambassador ’26</span>{" "}
               representing Google Gemini on campus.
             </p>
@@ -307,8 +307,8 @@ function Hub() {
             <div className="mt-10 grid grid-cols-3 max-w-md gap-3">
               {[
                 { k: "Startup", v: "Incubated" },
-                 { k: "Ambassador", v: "Google SA '26" },
-                 { k: "Certs", v: "5 verified" },
+                { k: "Ambassador", v: "Google SA '26" },
+                { k: "Certs", v: "5 verified" },
               ].map((s) => (
                 <div key={s.k} className="glass-soft rounded-lg px-3 py-2.5">
                   <div className="mono text-[10px] text-[var(--cyan)] tracking-widest">

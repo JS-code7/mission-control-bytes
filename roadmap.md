@@ -1,4 +1,4 @@
-- [ ] Synchronize verified profile, experience, education, certifications, skills, and homepage copy from Profile_5-2.pdf
+- [x] Synchronize verified profile, experience, education, certifications, skills, and homepage copy from Profile_5-2.pdf
 - [ ] Improve Modules discovery with search, category/technology filters, featured mode, and accessible project briefs
 - [ ] Make Lab concierge real/profile-grounded and label simulations clearly
 - [ ] Close accessibility gaps across navigation, Brain, filters, forms, focus states, and reduced motion

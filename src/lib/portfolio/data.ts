@@ -161,7 +161,6 @@ export const EDUCATION = [
 ];
 
 export const CERTIFICATIONS: { name: string; issuer: string; icon: LucideIcon }[] = [
-  { name: "Offensive Security Certified Professional (OSCP)", issuer: "OffSec", icon: Shield },
   { name: "Deloitte Australia — Cyber Job Simulation", issuer: "Deloitte / Forage", icon: Shield },
   { name: "Internshala", issuer: "Internshala", icon: Award },
   { name: "Microsoft Introduction to Cloud Infrastructure", issuer: "Microsoft", icon: Cloud },
@@ -171,7 +170,6 @@ export const CERTIFICATIONS: { name: string; issuer: string; icon: LucideIcon }[
     icon: Lock,
   },
   { name: "Microsoft Introduction to AI in Azure", issuer: "Microsoft", icon: Brain },
-  { name: "Oracle Cloud Infrastructure Certified AI Foundations Associate", issuer: "Oracle", icon: Cloud },
 ];
 
 export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
@@ -234,8 +232,7 @@ export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
     items: [
       "Microsoft Azure",
       "Azure Blob & File Security",
-      "Oracle Cloud Infrastructure",
-      "AWS",
+      "Cloud Infrastructure",
     ],
   },
   {

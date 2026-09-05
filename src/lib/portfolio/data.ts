@@ -17,8 +17,7 @@ import {
 
 export const PROFILE = {
   name: "Jeet Soni",
-  role:
-    "Co-Founder @ BinBuddy (Incubated & Funded Startup) | Google SA ’26 | Internshala ISP ’26 | Rotaract SAA ’26 | Building Intelligent Autonomous Systems | Microsoft Azure • Oracle AI • Deloitte Cyber",
+  role: "Co-Founder @ BinBuddy (Incubated & Funded Startup) | Google SA ’26 | Internshala ISP ’26 | Rotaract SAA ’26 | Building Intelligent Autonomous Systems | Microsoft Azure • Oracle AI • Deloitte Cyber",
   tagline:
     "Building intelligent AI-driven systems combining software, hardware, cybersecurity, robotics, and web technologies.",
   summary:

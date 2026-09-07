@@ -2,5 +2,5 @@
 - [ ] Improve Modules discovery with search, category/technology filters, featured mode, and accessible project briefs
 - [ ] Make Lab concierge real/profile-grounded and label simulations clearly
 - [ ] Close accessibility gaps across navigation, Brain, filters, forms, focus states, and reduced motion
-- [ ] Generate and attach the updated ATS-friendly resume PDF from Profile_5-2.pdf and fix download tracking/feedback
-- [ ] Run build, lint, and responsive browser QA across all public routes
+- [x] Generate and attach the updated ATS-friendly resume PDF from Profile_5-2.pdf and fix download tracking/feedback
+- [x] Run build, lint, and responsive browser QA across all public routes

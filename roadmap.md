@@ -1,6 +1,6 @@
-- [x] Synchronize verified profile, experience, education, certifications, skills, and homepage copy from Profile_5-2.pdf
+- [ ] Synchronize verified profile, experience, education, credentials, and homepage copy from Profile_6.pdf
+- [ ] Generate and attach a new ATS-friendly Jeet_Soni_Resume.pdf based on Profile_6.pdf
+- [ ] Validate portfolio routes, profile-grounded assistant, resume download, and responsive/accessibility behavior; publish if available
 - [ ] Improve Modules discovery with search, category/technology filters, featured mode, and accessible project briefs
 - [ ] Make Lab concierge real/profile-grounded and label simulations clearly
 - [ ] Close accessibility gaps across navigation, Brain, filters, forms, focus states, and reduced motion
-- [x] Generate and attach the updated ATS-friendly resume PDF from Profile_5-2.pdf and fix download tracking/feedback
-- [x] Run build, lint, and responsive browser QA across all public routes

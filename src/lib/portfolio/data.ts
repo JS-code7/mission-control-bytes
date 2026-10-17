@@ -17,11 +17,11 @@ import {
 
 export const PROFILE = {
   name: "Jeet Soni",
-  role: "Co-Founder @ BinBuddy (Incubated & Funded Startup) | Google SA ’26 | Internshala ISP ’26 | Rotaract SAA ’26 | Building Intelligent Autonomous Systems | Microsoft Azure • Oracle AI • Deloitte Cyber",
+  role: "Co-Founder @ BinBuddy (Incubated & Funded Startup) | Figma Config ’26 | Google SA ’26 | Internshala ISP ’26 | Rotaract SAA ’26 | Air India GCA ’26 | Building Intelligent Autonomous Systems | AI • Cloud • Cybersecurity",
   tagline:
-    "Building intelligent AI-driven systems combining software, hardware, cybersecurity, robotics, and web technologies.",
+    "Building intelligent autonomous systems across software, AI, cloud, cybersecurity, robotics, and web technologies.",
   summary:
-    "I’m an aspiring software developer with a strong interest in cybersecurity, ethical hacking, machine learning, AI, robotics, and emerging technologies. I build practical systems across software and hardware while pursuing a Bachelor of Technology in Computer Engineering at Gujarat Technological University.",
+    "I’m a Computer Engineering student at Gujarat Technological University and co-founder of BinBuddy, building practical systems at the intersection of software, AI, cloud, cybersecurity, robotics, and hardware. My experience also includes campus ambassador and student-partner programs, community leadership, and hands-on engineering projects.",
   location: "Greater Ahmedabad Area, India",
   email: "sonijeet660@gmail.com",
   phone: "9409205791",
@@ -38,9 +38,58 @@ export type Experience = {
   summary: string;
   bullets?: string[];
   tags: string[];
+  status: "Current" | "Completed";
 };
 
 export const EXPERIENCES: Experience[] = [
+  {
+    company: "Air India Limited",
+    role: "Air India Group Campus Ambassador",
+    period: "Oct 2026 — Present",
+    location: "Ahmedabad, Gujarat, India",
+    summary: 'Selected as an "Air India Group Campus Ambassador."',
+    tags: ["Campus Ambassador"],
+    status: "Current",
+  },
+  {
+    company: "Cyber Secured India",
+    role: "Cyber Security Intern",
+    period: "19 Sep 2026 — 15 Nov 2026",
+    location: "India",
+    summary:
+      "Participating in the Cyber Security Training & Internship Program 2026 — Batch 5, with SafeSkillz Ltd. London and Cyber Secured Africa.",
+    bullets: [
+      "Completing expert-led training, practical assignments, assessments, collaborative problem-solving, and cybersecurity projects.",
+      "Exploring cybersecurity foundations, AI in cybersecurity, web and mobile app security, privacy, OSINT and dark web reconnaissance, cloud security, digital forensics, and red-team concepts.",
+    ],
+    tags: ["Cybersecurity Training", "Web Security", "Cloud Security", "Digital Forensics", "OSINT"],
+    status: "Current",
+  },
+  {
+    company: "Google",
+    role: "Google Student Ambassador",
+    period: "Jul 2026 — Present",
+    location: "Ahmedabad, Gujarat, India",
+    summary:
+      "Selected as a Google Student Ambassador 2026, representing Google Gemini on campus through AI literacy and community learning.",
+    bullets: [
+      "Promote AI literacy through workshops, demonstrations, campaigns, and community initiatives.",
+      "Build student engagement through learning sessions and technical events; create educational content about Gemini and Google's AI ecosystem.",
+      "Collaborate with Student Ambassadors across India through training, challenges, and leadership initiatives.",
+    ],
+    tags: ["Google Gemini", "AI Literacy", "Community Building", "Leadership"],
+    status: "Current",
+  },
+  {
+    company: "Buzz Brigade",
+    role: "Campus Captain",
+    period: "Dec 2025 — Present",
+    location: "New L.J.I.E.T., Ahmedabad",
+    summary:
+      "Driving campus engagement and connecting students with opportunities across events, brand campaigns, creator collaborations, and community initiatives.",
+    tags: ["Campus Engagement", "Brand Awareness", "Community"],
+    status: "Current",
+  },
   {
     company: "Internshala",
     role: "Internshala Student Partner (ISP)",
@@ -55,21 +104,7 @@ export const EXPERIENCES: Experience[] = [
       "Help students discover relevant opportunities for upskilling and career development.",
     ],
     tags: ["Outreach", "Career Awareness", "Communication", "Branding"],
-  },
-  {
-    company: "Google",
-    role: "Google Student Ambassador",
-    period: "Jul 2026 — Present",
-    location: "Ahmedabad",
-    summary:
-      "Selected as a Google Student Ambassador 2026 representing Google Gemini on campus through workshops, demos, campaigns, educational content, and community initiatives.",
-    bullets: [
-      "Promote AI literacy by introducing students to Google Gemini through workshops, demos, campaigns, and community initiatives.",
-      "Build and engage a student community through learning sessions, technical events, and collaborative activities.",
-      "Create educational and technical content showcasing real-world applications of Gemini and Google’s AI ecosystem.",
-      "Collaborate with fellow Student Ambassadors across India through training, challenges, and leadership initiatives.",
-    ],
-    tags: ["Google Gemini", "AI Advocacy", "Community Building", "Leadership"],
+    status: "Current",
   },
   {
     company: "Rotaract Club of New L.J.I.E.T",
@@ -83,6 +118,7 @@ export const EXPERIENCES: Experience[] = [
       "Previously served as Associate Professional Service Director from Jul 2025 to Jun 2026.",
     ],
     tags: ["Leadership", "Operations", "Service"],
+    status: "Current",
   },
   {
     company: "Rotaract Club of New L.J.I.E.T",
@@ -92,6 +128,7 @@ export const EXPERIENCES: Experience[] = [
     summary:
       "Contributed to professional service initiatives and community-focused club programming as Associate Professional Service Director.",
     tags: ["Professional Service", "Community", "Leadership"],
+    status: "Completed",
   },
   {
     company: "BinBuddy Technologies",
@@ -105,43 +142,56 @@ export const EXPERIENCES: Experience[] = [
       "Own product direction across sensor hardware, edge firmware, cloud analytics, and route optimization.",
     ],
     tags: ["Founder", "IoT", "Cloud Analytics", "Arduino", "Product"],
+    status: "Current",
+  },
+  {
+    company: "Gujarat Technological University (GTU)",
+    role: "Societal Intern",
+    period: "Jun 2026 — Jul 2026",
+    location: "Greater Ahmedabad Area",
+    summary:
+      "Completed a 15-day Societal Internship with Rotaract Club of Ahmedabad Prahlad Nagar through the Sankalp — Food Distribution Drive.",
+    bullets: [
+      "Contributed to distributing 500+ nutritious food packets to underprivileged children and families.",
+      "Supported field logistics, volunteer coordination, community interaction, resource handling, and activity documentation across Ahmedabad.",
+    ],
+    tags: ["Community Service", "Volunteer Coordination", "Field Logistics"],
+    status: "Completed",
   },
   {
     company: "City Ni Vaarta",
     role: "Graphic Designer & Core Member",
-    period: "Jun 2026 — Present",
+    period: "Jun 2026 — Oct 2026",
     location: "Ahmedabad",
     summary:
-      "Contributing graphic design, visual communication, and core-team support to an Ahmedabad-based community initiative.",
+      "Served as a graphic designer and core team member for an Ahmedabad community initiative.",
     bullets: [
       "Lead visual identity, campaign design, and storytelling assets for the community initiative.",
     ],
     tags: ["Design", "Branding", "Community"],
+    status: "Completed",
   },
   {
     company: "Ahmedabad Reads",
     role: "Creator",
-    period: "May 2026 — Present",
+    period: "May 2026 — Sep 2026",
     location: "Ahmedabad",
     summary:
-      "Creator of an Ahmedabad-based reading community focused on content, local conversations, and knowledge exchange.",
+      "Created Ahmedabad Reads, an Ahmedabad-based reading community.",
     bullets: [
-      "Founded and run an Ahmedabad-focused reading community through curated conversations and content.",
+      "Founded and ran an Ahmedabad-focused reading community.",
     ],
     tags: ["Creator", "Content", "Community"],
+    status: "Completed",
   },
   {
     company: "Webcart",
     role: "Software Engineer",
     period: "Mar 2026 — Apr 2026",
     location: "Ahmedabad, Gujarat, India",
-    summary:
-      "Worked as a Software Engineer in a short-term product environment, building practical software experience alongside academic and community work.",
-    bullets: [
-      "Shipped full-stack web modules with a focus on performance, reliability, and clean product surfaces.",
-      "Rebuilt key UX flows and hardened production features against edge-case failures.",
-    ],
-    tags: ["Software Engineering", "Web", "Product"],
+    summary: "Worked as a Software Engineer at Webcart.",
+    tags: ["Software Engineering"],
+    status: "Completed",
   },
 ];
 
@@ -152,23 +202,37 @@ export const EDUCATION = [
     period: "Sep 2024 — Sep 2028",
   },
   {
-    school: "Microsoft AI and Cloud Honors (GTU)",
-    degree: "Bachelor of Technology — Computer Science",
+    school: "Gujarat Technological University (GTU)",
+    degree: "Microsoft AI and Cloud Honors — Computer Science",
     period: "Feb 2026",
   },
   { school: "Holy Angels Convent School — India", degree: "School Education", period: "Completed" },
 ];
 
-export const CERTIFICATIONS: { name: string; issuer: string; icon: LucideIcon }[] = [
-  { name: "Deloitte Australia — Cyber Job Simulation", issuer: "Deloitte / Forage", icon: Shield },
-  { name: "Internshala", issuer: "Internshala", icon: Award },
-  { name: "Microsoft Introduction to Cloud Infrastructure", issuer: "Microsoft", icon: Cloud },
+export const CERTIFICATIONS: {
+  name: string;
+  issuer: string;
+  category: string;
+  icon: LucideIcon;
+}[] = [
+  { name: "Microsoft Introduction to Cloud Infrastructure", issuer: "Microsoft", category: "Course certificate", icon: Cloud },
   {
     name: "Applied Skills: Secure storage for Azure Files & Blob Storage",
     issuer: "Microsoft",
+    category: "Applied Skills",
     icon: Lock,
   },
-  { name: "Microsoft Introduction to AI in Azure", issuer: "Microsoft", icon: Brain },
+  { name: "Microsoft Introduction to AI in Azure", issuer: "Microsoft", category: "Course certificate", icon: Brain },
+  { name: "Deloitte Australia — Cyber Job", issuer: "Deloitte Australia", category: "Job simulation", icon: Shield },
+  { name: "Internshala", issuer: "Internshala", category: "Profile-listed credential · type unspecified", icon: Award },
+];
+
+export const PROFILE_PROGRAMS = [
+  "Figma Config ’26",
+  "Google Student Ambassador ’26",
+  "Internshala Student Partner ’26",
+  "Rotaract Sergeant-at-Arms ’26",
+  "Air India Group Campus Ambassador ’26",
 ];
 
 export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
@@ -260,11 +324,18 @@ export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
     icon: Cpu,
     items: [
       "Community Building",
+      "Public Relations",
+      "Brand Awareness",
       "Public Speaking",
       "Founder Operations",
       "Product Sense",
       "Rapid Prototyping",
     ],
+  },
+  {
+    group: "Communication & Outreach",
+    icon: Globe,
+    items: ["Public Relations", "Brand Awareness", "Student Outreach", "Digital Communication"],
   },
 ];
 
@@ -497,7 +568,7 @@ export const TIMELINE = [
   {
     year: "2026",
     label: "Operator",
-    text: "Webcart Software Engineer, Unreal game build, and community roles at Rotaract, City Ni Vaarta, Ahmedabad Reads.",
+    text: "Software engineering at Webcart, community service, campus leadership, cybersecurity training, and ambassador programs.",
   },
   {
     year: "Now",

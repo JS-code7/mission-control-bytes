@@ -1,7 +1,7 @@
 import { track } from "./analytics";
 import resumeAsset from "@/assets/resume.pdf.asset.json";
 
-export const RESUME_FILENAME = "Jeet-Soni-Resume.pdf";
+export const RESUME_FILENAME = "Jeet_Soni_Resume.pdf";
 export const RESUME_URL = resumeAsset.url;
 
 /**

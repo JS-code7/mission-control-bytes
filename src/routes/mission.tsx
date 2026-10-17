@@ -153,6 +153,7 @@ function MissionPage() {
                         {e.location}
                       </div>
                     )}
+                    <div className="mono text-[9px] mt-1 text-muted-foreground">{e.status.toUpperCase()}</div>
                   </div>
                 </div>
                 <p className="mt-3 text-muted-foreground text-[14.5px] leading-relaxed">
@@ -240,7 +241,7 @@ function MissionPage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="reveal flex items-center gap-2">
             <Award className="h-4 w-4 text-[var(--gold)]" />
-            <h2 className="text-2xl font-semibold tracking-tight">Certifications</h2>
+            <h2 className="text-2xl font-semibold tracking-tight">Credentials & Programs</h2>
           </div>
           <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {CERTIFICATIONS.map((c) => (
@@ -252,6 +253,9 @@ function MissionPage() {
                 <div className="mt-3 text-[13.5px] font-medium leading-snug">{c.name}</div>
                 <div className="mono text-[10.5px] tracking-widest text-muted-foreground mt-1">
                   {c.issuer.toUpperCase()}
+                </div>
+                <div className="mono text-[9px] tracking-widest text-muted-foreground/80 mt-2">
+                  {c.category.toUpperCase()}
                 </div>
               </div>
             ))}

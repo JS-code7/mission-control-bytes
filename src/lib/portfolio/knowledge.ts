@@ -6,6 +6,7 @@ import {
   SKILLS,
   PROJECTS,
   TIMELINE,
+  PROFILE_PROGRAMS,
 } from "./data";
 
 /**
@@ -26,7 +27,7 @@ Tagline: ${PROFILE.tagline}
 
 ## Summary
 ${PROFILE.summary}
-His focus areas are cybersecurity, ethical hacking, robotics, electronics, AI/ML, web engineering, Microsoft Azure, and emerging technologies including Oracle AI.
+His focus areas are cybersecurity, robotics, electronics, AI/ML, cloud technologies, and web engineering.
 Currently pursuing a Bachelor of Technology in Computer Engineering at Gujarat Technological University (GTU), 2024–2028.
 He builds intelligent systems that bridge software and hardware and ships things end-to-end.
 

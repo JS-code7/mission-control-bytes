@@ -38,7 +38,7 @@ export const Route = createFileRoute("/")({
       path: "/",
       title: "Jeet Soni — Mission Control | Co-Founder @ BinBuddy",
       description:
-        "Mission control portfolio of Jeet Soni — Co-Founder at BinBuddy, Google Student Ambassador ’26, Internshala Student Partner ’26, and Rotaract SAA ’26.",
+        "Mission Control portfolio of Jeet Soni — BinBuddy co-founder, Figma Config ’26, Google Student Ambassador ’26, Internshala ISP ’26, Rotaract SAA ’26, and Air India Group Campus Ambassador ’26.",
     }),
 });
 
@@ -210,7 +210,7 @@ function Hub() {
             </span>
 
             <div className="mt-6 mono text-[11px] tracking-[0.32em] text-[color:var(--cyan)]/80">
-              CO-FOUNDER @ BINBUDDY · GOOGLE SA ’26 · INTERNSHALA ISP ’26 · ROTARACT SAA ’26
+              CO-FOUNDER @ BINBUDDY · AI · CLOUD · CYBERSECURITY
             </div>
             <h1 className="mt-3 text-[3rem] sm:text-6xl lg:text-[5rem] font-bold leading-[0.95] tracking-tight">
               <span className="block">
@@ -256,7 +256,7 @@ function Hub() {
                 onClick={async () => {
                   try {
                     await downloadResume("home_hero");
-                    toast.success("Resume downloading", { description: "Jeet-Soni-Resume.pdf" });
+                    toast.success("Resume downloading", { description: "Jeet_Soni_Resume.pdf" });
                   } catch {
                     toast.error("Download failed. Please try again.");
                   }
@@ -308,7 +308,7 @@ function Hub() {
               {[
                 { k: "Startup", v: "Incubated" },
                 { k: "Ambassador", v: "Google SA '26" },
-                { k: "Certs", v: "5 verified" },
+                { k: "Campus roles", v: "5 programs" },
               ].map((s) => (
                 <div key={s.k} className="glass-soft rounded-lg px-3 py-2.5">
                   <div className="mono text-[10px] text-[var(--cyan)] tracking-widest">

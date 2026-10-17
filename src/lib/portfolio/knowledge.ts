@@ -30,6 +30,12 @@ His focus areas are cybersecurity, ethical hacking, robotics, electronics, AI/ML
 Currently pursuing a Bachelor of Technology in Computer Engineering at Gujarat Technological University (GTU), 2024–2028.
 He builds intelligent systems that bridge software and hardware and ships things end-to-end.
 
+## Profile-listed programs
+${PROFILE_PROGRAMS.join("\n- ")}
+
+## Cybersecurity internship
+The Cyber Security Training & Internship Program 2026 — Batch 5 runs from 19 September through 15 November 2026. It is organized with SafeSkillz Ltd. London and Cyber Secured Africa. Jeet is participating in training and project activities covering foundations, AI in cybersecurity, web and mobile app security, privacy, OSINT and dark web reconnaissance, cloud security, digital forensics, and red-team concepts. This is an in-progress program, not a completed certification.
+
 ## Experience
 ${EXPERIENCES.map(
   (e) =>

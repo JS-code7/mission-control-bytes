@@ -210,7 +210,7 @@ function Hub() {
             </span>
 
             <div className="mt-6 mono text-[11px] tracking-[0.32em] text-[color:var(--cyan)]/80">
-              CO-FOUNDER @ BINBUDDY · AI · CLOUD · CYBERSECURITY
+              CO-FOUNDER @ BINBUDDY · FIGMA CONFIG ’26 · GOOGLE SA ’26 · AIR INDIA GCA ’26
             </div>
             <h1 className="mt-3 text-[3rem] sm:text-6xl lg:text-[5rem] font-bold leading-[0.95] tracking-tight">
               <span className="block">

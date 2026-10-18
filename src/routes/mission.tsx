@@ -22,7 +22,7 @@ export const Route = createFileRoute("/mission")({
       path: "/mission",
       title: "Mission — Operator Profile | Jeet Soni",
       description:
-        "Operator profile of Jeet Soni: BinBuddy co-founder, Google Student Ambassador ’26, Internshala Student Partner ’26, and GTU Computer Engineering student.",
+        "Experience, education, skills, and credentials for Jeet Soni: BinBuddy co-founder, Air India Group Campus Ambassador, Google Student Ambassador, and GTU Computer Engineering student.",
       type: "profile",
     }),
 });
@@ -56,23 +56,22 @@ function MissionPage() {
             <div className="hairline my-3" />
             <div className="space-y-4 text-[15px] leading-relaxed text-foreground/85">
               <p>
-                I'm a builder at the intersection of{" "}
-                <span className="text-foreground">cybersecurity, robotics, AI, and web</span>. I
+                I'm a Computer Engineering student and builder working across{" "}
+                <span className="text-foreground"> software, AI, cloud, cybersecurity, robotics, and hardware</span>. I
                 co-founded <span className="text-foreground">BinBuddy</span>, an incubated and
-                funded startup turning waste operations into intelligent, measurable systems.
+                funded startup developing smart waste-management systems.
               </p>
               <p>
-                My work is grounded in a simple idea: software is sharper when it touches the real
-                world. That's why I gravitate toward problems where bits meet atoms — sensors,
-                vehicles, secure storage, smart agents that do more than chat.
+                My hands-on work spans sensors, embedded systems, web software, and student-led
+                technical and community programs.
               </p>
               <p>
-                I care deeply about{" "}
+                I’m currently participating in a cybersecurity training internship covering{" "}
                 <span className="text-foreground">
-                  ethical hacking, defensive security, and secure-by-default architecture
+                  web and mobile security, cloud security, privacy, OSINT, and digital forensics
                 </span>
-                . Building something powerful is only half the job; building it responsibly is the
-                rest.
+                . These are learning areas in an ongoing program, not a claim of professional
+                specialization.
               </p>
             </div>
           </div>

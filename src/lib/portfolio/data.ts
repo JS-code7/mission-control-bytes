@@ -215,24 +215,50 @@ export const CERTIFICATIONS: {
   category: string;
   icon: LucideIcon;
 }[] = [
-  { name: "Microsoft Introduction to Cloud Infrastructure", issuer: "Microsoft", category: "Course certificate", icon: Cloud },
+  {
+    name: "Microsoft Introduction to Cloud Infrastructure",
+    issuer: "Microsoft",
+    category: "Profile-listed credential",
+    icon: Cloud,
+  },
   {
     name: "Applied Skills: Secure storage for Azure Files & Blob Storage",
     issuer: "Microsoft",
-    category: "Applied Skills",
+    category: "Profile-listed credential",
     icon: Lock,
   },
-  { name: "Microsoft Introduction to AI in Azure", issuer: "Microsoft", category: "Course certificate", icon: Brain },
-  { name: "Deloitte Australia — Cyber Job", issuer: "Deloitte Australia", category: "Job simulation", icon: Shield },
-  { name: "Internshala", issuer: "Internshala", category: "Profile-listed credential · type unspecified", icon: Award },
+  {
+    name: "Microsoft Introduction to AI in Azure",
+    issuer: "Microsoft",
+    category: "Profile-listed credential",
+    icon: Brain,
+  },
+];
+
+export const TRAINING_AND_SIMULATIONS = [
+  {
+    name: "Deloitte Australia — Cyber Job",
+    issuer: "Deloitte Australia",
+    category: "Job simulation",
+  },
+  {
+    name: "Cyber Security Training & Internship Program 2026 — Batch 5",
+    issuer: "Cyber Secured India · SafeSkillz Ltd. London · Cyber Secured Africa",
+    category: "Ongoing program · 19 Sep–15 Nov 2026",
+  },
+];
+
+export const OTHER_PROFILE_LISTED_ITEMS = [
+  { name: "Internshala", category: "Profile-listed; credential type unspecified" },
 ];
 
 export const PROFILE_PROGRAMS = [
-  "Figma Config ’26",
-  "Google Student Ambassador ’26",
-  "Internshala Student Partner ’26",
-  "Rotaract Sergeant-at-Arms ’26",
-  "Air India Group Campus Ambassador ’26",
+  { name: "Figma Config ’26", category: "Profile-listed program" },
+  { name: "Google Student Ambassador ’26", category: "Campus ambassador program" },
+  { name: "Internshala Student Partner ’26", category: "Student partner program" },
+  { name: "Rotaract Sergeant-at-Arms ’26", category: "Leadership role" },
+  { name: "Air India Group Campus Ambassador ’26", category: "Campus ambassador program" },
+  { name: "Buzz Brigade Campus Captain", category: "Campus leadership role" },
 ];
 
 export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
@@ -324,8 +350,6 @@ export const SKILLS: { group: string; icon: LucideIcon; items: string[] }[] = [
     icon: Cpu,
     items: [
       "Community Building",
-      "Public Relations",
-      "Brand Awareness",
       "Public Speaking",
       "Founder Operations",
       "Product Sense",

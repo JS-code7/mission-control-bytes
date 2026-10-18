@@ -12,7 +12,16 @@ import {
   Mail,
   Cloud,
 } from "lucide-react";
-import { PROFILE, EXPERIENCES, EDUCATION, CERTIFICATIONS, SKILLS } from "../lib/portfolio/data";
+import {
+  PROFILE,
+  EXPERIENCES,
+  EDUCATION,
+  CERTIFICATIONS,
+  TRAINING_AND_SIMULATIONS,
+  OTHER_PROFILE_LISTED_ITEMS,
+  PROFILE_PROGRAMS,
+  SKILLS,
+} from "../lib/portfolio/data";
 import { PageHero, useReveal } from "../lib/portfolio/shared";
 
 export const Route = createFileRoute("/mission")({
@@ -193,7 +202,7 @@ function MissionPage() {
           </div>
           <div className="mt-6 grid md:grid-cols-2 gap-5">
             {EDUCATION.map((e) => (
-              <div key={e.school} className="reveal glass rounded-2xl p-5 hud-corner card-hover">
+              <div key={`${e.school}-${e.period}`} className="reveal glass rounded-2xl p-5 hud-corner card-hover">
                 <div className="mono text-[11px] tracking-widest text-[var(--cyan)]">
                   {e.period.toUpperCase()}
                 </div>
@@ -258,6 +267,41 @@ function MissionPage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="mt-10">
+            <h3 className="text-lg font-semibold">Training & job simulations</h3>
+            <div className="mt-4 grid md:grid-cols-2 gap-4">
+              {TRAINING_AND_SIMULATIONS.map((item) => (
+                <article key={item.name} className="reveal glass rounded-xl p-4 hud-corner">
+                  <div className="text-[14px] font-medium">{item.name}</div>
+                  <div className="mono mt-1 text-[10px] tracking-widest text-muted-foreground">
+                    {item.issuer.toUpperCase()}
+                  </div>
+                  <div className="mt-2 text-[12px] text-foreground/75">{item.category}</div>
+                </article>
+              ))}
+              {OTHER_PROFILE_LISTED_ITEMS.map((item) => (
+                <article key={item.name} className="reveal glass rounded-xl p-4 hud-corner">
+                  <div className="text-[14px] font-medium">{item.name}</div>
+                  <div className="mt-2 text-[12px] text-foreground/75">{item.category}</div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10">
+            <h3 className="text-lg font-semibold">Ambassador & leadership programs</h3>
+            <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {PROFILE_PROGRAMS.map((program) => (
+                <div key={program.name} className="reveal glass-soft rounded-lg border border-white/10 p-3">
+                  <div className="text-[13px] font-medium">{program.name}</div>
+                  <div className="mono mt-1 text-[9px] tracking-widest text-muted-foreground">
+                    {program.category.toUpperCase()}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="reveal mt-10 glass rounded-2xl p-5 hud-corner scanline">

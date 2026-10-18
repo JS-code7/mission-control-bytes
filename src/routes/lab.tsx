@@ -39,34 +39,46 @@ function ChatbotDemo() {
       text: "Concierge online. Ask me about Jeet's stack, projects, or how to collab.",
     },
   ]);
-  const send = () => {
-    if (!input.trim()) return;
+  const [loading, setLoading] = useState(false);
+  const send = async () => {
+    if (!input.trim() || loading) return;
     const q = input.trim();
-    setMsgs((m) => [...m, { from: "user", text: q }]);
+    const next = [...msgs, { from: "user" as const, text: q }];
+    setMsgs(next);
     setInput("");
-    setTimeout(() => {
-      const a = q.toLowerCase();
-      let reply = "Routing your question to the operator. For a direct reply, hit /contact.";
-      if (a.includes("project"))
-        reply = `${PROJECTS.length} portfolio modules are documented — including BinBuddy, fraud detection, smart traffic, automation, robotics, and game development.`;
-      else if (a.includes("hire") || a.includes("work"))
-        reply =
-          "Open to founder/engineer collaborations in AI, robotics, and secure systems. Email or LinkedIn is fastest.";
-      else if (a.includes("stack") || a.includes("skill"))
-        reply = "Core: AI/ML, Cybersecurity, Robotics & Electronics, Web (React/TS), Azure cloud.";
-      else if (a.includes("binbuddy"))
-        reply = "BinBuddy is an incubated, funded startup — IoT bins + vision + cloud routing.";
-      setMsgs((m) => [...m, { from: "bot", text: reply }]);
-    }, 450);
+    setLoading(true);
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          messages: next
+            .slice(1)
+            .slice(-12)
+            .map((message) => ({
+              role: message.from === "bot" ? "assistant" : "user",
+              content: message.text,
+            })),
+        }),
+      });
+      const data = (await response.json()) as { reply?: string; error?: string };
+      if (!response.ok) throw new Error(data.error || "Assistant unavailable. Try again.");
+      setMsgs((messages) => [...messages, { from: "bot", text: data.reply || "No response received." }]);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Connection error. Try again.";
+      setMsgs((messages) => [...messages, { from: "bot", text: message }]);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <div className="glass rounded-2xl p-4 hud-corner h-full flex flex-col">
       <div className="flex items-center gap-2 mono text-[11px] text-[var(--cyan)]">
-        <Bot className="h-3.5 w-3.5" /> AI CONCIERGE · PREVIEW{" "}
-        <span className="ml-auto opacity-70">v0.3</span>
+        <Bot className="h-3.5 w-3.5" /> MC-AI · PROFILE-GROUNDED
+        <span className="ml-auto opacity-70">LIVE</span>
       </div>
       <div className="hairline my-3" />
-      <div className="flex-1 space-y-2 overflow-auto max-h-[260px] pr-1">
+      <div role="log" aria-live="polite" aria-label="Lab assistant conversation" className="flex-1 space-y-2 overflow-auto max-h-[260px] pr-1">
         {msgs.map((m, i) => (
           <div
             key={i}
@@ -80,25 +92,27 @@ function ChatbotDemo() {
             {m.text}
           </div>
         ))}
+        {loading && <div className="mono text-[10px] text-muted-foreground" role="status">MC-AI is responding…</div>}
       </div>
-      <div className="mt-3 flex gap-2">
+      <form className="mt-3 flex gap-2" onSubmit={(event) => { event.preventDefault(); void send(); }}>
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && send()}
           placeholder="Try: tell me about BinBuddy"
+          disabled={loading}
           aria-label="Ask the lab assistant a question"
           className="flex-1 bg-white/5 border border-white/10 rounded-md px-3 py-2 text-[13px] outline-none focus:border-[var(--cyan)]"
         />
         <button
           type="button"
-          onClick={send}
+          type="submit"
+          disabled={loading || !input.trim()}
           aria-label="Send question"
           className="btn-hero !py-2 !px-3"
         >
-          <Send className="h-3.5 w-3.5" aria-hidden="true" />
+          {loading ? <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" /> : <Send className="h-3.5 w-3.5" aria-hidden="true" />}
         </button>
-      </div>
+      </form>
     </div>
   );
 }

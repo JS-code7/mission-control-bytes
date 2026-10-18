@@ -11,7 +11,6 @@ import {
   Code2,
   Database,
   GitBranch,
-  Award,
   type LucideIcon,
 } from "lucide-react";
 

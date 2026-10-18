@@ -12,7 +12,16 @@ import {
   Mail,
   Cloud,
 } from "lucide-react";
-import { PROFILE, EXPERIENCES, EDUCATION, CERTIFICATIONS, SKILLS } from "../lib/portfolio/data";
+import {
+  PROFILE,
+  EXPERIENCES,
+  EDUCATION,
+  CERTIFICATIONS,
+  TRAINING_AND_SIMULATIONS,
+  OTHER_PROFILE_LISTED_ITEMS,
+  PROFILE_PROGRAMS,
+  SKILLS,
+} from "../lib/portfolio/data";
 import { PageHero, useReveal } from "../lib/portfolio/shared";
 
 export const Route = createFileRoute("/mission")({
@@ -22,7 +31,7 @@ export const Route = createFileRoute("/mission")({
       path: "/mission",
       title: "Mission — Operator Profile | Jeet Soni",
       description:
-        "Operator profile of Jeet Soni: BinBuddy co-founder, Google Student Ambassador ’26, Internshala Student Partner ’26, and GTU Computer Engineering student.",
+        "Experience, education, skills, and credentials for Jeet Soni: BinBuddy co-founder, Air India Group Campus Ambassador, Google Student Ambassador, and GTU Computer Engineering student.",
       type: "profile",
     }),
 });
@@ -56,23 +65,22 @@ function MissionPage() {
             <div className="hairline my-3" />
             <div className="space-y-4 text-[15px] leading-relaxed text-foreground/85">
               <p>
-                I'm a builder at the intersection of{" "}
-                <span className="text-foreground">cybersecurity, robotics, AI, and web</span>. I
+                I'm a Computer Engineering student and builder working across{" "}
+                <span className="text-foreground"> software, AI, cloud, cybersecurity, robotics, and hardware</span>. I
                 co-founded <span className="text-foreground">BinBuddy</span>, an incubated and
-                funded startup turning waste operations into intelligent, measurable systems.
+                funded startup developing smart waste-management systems.
               </p>
               <p>
-                My work is grounded in a simple idea: software is sharper when it touches the real
-                world. That's why I gravitate toward problems where bits meet atoms — sensors,
-                vehicles, secure storage, smart agents that do more than chat.
+                My hands-on work spans sensors, embedded systems, web software, and student-led
+                technical and community programs.
               </p>
               <p>
-                I care deeply about{" "}
+                I’m currently participating in a cybersecurity training internship covering{" "}
                 <span className="text-foreground">
-                  ethical hacking, defensive security, and secure-by-default architecture
+                  web and mobile security, cloud security, privacy, OSINT, and digital forensics
                 </span>
-                . Building something powerful is only half the job; building it responsibly is the
-                rest.
+                . These are learning areas in an ongoing program, not a claim of professional
+                specialization.
               </p>
             </div>
           </div>
@@ -194,7 +202,7 @@ function MissionPage() {
           </div>
           <div className="mt-6 grid md:grid-cols-2 gap-5">
             {EDUCATION.map((e) => (
-              <div key={e.school} className="reveal glass rounded-2xl p-5 hud-corner card-hover">
+              <div key={`${e.school}-${e.period}`} className="reveal glass rounded-2xl p-5 hud-corner card-hover">
                 <div className="mono text-[11px] tracking-widest text-[var(--cyan)]">
                   {e.period.toUpperCase()}
                 </div>
@@ -259,6 +267,41 @@ function MissionPage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="mt-10">
+            <h3 className="text-lg font-semibold">Training & job simulations</h3>
+            <div className="mt-4 grid md:grid-cols-2 gap-4">
+              {TRAINING_AND_SIMULATIONS.map((item) => (
+                <article key={item.name} className="reveal glass rounded-xl p-4 hud-corner">
+                  <div className="text-[14px] font-medium">{item.name}</div>
+                  <div className="mono mt-1 text-[10px] tracking-widest text-muted-foreground">
+                    {item.issuer.toUpperCase()}
+                  </div>
+                  <div className="mt-2 text-[12px] text-foreground/75">{item.category}</div>
+                </article>
+              ))}
+              {OTHER_PROFILE_LISTED_ITEMS.map((item) => (
+                <article key={item.name} className="reveal glass rounded-xl p-4 hud-corner">
+                  <div className="text-[14px] font-medium">{item.name}</div>
+                  <div className="mt-2 text-[12px] text-foreground/75">{item.category}</div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10">
+            <h3 className="text-lg font-semibold">Ambassador & leadership programs</h3>
+            <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {PROFILE_PROGRAMS.map((program) => (
+                <div key={program.name} className="reveal glass-soft rounded-lg border border-white/10 p-3">
+                  <div className="text-[13px] font-medium">{program.name}</div>
+                  <div className="mono mt-1 text-[9px] tracking-widest text-muted-foreground">
+                    {program.category.toUpperCase()}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="reveal mt-10 glass rounded-2xl p-5 hud-corner scanline">
